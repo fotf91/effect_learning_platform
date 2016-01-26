@@ -25,7 +25,9 @@ STATIC_PATH = os.path.join(BASE_DIR,'static')
 STATICFILES_DIRS = (
     STATIC_PATH,
 )
-
+# for the user registration
+AUTH_USER_MODEL = 'account_app.User'
+AUTHENTICATION_BACKENDS = ['account_app.backends.EmailAuthBackend', ]
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
