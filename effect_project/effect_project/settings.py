@@ -26,8 +26,9 @@ STATICFILES_DIRS = (
     STATIC_PATH,
 )
 # for the user registration
-AUTH_USER_MODEL = 'account_app.User'
-AUTHENTICATION_BACKENDS = ['account_app.backends.EmailAuthBackend', ]
+AUTH_USER_MODEL = 'account_app.EmailBasedUser'
+AUTHENTICATION_BACKENDS = ('account_app.backends.EmailAuthBackend', # login using the custom user
+                           'django.contrib.auth.backends.ModelBackend',) # login using the default user for superuser
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
