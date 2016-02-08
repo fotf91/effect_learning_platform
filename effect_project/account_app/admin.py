@@ -1,13 +1,13 @@
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib import admin
 from django.contrib.auth.models import Group
-from account_app.forms import UserCreationForm, UserChangeForm
+from account_app.forms import GeneralUserCreationForm, GeneralUserChangeForm
 from account_app.models import EmailBasedUser
 
-class UserAdmin(BaseUserAdmin):
+class GeneralUserAdmin(BaseUserAdmin):
     # The forms to add and change user instances
-    form = UserChangeForm
-    add_form = UserCreationForm
+    form = GeneralUserChangeForm
+    add_form = GeneralUserCreationForm
 
     # The fields to be used in displaying the User model.
     # These override the definitions on the base UserAdmin
@@ -32,7 +32,7 @@ class UserAdmin(BaseUserAdmin):
     filter_horizontal = ()
 
 # Now register the new UserAdmin...
-admin.site.register(EmailBasedUser, UserAdmin)
+admin.site.register(EmailBasedUser, GeneralUserAdmin)
 # ... and, since we're not using Django's built-in permissions,
 # unregister the Group model from admin.
 admin.site.unregister(Group)

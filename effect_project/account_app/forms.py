@@ -1,13 +1,17 @@
 from django import forms
-from account_app.models import EmailBasedUser
+from account_app.models import (EmailBasedUser, TypeGUser, TypeCUser)
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 
 
-class UserCreationForm(forms.ModelForm):
+class GeneralUserCreationForm(forms.ModelForm):
     """
+    Registration
     A form for creating new users. Includes all the required
     fields, plus a repeated password.
     """
+    CHOICES = (('1', 'Graduate',), ('2', 'Company',))
+    user_type = forms.ChoiceField(widget=forms.RadioSelect, choices=CHOICES)
+
     password1 = forms.CharField(label="Password",
                                 widget=forms.PasswordInput)
     password2 = forms.CharField(label="Password",
@@ -34,7 +38,7 @@ class UserCreationForm(forms.ModelForm):
         return user
 
 
-class UserChangeForm(forms.ModelForm):
+class GeneralUserChangeForm(forms.ModelForm):
     """A form for updating users. Includes all the fields on
     the user, but replaces the password field with admin's
     password hash display field.
@@ -54,8 +58,19 @@ class UserChangeForm(forms.ModelForm):
 
 class AuthenticationForm(forms.Form):
     """
-    Login form
+    Login form using the EmailBasedUser model
     """
-
     class Meta:
         fields=['email', 'password']
+
+
+class TypeGUserForm(forms.Form):
+    class Meta:
+        model = TypeGUser
+        fields = ('first_name', 'last_name')
+
+
+class TypeCUserForm(forms.Form):
+    class Meta:
+        model = TypeCUser
+        fields = ('first_name', 'last_name')

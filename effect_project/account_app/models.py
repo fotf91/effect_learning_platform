@@ -1,10 +1,12 @@
 from __future__ import unicode_literals
 from django.db import models
+from django.core.validators import RegexValidator
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.contrib.auth.models import (
     BaseUserManager, AbstractBaseUser, PermissionsMixin
 )
 
-# https://docs.djangoproject.com/en/1.9/topics/auth/customizing/#django.contrib.auth.models.BaseUserManager
+
 class EmailBasedUserManager(BaseUserManager):
     def create_user(self, email, date_of_birth, password=None):
         """
@@ -39,6 +41,10 @@ class EmailBasedUserManager(BaseUserManager):
 
 class EmailBasedUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField('email address', unique=True, db_index=True)
+    user_type = models.IntegerField(
+        default=1,
+        validators=[MaxValueValidator(2), MinValueValidator(1)]
+     )
     joined = models.DateTimeField(auto_now_add = True)
     is_active = models.BooleanField(default = True)
     is_admin = models.BooleanField(default = False)
@@ -72,3 +78,58 @@ class EmailBasedUser(AbstractBaseUser, PermissionsMixin):
         # todo: fix the following
         # Simplest possible answer: All admins are staff
         return self.is_admin
+
+
+class TypeGUser(models.Model):
+    """
+    TypeGUser represents the Graduate user
+    """
+    # one to one relationship to the EmailBasedUser
+    user = models.OneToOneField(EmailBasedUser, null = True)
+    # basic info
+    first_name = models.CharField(max_length=255)
+    last_name = models.CharField(max_length=255)
+    status = models.CharField(max_length=255, blank=True)
+    passion = models.CharField(max_length=255, blank=True)
+    alumn = models.BooleanField(default = False)
+    # phone number regular expression and field
+    phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
+    phone_number = models.CharField(validators=[phone_regex], blank=True, max_length=20) # validators should be a list
+    # info about education
+    education_val1 = models.CharField(max_length=255, blank=True)
+    education_val2 = models.CharField(max_length=255, blank=True)
+    education_val3 = models.CharField(max_length=255, blank=True)
+    # info about experience
+    experience_val1 = models.CharField(max_length=255, blank=True)
+    experience_val2 = models.CharField(max_length=255, blank=True)
+    experience_val3 = models.CharField(max_length=255, blank=True)
+    # info about top skills
+    skill_top_val1 = models.CharField(max_length=255, blank=True)
+    skill_top_val2 = models.CharField(max_length=255, blank=True)
+    skill_top_val3 = models.CharField(max_length=255, blank=True)
+    # info about secondary skills
+    skill_secondary_val1 = models.CharField(max_length=255, blank=True)
+    skill_secondary_val2 = models.CharField(max_length=255, blank=True)
+    skill_secondary_val3 = models.CharField(max_length=255, blank=True)
+    # info about the expertise area
+    expertise_area_val1 = models.CharField(max_length=255, blank=True)
+    expertise_area_val2 = models.CharField(max_length=255, blank=True)
+    expertise_area_val3 = models.CharField(max_length=255, blank=True)
+
+
+class TypeCUser(models.Model):
+    """
+    TypeGUser represents the Company user
+    """
+    # one to one relationship to the EmailBasedUser
+    user = models.OneToOneField(EmailBasedUser, null = True)
+    # basic info
+    official_name = models.CharField(max_length=255)
+    # basic info of the person responsible
+    first_name = models.CharField(max_length=255)
+    last_name = models.CharField(max_length=255)
+    # phone number regular expression and field
+    phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
+    phone_number = models.CharField(validators=[phone_regex], blank=True, max_length=20) # validators should be a list
+    # tagline-passion-philosophy of the company
+    tagline = models.CharField(max_length=255, blank=True)

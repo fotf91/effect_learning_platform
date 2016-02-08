@@ -1,14 +1,11 @@
-<!DOCTYPE html>
-<html>
+{% extends 'base.html' %}
 
-    <head>
-        <title>Rango</title>
-    </head>
+{% load staticfiles %}
 
-    <body>
-        <h1>Rango says...</h1>
-        hello world! <strong>{{ boldmessage }}</strong><br />
-        <!--<a href="/rango/about/">About</a><br />-->
-    </body>
+{% block title %}Index page{% endblock %}
 
-</html>
+{% block body_block %}
+    Index html page here!
+    <a href="/account/login">Login</a>
+    <a href="/account/register">Register</a>
+{% endblock %}

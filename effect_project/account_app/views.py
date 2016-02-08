@@ -1,7 +1,7 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect, render_to_response
 from django.contrib.auth import login as django_login, authenticate, logout as django_logout
-from account_app.forms import UserCreationForm, AuthenticationForm
+from account_app.forms import GeneralUserCreationForm, AuthenticationForm
 
 
 def index(request):
@@ -30,18 +30,35 @@ def login(request):
     else:
         return render(request, 'account_app/login.html', {})
 
+# !!! simple good old working registration !!!
+# def register(request):
+#     """
+#     Registration view
+#     """
+#     registered = False
+#     if request.method == 'POST':
+#         form = GeneralUserCreationForm(data=request.POST)
+#         if form.is_valid():
+#             user = form.save()
+#             registered = True
+#     else:
+#         form = GeneralUserCreationForm()
+#     return render(request,
+#                   'account_app/register.html',
+#                   {'form': form, 'registered': registered})
+
 def register(request):
     """
     Registration view
     """
     registered = False
     if request.method == 'POST':
-        form = UserCreationForm(data=request.POST)
+        form = GeneralUserCreationForm(data=request.POST)
         if form.is_valid():
             user = form.save()
             registered = True
     else:
-        form = UserCreationForm()
+        form = GeneralUserCreationForm()
     return render(request,
                   'account_app/register.html',
                   {'form': form, 'registered': registered})

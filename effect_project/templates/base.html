@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+{% load staticfiles %}
+
+<html>
+    <head>
+        <title>Effect {% block title %}Default text{% endblock %}</title>
+        <link rel="stylesheet" type="text/css" href="{% static "css/main.css" %}">
+    </head>
+
+    <body>
+        <div id="wrapper">
+            <header>
+                <div class="site-header">
+                    <div class="text-center">
+                        <a href="/account/">
+                            <img src="{% static "images/logos/effect-redlt220x220.png" %}" />
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div>
+            <!-- Page specific content goes here -->
+            {% block body_block %}{% endblock %}
+        </div>
+        <div>
+            <ul>
+            {% if user.is_authenticated %}
+                <li><a href="#">Restricted Page</a></li>
+                <li><a href="#">Logout</a></li>
+                <li><a href="#">Add a New Category</a></li>
+            {% else %}
+                <li><a href="#">Register Here</a></li>
+                <li><a href="#">Login</a></li>
+            {% endif %}
+
+                <li><a href="#">About</a></li>
+            </ul>
+        </div>
+    </body>
+</html>
