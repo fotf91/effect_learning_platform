@@ -5,38 +5,34 @@
 <html>
     <head>
         <title>Effect {% block title %}Default text{% endblock %}</title>
-        <link rel="stylesheet" type="text/css" href="{% static "css/main.css" %}">
+        <link rel="stylesheet" type="text/css" href="{% static "css/css-code/main.css" %}">
+        {% block dependencies %}{% endblock %}
     </head>
 
     <body>
         <div id="wrapper">
-            <header>
-                <div class="site-header">
-                    <div class="text-center">
-                        <a href="/account/">
-                            <img src="{% static "images/logos/effect-redlt220x220.png" %}" />
-                        </a>
-                    </div>
-                </div>
-            </header>
-        </div>
-        <div>
+
+            <!--page header-->
+            {% block header_block %}{% include 'header.html' %}{% endblock %}
             <!-- Page specific content goes here -->
             {% block body_block %}{% endblock %}
-        </div>
-        <div>
-            <ul>
-            {% if user.is_authenticated %}
-                <li><a href="#">Restricted Page</a></li>
-                <li><a href="#">Logout</a></li>
-                <li><a href="#">Add a New Category</a></li>
-            {% else %}
-                <li><a href="#">Register Here</a></li>
-                <li><a href="#">Login</a></li>
-            {% endif %}
+            <div class="max-width-980">
+                <ul>
+                {% if user.is_authenticated %}
+                    <li><a href="#">Restricted Page</a></li>
+                    <li><a href="#">Logout</a></li>
+                    <li><a href="#">Add a New Category</a></li>
+                {% else %}
+                    <li><a href="#">Register Here</a></li>
+                    <li><a href="#">Login</a></li>
+                {% endif %}
 
-                <li><a href="#">About</a></li>
-            </ul>
-        </div>
+                    <li><a href="#">About</a></li>
+                </ul>
+            </div>
+            <!--page footer -->
+            {% block footer_block %}{% include 'footer.html' %}{% endblock %}
+
+        </div><!--end #wrapper-->
     </body>
 </html>

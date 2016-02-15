@@ -1,0 +1,30 @@
+/*--------------------------------------
+lato-medium
+---------------------------------------*/
+.lato-medium{
+  font-family: "lato-medium";
+}
+@font-face{
+  font-family: "lato-medium";
+  src: url('../fonts/Lato/Lato-Medium.ttf');
+}
+/*--------------------------------------
+lato-heavy
+---------------------------------------*/
+.lato-heavy{
+  font-family: "lato-heavy";
+}
+@font-face{
+  font-family: "lato-heavy";
+  src: url('../fonts/Lato/Lato-Heavy.ttf');
+}
+/*--------------------------------------
+lato-light
+---------------------------------------*/
+.lato-heavy{
+  font-family: "lato-light";
+}
+@font-face{
+  font-family: "lato-light";
+  src: url('../fonts/Lato/Lato-Light.ttf');
+}

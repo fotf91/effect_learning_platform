@@ -1,0 +1,53 @@
+/*--------------------------------------
+MAIN STYLE
+---------------------------------------*/
+header{
+    box-shadow: 0 4px 4px 4px rgba(6,8,8,0.15);
+}
+header,
+header a{
+    color: #fff;
+}
+/*--------------------------------------
+MAIN HEADER
+---------------------------------------*/
+#mainHeader{
+    background-color: #3a3a3a;
+}
+#mainHeader,
+header img{
+    height: 70px;
+}
+/*--------------------------------------
+SECONDARY HEADER
+---------------------------------------*/
+#secondaryHeader{
+    height: 28px;
+    line-height: 28px;
+    background-color: #9c0000;
+    /*#cc0000;*/
+}
+header ul{
+    padding: 0;
+}
+header li{
+    display: inline;
+}
+header li img{
+    height: 20px;
+    padding-right: 20px;
+}
+header li span{
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 3px;
+}
+header li span:hover{
+    border-bottom: 3px #3a3a3a solid;
+}
+/*--------------------------------------
+OVERRIDE BOOTSTRAP
+---------------------------------------*/
+header li .glyphicon{
+    padding-bottom: 6px;
+}

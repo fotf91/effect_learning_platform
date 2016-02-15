@@ -2,39 +2,104 @@
 
 {% load staticfiles %}
 
-{% block title %}Registration{% endblock %}
+{% block title %}
+    Registration
+{% endblock %}
+
+{% block dependencies %}
+    <link rel="stylesheet" type="text/css" href="{% static "css/css-code/account_app/register.css" %}">
+{% endblock %}
 
 {% block body_block %}
     {% if registered %}
-    <div>registered!!!</div>
+        <div class="max-width-980">
+            registered!!!
+        </div>
     {% else %}
-    <form id="register" method="post" action="/account/register">
+        <div class="max-width-980">
+            <div class="radio">
+                <input type="radio" name="account-connect" id="existingAccount" class="radio" checked/>
+                <label for="existingAccount">Σύνδεση με υπάρχον λογαριασμό</label>
 
-        {% csrf_token %}
-        <!--{{ form.as_p }}-->
-        <div>
-            <label for="email">Your email: </label>
-            <input id="email" type="email" name="email" value="{{ email }}">
+                <!--login form-->
+                <form id="loginForm" class="form-horizontal" method="post" action="/account/login">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Email</label>
+                        <div class="col-sm-10">
+                            <input type="email" class="form-control" placeholder="Email" name="email">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Password</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" placeholder="Password" name="password">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-default">Σύνδεση</button>
+                            <!--<input type="submit" value="Login" />-->
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="radio">
+                <input type="radio" name="account-connect" id="newAccount" class="radio"/>
+                <label for="newAccount">Δημιουργία νέου λογαριασμού</label>
+
+                <!--registration form-->
+                <form id="registerForm" class="form-horizontal" method="post" action="/account/register">
+
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Email</label>
+                        <div class="col-sm-10">
+                            <input type="email" class="form-control" placeholder="Email" name="email">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Password</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" placeholder="Password" name="password1">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Password</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" placeholder="Password" name="password2">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="radio row">
+                            <div class="col-sm-2">
+                                <label class="control-label">Κατηγορία Χρήστη</label>
+                            </div>
+                            <div class="col-sm-10 radio-row">
+                                <div class="col-sm-2">
+                                    <input type="radio" id="graduateRadio" class="radio" name="user_type" value="1" checked/>
+                                    <label for="graduateRadio">
+                                        Απόφοιτος
+                                    </label>
+                                    <label for="graduateRadio" class="checked"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></label>
+                                </div>
+                                <div class="col-sm-2">
+                                    <input type="radio" id="companyRadio" class="radio" name="user_type" value="2"/>
+                                    <label for="companyRadio">
+                                        Εταιρεία
+                                    </label>
+                                    <label for="companyRadio" class="checked"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-default">Εγγραφή</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div>
-            <label for="date_of_birth">Date of birth: </label>
-            <input id="date_of_birth" type="date" name="date_of_birth" value="{{ date_of_birth }}">
-        </div>
-        <div>
-            <label for="password1">Password: </label>
-            <input id="password1" type="password" name="password1" value="{{ password1 }}">
-        </div>
-        <div>
-            <label for="password2">Password Again: </label>
-            <input id="password2" type="password" name="password2" value="{{ password2 }}">
-        </div>
-        <div>
-            <input type="radio" name="user_type" value="1"> Graduate<br>
-            <input type="radio" name="user_type" value="2"> Company<br>
-        </div>
-        <div>
-            <input type="submit" name="submit" value="Register" />
-        </div>
-    </form>
     {% endif %}
 {% endblock %}

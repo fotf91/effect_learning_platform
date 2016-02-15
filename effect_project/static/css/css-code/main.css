@@ -1,0 +1,86 @@
+@import '../font-awesome-4.5.0/css/font-awesome.min.css'; /* --- import font awesome --- */
+@import '../bootstrap/css/bootstrap.min.css'; /* --- import bootstrap --- */
+@import './font.css'; /* --- import font awesome --- */
+@import './header.css'; /* --- import font awesome --- */
+@import './footer.css'; /* --- import font awesome --- */
+
+
+/*--------------------------------------
+MAIN STYLE
+---------------------------------------*/
+html,
+body{
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    font-family: 'lato-medium';
+    background-color: #f2f2f2;
+}
+
+#wrapper{
+    min-height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.max-width-980{
+    max-width: 980px;
+    margin-left: auto;
+    margin-right: auto;
+}
+/*--------------------------------------
+LINKS
+---------------------------------------*/
+a:hover{
+    text-decoration: none;
+    color: #fff;
+}
+/*--------------------------------------
+SPACING
+---------------------------------------*/
+.m-b-30{
+    margin-bottom: 30px;
+}
+/*--------------------------------------
+FORMS
+---------------------------------------*/
+form label{
+    font-family: lato-heavy;
+}
+.radio ~ label{
+    font-family: lato-medium;
+}
+.radio form{
+    padding: 10px;
+    display: none;
+    border-top: 1px solid #B9B9B9;
+}
+/*--------------------------------------
+CUSTOM RADIO BUTTONS
+---------------------------------------*/
+input.radio{
+    visibility: hidden;
+}
+input[type="radio"]:checked ~ label.checked{
+    visibility: visible;
+}
+
+label.checked{
+    visibility: hidden;
+}
+
+form input[type="radio"]:checked ~ label{
+    color: #9c0000;
+}
+input[type="radio"]:checked ~ label{
+    font-family: lato-heavy;
+}
+.radio > input,
+.radio > label{
+    margin-bottom: 0px;
+    font-size: 20px;
+    font-family: lato-light;
+}

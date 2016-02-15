@@ -1,7 +1,10 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect, render_to_response
 from django.contrib.auth import login as django_login, authenticate, logout as django_logout
-from account_app.forms import GeneralUserCreationForm, AuthenticationForm
+from account_app.forms import (GeneralUserCreationForm,
+                               AuthenticationForm,
+                               TypeGUserForm,
+                               TypeCUserForm)
 
 
 def index(request):
@@ -46,6 +49,7 @@ def login(request):
 #     return render(request,
 #                   'account_app/register.html',
 #                   {'form': form, 'registered': registered})
+
 
 def register(request):
     """

@@ -1,0 +1,26 @@
+{% load staticfiles %}
+
+{% block header_block %}
+    <header class="m-b-30">
+        <div id="mainHeader">
+            <div class="max-width-980">
+                <div class="text-center">
+                    <a href="/account/">
+                        <img src="{% static "images/logos/effectlogo-full-white.png" %}" />
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div id="secondaryHeader">
+            <div class="max-width-980">
+                <ul>
+                    <li><a href="/account"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
+                    <li><a href="/account/register"><span>Λογαριασμός</span></a></li>
+                    <li><a href="#"><span>LINK</span></a></li>
+                    <li><a href="#"><span>LINK</span></a></li>
+                    <li><a href="#"><span>LINK</span></a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+{% endblock %}

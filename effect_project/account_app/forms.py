@@ -19,7 +19,7 @@ class GeneralUserCreationForm(forms.ModelForm):
 
     class Meta:
         model = EmailBasedUser
-        fields = ('email','date_of_birth')
+        fields = ('email',)
 
     def clean_password2(self):
         # Check that the two password entries match
@@ -31,7 +31,7 @@ class GeneralUserCreationForm(forms.ModelForm):
 
     def save(self, commit=True):
         # Save the provided password in hashed format
-        user = super(UserCreationForm, self).save(commit = False)
+        user = super(GeneralUserCreationForm, self).save(commit = False)
         user.set_password(self.cleaned_data["password1"])
         if commit:
             user.save()
@@ -47,7 +47,7 @@ class GeneralUserChangeForm(forms.ModelForm):
 
     class Meta:
         model = EmailBasedUser
-        fields = ('email', 'password', 'date_of_birth', 'is_active', 'is_admin')
+        fields = ('email', 'password', 'is_active', 'is_admin')
 
     def clean_password(self):
         # Regardless of what the user provides, return the initial value.

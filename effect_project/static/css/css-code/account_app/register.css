@@ -1,0 +1,14 @@
+input#newAccount[type="radio"]:checked ~ #registerForm{
+    display: block;
+}
+input#existingAccount[type="radio"]:checked ~ #loginForm{
+   display: block;
+}
+
+.radio-row{
+    line-height: 50px;
+}
+.radio-row label{
+    padding-left: 0;
+}
+

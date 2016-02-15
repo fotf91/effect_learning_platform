@@ -8,7 +8,7 @@ from django.contrib.auth.models import (
 
 
 class EmailBasedUserManager(BaseUserManager):
-    def create_user(self, email, date_of_birth, password=None):
+    def create_user(self, email, password=None):
         """
         Creates and saves a User with the given email, date of
         birth and password.
@@ -18,21 +18,19 @@ class EmailBasedUserManager(BaseUserManager):
 
         user = self.model(
             email = self.normalize_email(email),
-            date_of_birth = date_of_birth,
         )
 
         user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, date_of_birth, password):
+    def create_superuser(self, email, password):
         """
         Creates and saves a superuser with the given email, date of
         birth and password.
         """
         user = self.create_user(email,
-                                password=password,
-                                date_of_birth=date_of_birth,)
+                                password=password,)
         user.is_superuser = True # without this line the admin does not give any permission to edit
         user.is_admin = True
         user.save(using=self._db)
@@ -48,10 +46,8 @@ class EmailBasedUser(AbstractBaseUser, PermissionsMixin):
     joined = models.DateTimeField(auto_now_add = True)
     is_active = models.BooleanField(default = True)
     is_admin = models.BooleanField(default = False)
-    date_of_birth = models.DateField()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['date_of_birth']
 
     objects = EmailBasedUserManager()
 
@@ -89,6 +85,7 @@ class TypeGUser(models.Model):
     # basic info
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
+    date_of_birth = models.DateField(null = True)
     status = models.CharField(max_length=255, blank=True)
     passion = models.CharField(max_length=255, blank=True)
     alumn = models.BooleanField(default = False)
@@ -128,6 +125,7 @@ class TypeCUser(models.Model):
     # basic info of the person responsible
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
+    date_of_birth = models.DateField(null = True)
     # phone number regular expression and field
     phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
     phone_number = models.CharField(validators=[phone_regex], blank=True, max_length=20) # validators should be a list
