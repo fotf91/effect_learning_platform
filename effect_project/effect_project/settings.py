@@ -11,6 +11,11 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
+from effect_project.config import *
+
+# for LinkedIn authentication - specify the login and the redirect URLs (after a user authenticates)
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/account/connect'
+SOCIAL_AUTH_LOGIN_URL = '/'
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -28,6 +33,7 @@ STATICFILES_DIRS = (
 # for the user registration
 AUTH_USER_MODEL = 'account_app.EmailBasedUser'
 AUTHENTICATION_BACKENDS = ('account_app.backends.EmailAuthBackend', # login using the custom user
+                           'social.backends.linkedin.LinkedinOAuth2',
                            'django.contrib.auth.backends.ModelBackend',) # login using the default user for superuser
 
 # Quick-start development settings - unsuitable for production
@@ -51,7 +57,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'account_app'
+    'account_app',
+    'social.apps.django_app.default', # include the OAuth - python social authentication app
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -78,6 +85,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                # the following two lines are using the OAuth - python social authentication
+                'social.apps.django_app.context_processors.backends',
+                'social.apps.django_app.context_processors.login_redirect',
             ],
         },
     },

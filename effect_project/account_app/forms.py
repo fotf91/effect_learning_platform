@@ -9,7 +9,7 @@ class GeneralUserCreationForm(forms.ModelForm):
     A form for creating new users. Includes all the required
     fields, plus a repeated password.
     """
-    CHOICES = (('1', 'Graduate',), ('2', 'Company',))
+    CHOICES = (('1', '1',), ('2', '2',))
     user_type = forms.ChoiceField(widget=forms.RadioSelect, choices=CHOICES)
 
     password1 = forms.CharField(label="Password",
@@ -19,7 +19,7 @@ class GeneralUserCreationForm(forms.ModelForm):
 
     class Meta:
         model = EmailBasedUser
-        fields = ('email',)
+        fields = ('email', 'user_type')
 
     def clean_password2(self):
         # Check that the two password entries match
@@ -64,13 +64,43 @@ class AuthenticationForm(forms.Form):
         fields=['email', 'password']
 
 
-class TypeGUserForm(forms.Form):
+class EditTypeGUserForm(forms.ModelForm):
     class Meta:
         model = TypeGUser
-        fields = ('first_name', 'last_name')
+        fields = ('first_name',
+                  'last_name',
+                  # 'date_of_birth',
+                  # 'status',
+                  # 'passion',
+                  # 'phone_number',
+                  # 'education_val1',
+                  # 'education_val2',
+                  # 'education_val3',
+                  # 'experience_val1',
+                  # 'experience_val2',
+                  # 'experience_val3',
+                  'skill_top_val1',
+                  'skill_top_val2',
+                  'skill_top_val3',
+                  # 'skill_secondary_val1',
+                  # 'skill_secondary_val2',
+                  # 'skill_secondary_val3',
+                  # 'expertise_area_val1',
+                  # 'expertise_area_val2',
+                  # 'expertise_area_val3',
+                  # 'avatar',
+                  )
 
 
-class TypeCUserForm(forms.Form):
+class EditTypeCUserForm(forms.ModelForm):
     class Meta:
         model = TypeCUser
-        fields = ('first_name', 'last_name')
+        fields = ('official_name',
+                  'first_name',
+                  'last_name',
+                  'avatar',
+                  'date_of_birth',
+                  'tagline',
+                  'phone_number',
+                  'position',
+                  )

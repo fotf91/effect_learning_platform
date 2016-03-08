@@ -5,7 +5,12 @@
 <html>
     <head>
         <title>Effect {% block title %}Default text{% endblock %}</title>
+        <script src="{% static 'js/jquery-1.12.0.min.js' %}"></script>
+        <script src="{% static 'js/js-code/main.js' %}"></script>
+        <script src="{% static 'css/bootstrap/js/bootstrap.min.js' %}"></script>
+
         <link rel="stylesheet" type="text/css" href="{% static "css/css-code/main.css" %}">
+
         {% block dependencies %}{% endblock %}
     </head>
 
@@ -16,20 +21,6 @@
             {% block header_block %}{% include 'header.html' %}{% endblock %}
             <!-- Page specific content goes here -->
             {% block body_block %}{% endblock %}
-            <div class="max-width-980">
-                <ul>
-                {% if user.is_authenticated %}
-                    <li><a href="#">Restricted Page</a></li>
-                    <li><a href="#">Logout</a></li>
-                    <li><a href="#">Add a New Category</a></li>
-                {% else %}
-                    <li><a href="#">Register Here</a></li>
-                    <li><a href="#">Login</a></li>
-                {% endif %}
-
-                    <li><a href="#">About</a></li>
-                </ul>
-            </div>
             <!--page footer -->
             {% block footer_block %}{% include 'footer.html' %}{% endblock %}
 

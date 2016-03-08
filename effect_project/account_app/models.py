@@ -40,7 +40,6 @@ class EmailBasedUserManager(BaseUserManager):
 class EmailBasedUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField('email address', unique=True, db_index=True)
     user_type = models.IntegerField(
-        default=1,
         validators=[MaxValueValidator(2), MinValueValidator(1)]
      )
     joined = models.DateTimeField(auto_now_add = True)
@@ -76,12 +75,45 @@ class EmailBasedUser(AbstractBaseUser, PermissionsMixin):
         return self.is_admin
 
 
+class Skills(models.Model):
+    """
+    Skills
+    """
+    name = models.CharField(max_length=60)
+
+    def as_json(self):
+        return dict(
+            id = self.id,
+            name = self.name,
+        )
+
+    def __unicode__(self):
+        return self.name
+
+
+class ExpertiseArea(models.Model):
+    """
+    Expertise Area
+    """
+    name = models.CharField(max_length=60)
+
+    def as_json(self):
+        return dict(
+            id = self.id,
+            name = self.name,
+        )
+
+    def __unicode__(self):
+        return self.name
+
+
 class TypeGUser(models.Model):
     """
     TypeGUser represents the Graduate user
     """
     # one to one relationship to the EmailBasedUser
-    user = models.OneToOneField(EmailBasedUser, null = True)
+    user = models.OneToOneField(EmailBasedUser,
+                                null = True,)
     # basic info
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
@@ -89,6 +121,7 @@ class TypeGUser(models.Model):
     status = models.CharField(max_length=255, blank=True)
     passion = models.CharField(max_length=255, blank=True)
     alumn = models.BooleanField(default = False)
+    location = models.CharField(max_length=255, blank=True)
     # phone number regular expression and field
     phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
     phone_number = models.CharField(validators=[phone_regex], blank=True, max_length=20) # validators should be a list
@@ -100,18 +133,23 @@ class TypeGUser(models.Model):
     experience_val1 = models.CharField(max_length=255, blank=True)
     experience_val2 = models.CharField(max_length=255, blank=True)
     experience_val3 = models.CharField(max_length=255, blank=True)
-    # info about top skills
-    skill_top_val1 = models.CharField(max_length=255, blank=True)
-    skill_top_val2 = models.CharField(max_length=255, blank=True)
-    skill_top_val3 = models.CharField(max_length=255, blank=True)
-    # info about secondary skills
-    skill_secondary_val1 = models.CharField(max_length=255, blank=True)
-    skill_secondary_val2 = models.CharField(max_length=255, blank=True)
-    skill_secondary_val3 = models.CharField(max_length=255, blank=True)
+    # info about top skills - 3 values
+    skill_top_val1 = models.ForeignKey(Skills, related_name='skill_top_val1', null=True, blank=True)
+    skill_top_val2 = models.ForeignKey(Skills, related_name='skill_top_val2', null=True, blank=True)
+    skill_top_val3 = models.ForeignKey(Skills, related_name='skill_top_val3', null=True, blank=True)
+    # info about secondary skills - 3 values
+    skill_secondary_val1 = models.ForeignKey(Skills, related_name='skill_secondary_val1', null=True, blank=True)
+    skill_secondary_val2 = models.ForeignKey(Skills, related_name='skill_secondary_val2', null=True, blank=True)
+    skill_secondary_val3 = models.ForeignKey(Skills, related_name='skill_secondary_val3', null=True, blank=True)
     # info about the expertise area
-    expertise_area_val1 = models.CharField(max_length=255, blank=True)
-    expertise_area_val2 = models.CharField(max_length=255, blank=True)
-    expertise_area_val3 = models.CharField(max_length=255, blank=True)
+    expertise_area_val1 = models.ForeignKey(ExpertiseArea, related_name='expertise_area_val1', null=True, blank=True)
+    expertise_area_val2 = models.ForeignKey(ExpertiseArea, related_name='expertise_area_val2', null=True, blank=True)
+    expertise_area_val3 = models.ForeignKey(ExpertiseArea, related_name='expertise_area_val3', null=True, blank=True)
+    # avatar
+    avatar = models.ImageField('avatar', upload_to='static/media/images/avatars/', null=True, blank=True)
+
+    def __unicode__(self):
+        return self.first_name+" "+self.last_name
 
 
 class TypeCUser(models.Model):
@@ -131,3 +169,10 @@ class TypeCUser(models.Model):
     phone_number = models.CharField(validators=[phone_regex], blank=True, max_length=20) # validators should be a list
     # tagline-passion-philosophy of the company
     tagline = models.CharField(max_length=255, blank=True)
+    # position
+    position = models.CharField(max_length=255, blank=True)
+    # avatar
+    avatar = models.ImageField('avatar', upload_to='static/media/images/avatars/', null=True, blank=True)
+
+    def __unicode__(self):
+        return self.first_name+" "+self.last_name

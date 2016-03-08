@@ -1,3 +1,9 @@
+#registerForm,
+#loginForm,
+#connectLinkedInAccount{
+    display: none;
+}
+
 input#newAccount[type="radio"]:checked ~ #registerForm{
     display: block;
 }
@@ -11,4 +17,6 @@ input#existingAccount[type="radio"]:checked ~ #loginForm{
 .radio-row label{
     padding-left: 0;
 }
-
+.form-like{
+    padding-left: 20px;
+}

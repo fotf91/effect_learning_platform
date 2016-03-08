@@ -21,4 +21,5 @@ admin.autodiscover()
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^account/', include('account_app.urls')),
+    url('', include('social.apps.django_app.urls', namespace='social')),
 ]

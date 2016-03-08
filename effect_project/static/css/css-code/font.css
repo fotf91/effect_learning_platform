@@ -21,10 +21,20 @@ lato-heavy
 /*--------------------------------------
 lato-light
 ---------------------------------------*/
-.lato-heavy{
+.lato-light{
   font-family: "lato-light";
 }
 @font-face{
   font-family: "lato-light";
   src: url('../fonts/Lato/Lato-Light.ttf');
+}
+/*--------------------------------------
+lato-light-italic
+---------------------------------------*/
+.lato-light-italic{
+  font-family: "lato-light-italic";
+}
+@font-face{
+  font-family: "lato-light-italic";
+  src: url('../fonts/Lato/Lato-LightItalic.ttf');
 }

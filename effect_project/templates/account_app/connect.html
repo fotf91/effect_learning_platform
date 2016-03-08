@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block dependencies %}
-    <link rel="stylesheet" type="text/css" href="{% static "css/css-code/account_app/register.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "css/css-code/account_app/connect.css" %}">
 {% endblock %}
 
 {% block body_block %}
@@ -17,8 +17,11 @@
         </div>
     {% else %}
         <div class="max-width-980">
+            <div class="form-like">
+                <a class="btn btn-default" href="{% url 'social:begin' backend='linkedin-oauth2' %}">Χρήση λογαριασμού <i class="fa fa-linkedin-square"></i></a>
+            </div>
             <div class="radio">
-                <input type="radio" name="account-connect" id="existingAccount" class="radio" checked/>
+                <input type="radio" name="account-connect" id="existingAccount" class="radio"/>
                 <label for="existingAccount">Σύνδεση με υπάρχον λογαριασμό</label>
 
                 <!--login form-->
@@ -49,7 +52,7 @@
                 <label for="newAccount">Δημιουργία νέου λογαριασμού</label>
 
                 <!--registration form-->
-                <form id="registerForm" class="form-horizontal" method="post" action="/account/register">
+                <form id="registerForm" class="form-horizontal" method="post" action="/account/connect">
 
                     {% csrf_token %}
                     <div class="form-group">
@@ -77,14 +80,14 @@
                             </div>
                             <div class="col-sm-10 radio-row">
                                 <div class="col-sm-2">
-                                    <input type="radio" id="graduateRadio" class="radio" name="user_type" value="1" checked/>
+                                    <input type="radio" id="graduateRadio" class="radio" name="user_type" value="1"/>
                                     <label for="graduateRadio">
                                         Απόφοιτος
                                     </label>
                                     <label for="graduateRadio" class="checked"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></label>
                                 </div>
                                 <div class="col-sm-2">
-                                    <input type="radio" id="companyRadio" class="radio" name="user_type" value="2"/>
+                                    <input type="radio" id="companyRadio" class="radio" name="user_type" value="2" checked/>
                                     <label for="companyRadio">
                                         Εταιρεία
                                     </label>

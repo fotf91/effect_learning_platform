@@ -1,8 +1,10 @@
 @import '../font-awesome-4.5.0/css/font-awesome.min.css'; /* --- import font awesome --- */
 @import '../bootstrap/css/bootstrap.min.css'; /* --- import bootstrap --- */
 @import './font.css'; /* --- import font awesome --- */
-@import './header.css'; /* --- import font awesome --- */
-@import './footer.css'; /* --- import font awesome --- */
+@import './header.css'; /* --- header style --- */
+@import './footer.css'; /* --- footer style --- */
+@import './general_styles/buttons.css'; /* --- buttons style --- */
+@import './general_styles/text.css'; /* --- buttons style --- */
 
 
 /*--------------------------------------
@@ -17,7 +19,16 @@ body{
 
 body{
     font-family: 'lato-medium';
-    background-color: #f2f2f2;
+    background-color: #E9EAEA;
+}
+
+#mainHeader{
+    background-color: #E9EAEAF;
+}
+
+footer{
+    font-weight: bold;
+    background-color: #47A2F8;
 }
 
 #wrapper{
@@ -44,18 +55,20 @@ SPACING
 .m-b-30{
     margin-bottom: 30px;
 }
+.m-t-50{
+    margin-top: 50px;
+}
+.no-padding{
+    padding: 0;
+}
 /*--------------------------------------
 FORMS
 ---------------------------------------*/
-form label{
-    font-family: lato-heavy;
-}
 .radio ~ label{
     font-family: lato-medium;
 }
 .radio form{
     padding: 10px;
-    display: none;
     border-top: 1px solid #B9B9B9;
 }
 /*--------------------------------------
@@ -83,4 +96,15 @@ input[type="radio"]:checked ~ label{
     margin-bottom: 0px;
     font-size: 20px;
     font-family: lato-light;
+}
+
+/*--------------------------------------
+GLYPHICONS
+---------------------------------------*/
+.glyphicon-ok,
+.glyphicon-pencil{
+    color: #47A2F8;
+}
+.glyphicon-remove{
+    color: #9c0000;
 }
