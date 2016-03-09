@@ -1,5 +1,3 @@
-import json
-
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, redirect, render_to_response
 from django.contrib.auth import login as django_login, authenticate, logout as django_logout
@@ -10,7 +8,6 @@ from account_app.models import TypeGUser, TypeCUser, Skills
 from account_app.forms import (EditTypeCUserForm,
                                EditTypeGUserForm)
 from django.core import serializers
-from django.forms.models import model_to_dict
 
 
 def index(request):
@@ -89,14 +86,10 @@ def update_profile_Gtype(request):
             # create a form instance and populate it with data from the request:
             form = EditTypeGUserForm(request.POST, instance=current_user_detail)
             if form.is_valid():
-                print '>>>>>>>>>>>>>>>>>>>>>>>> valid: '
-                skill_top_val = form.cleaned_data['skill_top_val1']
-                print skill_top_val
                 form.save()
                 return HttpResponseRedirect('/account/profile')
             # if a GET (or any other method) we'll create a blank form
             else:
-                print '>>>>>>>>>>>>>>>>>>>>>>>> invalid! '
                 form = EditTypeGUserForm()
         return render(request,
                     'account_app/personal_profile.html',

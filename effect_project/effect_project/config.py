@@ -1,3 +1,4 @@
+# -------------------------------- oauth2 configuration -------------------------------------
 # LinkedIn Authentication keys
 SOCIAL_AUTH_LINKEDIN_OAUTH2_KEY = '77yzbsthwzsrke'
 SOCIAL_AUTH_LINKEDIN_OAUTH2_SECRET = 'xphjulTOvyXCh2Q2'

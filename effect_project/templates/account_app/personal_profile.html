@@ -28,11 +28,18 @@
                             <div class="form-group">
                                 <div class="col-sm-3">
                                     {% if not current_user_detail.alumn %}
+                                        <div class="alumni">
+                                            <span class="glyphicon glyphicon-asterisk"></span>
+                                        </div>
                                     {% endif %}
                                 </div>
                                 <div class="col-sm-6">
                                     {% if current_user_detail.passion %}
-                                        <div class="no-edit-state">{{ current_user_detail.passion }}</div>
+                                        <div class="no-edit-state passion">
+                                            <i class="fa fa-quote-left"></i>
+                                                {{ current_user_detail.passion }}
+                                            <i class="fa fa-quote-right"></i>
+                                        </div>
                                     {% else %}
                                         <div class="no-edit-state empty-field"><label class="control-label">Πάθος</label></div>
                                     {% endif %}
@@ -42,7 +49,7 @@
                         </div>
                     </div>
                     <!-- row -->
-                    <div class="row">
+                    <div class="row m-t-50">
                         <div class="col-sm-5">
                             <div class="row">
                                 <div class="form-group">
@@ -69,6 +76,25 @@
                                 </div>
                             </div>
                             <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <div class="no-edit-state">
+                                            {% if current_user_detail.location %}
+                                                <div class="location">
+                                                    {{ current_user_detail.location }}
+                                                    <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+                                                </div>
+                                            {% else %}
+                                                <div class="empty-field">
+                                                    <label class="control-label">Πόλη διαμονής</label>
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                        <input type="text" class="form-control edit-state" placeholder="Πόλη διαμονής" value="{{ current_user_detail.location }}" name="location">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
                                 {% if avatar_path %}
                                     <img src="{{ avatar_path }}" class="col-sm-12">
                                 {% else %}
@@ -78,20 +104,27 @@
                             </div>
                         </div>
                         <div class="col-sm-7">
-                            <div class="row form-group">
-                                <div class="col-sm-9 col-sm-offset-3">
+                            <div class="row form-group m-t-50">
+                                <div class="col-sm-12">
                                     <div class="no-edit-state">
                                         {% if current_user_detail.status %}
-                                            <div>{{ current_user_detail.status }}</div>
+                                            <div class="status row">
+                                                <div class="col-sm-1">
+                                                    <i class="fa fa-briefcase"></i>
+                                                </div>
+                                                <div class="col-sm-11 text-justify">
+                                                    {{ current_user_detail.status }}
+                                                </div>
+                                            </div>
                                         {% else %}
-                                            <div class="empty-field"><label class="control-label">Τρέχουσα Κατάσταση</label></div>
+                                            <div class="empty-field col-sm-9 no-padding"><label class="control-label">Τρέχουσα Κατάσταση</label></div>
                                         {% endif %}
                                     </div>
                                     <input type="text" class="form-control edit-state" placeholder="Τρέχουσα Κατάσταση" value="{{ current_user_detail.status }}" name="status">
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-sm-6">
+                            <div class="row m-t-50">
+                                <div class="col-sm-6 col-sm-offset-3 no-padding">
                                     <label class="col-sm-12 grey-label">Κύριες Δεξιότητες</label>
                                     <div class="col-sm-12" id="skillTopVal">
                                         <div class="skills-owned">
@@ -115,7 +148,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-6">
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6 col-sm-offset-3 no-padding m-t-30">
                                     <label class="col-sm-12 grey-label">Δευτερεύουσες Δεξιότητες</label>
                                     <div class="col-sm-12" id="skillSecondaryVal">
                                         <div class="skills-owned">
@@ -141,7 +176,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-sm-12">
+                                <div class="col-sm-6 col-sm-offset-3 no-padding m-t-30">
                                     <label class="col-sm-12 grey-label">Περιοχές Εξειδίκευσης</label>
                                     <div class="col-sm-12" id="expertiseAreas">
                                         <div class="skills-owned">
@@ -165,21 +200,6 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- row -->
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <div class="no-edit-state">
-                                    {% if current_user_detail.location %}
-                                        <div>{{ current_user_detail.location }}</div>
-                                    {% else %}
-                                        <div class="empty-field"><label class="control-label">Πόλη διαμονής</label></div>
-                                    {% endif %}
-                                </div>
-                                <input type="text" class="form-control edit-state" placeholder="Τηλέφωνο" value="{{ current_user_detail.location }}" name="location">
                             </div>
                         </div>
                     </div>
@@ -214,30 +234,10 @@
                         </div>
                     </div>
                     <!-- row -->
-                    <!--<div class="row form-group">-->
-                        <!--<label class="col-sm-3 control-label">Δευρεύουσες Δεξιότητες</label>-->
-                        <!--<div class="col-sm-9" id="skillSecondaryVal">-->
-                            <!--<div class="skills-owned">-->
-                                <!--&lt;!&ndash; skills that the user already has - contains the ajax results &ndash;&gt;-->
-                                <!--{% if current_user_detail.skill_secondary_val1 %}-->
-                                    <!--<span class="result-item">{{ current_user_detail.skill_top_val1 }}</span>-->
-                                <!--{% endif %}-->
-                                <!--{% if current_user_detail.skill_secondary_val2 %}-->
-                                    <!--<span class="result-item">{{ current_user_detail.skill_top_val2 }}</span>-->
-                                <!--{% endif %}-->
-                                <!--{% if current_user_detail.skill_secondary_val3 %}-->
-                                    <!--<span class="result-item">{{ current_user_detail.skill_top_val3 }}</span>-->
-                                <!--{% endif %}-->
-                            <!--</div>-->
-                            <!--<input type="text" class="form-control edit-state">-->
-                            <!--<input type="hidden" class="form-control edit-state" name="skill_secondary_val1">-->
-                            <!--<input type="hidden" class="form-control edit-state" name="skill_secondary_val2">-->
-                            <!--<input type="hidden" class="form-control edit-state" name="skill_secondary_val3">-->
-                            <!--<div class="skills-query-result edit-state">-->
-                                <!--&lt;!&ndash; skills that the user has added - contains the ajax results &ndash;&gt;-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3 separator">
+                        </div>
+                    </div>
                     <!-- row - buttons -->
                     <div class="form-group row m-t-50">
                         <div class="col-sm-12">

@@ -8,10 +8,13 @@ from django.contrib.auth.models import (
 
 
 class EmailBasedUserManager(BaseUserManager):
-    def create_user(self, email, password=None):
+    def create_user(self, email, password=None, username=None):
         """
         Creates and saves a User with the given email, date of
         birth and password.
+        """
+        """
+        The method MUST have username=None in order not to have problems with oauth
         """
         if not email:
             raise ValueError('Users must have an email address')
@@ -40,7 +43,8 @@ class EmailBasedUserManager(BaseUserManager):
 class EmailBasedUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField('email address', unique=True, db_index=True)
     user_type = models.IntegerField(
-        validators=[MaxValueValidator(2), MinValueValidator(1)]
+        validators=[MaxValueValidator(2), MinValueValidator(1)],
+        default=1, # define default value - necessary when creating a superuser
      )
     joined = models.DateTimeField(auto_now_add = True)
     is_active = models.BooleanField(default = True)
@@ -129,10 +133,6 @@ class TypeGUser(models.Model):
     education_val1 = models.CharField(max_length=255, blank=True)
     education_val2 = models.CharField(max_length=255, blank=True)
     education_val3 = models.CharField(max_length=255, blank=True)
-    # info about experience
-    experience_val1 = models.CharField(max_length=255, blank=True)
-    experience_val2 = models.CharField(max_length=255, blank=True)
-    experience_val3 = models.CharField(max_length=255, blank=True)
     # info about top skills - 3 values
     skill_top_val1 = models.ForeignKey(Skills, related_name='skill_top_val1', null=True, blank=True)
     skill_top_val2 = models.ForeignKey(Skills, related_name='skill_top_val2', null=True, blank=True)
