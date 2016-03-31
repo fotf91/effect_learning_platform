@@ -176,3 +176,20 @@ class TypeCUser(models.Model):
 
     def __unicode__(self):
         return self.first_name+" "+self.last_name
+
+
+class Position(models.Model):
+    """
+    Position represents a position that a user has, or had
+    """
+    user = models.ForeignKey(EmailBasedUser, on_delete=models.CASCADE)
+    title = models.CharField(max_length=255, blank=True)
+    summary = models.TextField(max_length=1000, blank=True)
+    start_date = models.DateField(null=True)
+    end_date = models.DateField(null=True)
+    is_current = models.BooleanField(default=False)
+    company = models.CharField(max_length=255, blank=True)
+
+    def __unicode__(self):
+        return self.title
+

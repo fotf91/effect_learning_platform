@@ -2,7 +2,7 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib import admin
 from django.contrib.auth.models import Group
 from account_app.forms import GeneralUserCreationForm, GeneralUserChangeForm
-from account_app.models import EmailBasedUser, TypeGUser, TypeCUser, Skills
+from account_app.models import EmailBasedUser, TypeGUser, TypeCUser, Skills, Position
 
 
 class GeneralUserAdmin(BaseUserAdmin):
@@ -40,3 +40,4 @@ admin.site.unregister(Group)
 admin.site.register(TypeGUser)
 admin.site.register(TypeCUser)
 admin.site.register(Skills)
+admin.site.register(Position)

@@ -21,6 +21,9 @@ body{
     font-family: 'lato-medium';
     background-color: #E9EAEA;
 }
+header ~ .max-width-980{
+    margin-bottom: 100px;
+}
 
 #mainHeader{
     background-color: #E9EAEAF;
@@ -41,6 +44,21 @@ footer{
     max-width: 980px;
     margin-left: auto;
     margin-right: auto;
+}
+
+/*--------------------------------------
+INPUT
+---------------------------------------*/
+input.form-control{
+    border-radius: 0px;
+}
+textarea{
+    background-color: #f2f2f2;
+    border-color: #ccc;
+}
+input,
+textarea{
+    background-color: #ECECEC !important;
 }
 /*--------------------------------------
 LINKS

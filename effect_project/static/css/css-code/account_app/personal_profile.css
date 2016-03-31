@@ -22,12 +22,20 @@ the user is NOT allowed to edit the profile - default state */
     margin-top: 30px;
     margin-bottom: 30px;
 }
+.profile-container{
+    border-bottom: 3px solid #CB4335;
+}
+.row section{
+    margin-top:30px;
+}
+.profile-container .buttons-container{
+    padding-top: 10px;
+}
 /*--------------------------------------
-PROFILE STYLE
+MAIN PROFILE STYLE
 ---------------------------------------*/
 .profile-container{
     background-color: #fff;
-    border-radius: 10px;
     padding: 20px 35px;
 }
 .profile-container input{
@@ -63,6 +71,33 @@ PROFILE STYLE
 .location{
     color: #777;
     letter-spacing: 1px;
+}
+
+/*--------------------------------------
+EXPERIENCE STYLE
+---------------------------------------*/
+#pastPositions .edit-state{
+    display: none;
+}
+
+.section-header{
+    background-color: #CB4335;
+    color: #fff;
+    padding-left: 20px;
+    line-height: 25px;
+}
+form.new-position{
+    display: none;
+}
+.experience-entity{
+    border-bottom: 2px #7f8c8d solid;
+    padding-bottom: 10px;
+}
+.experience-entity .buttons-container{
+    display: none;
+}
+.experience-entity:hover .buttons-container{
+    display: block;
 }
 
 /*--------------------------------------

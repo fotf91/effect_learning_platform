@@ -1,5 +1,6 @@
 $( document ).ready(function() {
     var edit_profile = false;
+    var edit_experience = false;
     var $skillTopValSelector = '#skillTopVal';
     var $skillSecondarySelector = '#skillSecondaryVal';
 
@@ -198,5 +199,65 @@ $( document ).ready(function() {
             findAllSkillId($skillSecondarySelector);
         }
     });// on click
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+*   CLICK EVENTS FOR THE EXPERIENCE SECTION
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+    function cancelEditExperience(){
+       edit_experience = false;
+       $("#pastPositions .edit-state").hide();
+       $("#pastPositions .no-edit-state").show();
+       $('form.new-position').hide();
+       $('#pastPositions .add-button').show();
+    };// cancelEditExperience()
+
+    // click event
+    // go to edit mode of the experience
+    $(document).on('click', '#pastPositions .edit-btn',function(){
+        var $this = $(this);
+
+        if(!edit_experience){
+            edit_experience = true;
+            var $noEditSelector = $this.closest('.no-edit-state');
+
+            $noEditSelector.hide();
+            $noEditSelector.siblings('.edit-state').show();
+
+            $('#pastPositions .add-button').hide();
+        }
+    });
+
+    // click event
+    // cancel the edit mode of the experience
+    $(document).on('click', '#pastPositions .cancel-btn', function(){
+       cancelEditExperience();
+    });
+
+    // click event
+    // add new experience
+    $(document).on('click', '#pastPositions .add-button', function(){
+        $(this).hide();
+        $('form.new-position').show();
+    }); // on click event
+
+    $('form#editPosition').submit(function(event){
+        event.preventDefault();
+        $.post('/account/edit_position', $(this).serialize(), function(data){
+            console.log(data);
+            cancelEditExperience();
+        });
+    });
+
+    $('form#deletePosition').submit(function(event){
+        event.preventDefault();
+        $.post('/account/delete_position', $(this).serialize(), function(data){
+            var id = jQuery.parseJSON(data).id;
+
+            if(id > 0){
+                $(event.target).closest('.experience-entity').remove();
+            }
+        });
+    });
 
 });

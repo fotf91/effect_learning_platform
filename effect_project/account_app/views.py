@@ -1,10 +1,14 @@
+import json
+
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, redirect, render_to_response
 from django.contrib.auth import login as django_login, authenticate, logout as django_logout
 from account_app.forms import (GeneralUserCreationForm,
-                               AuthenticationForm,)
+                               AuthenticationForm,
+                               AddPositionForm,
+                               EditPositionForm,)
 from django.contrib.auth.decorators import login_required
-from account_app.models import TypeGUser, TypeCUser, Skills
+from account_app.models import TypeGUser, TypeCUser, Skills, Position
 from account_app.forms import (EditTypeCUserForm,
                                EditTypeGUserForm)
 from django.core import serializers
@@ -38,9 +42,16 @@ def personal_profile(request):
         except TypeGUser.DoesNotExist:
             current_user_detail = None
 
+    if current_user.user_type == 1 or current_user.user_type == 2:
+        try:
+            positions = Position.objects.filter(user=current_user)
+        except Position.DoesNotExist:
+            positions = []
+
 
     context_dict = {'current_user': current_user,
                     'current_user_detail': current_user_detail,
+                    'positions': positions,
                     'avatar_path':avatar_path,
                     }
     return render(request, 'account_app/personal_profile.html', context_dict)
@@ -183,3 +194,54 @@ def get_skills_id(request):
         skill_data = {}
     returnData = serializers.serialize('json', query_result)
     return JsonResponse({'skill': returnData})
+
+def add_position(request):
+    """
+    Add a past or present position to a user
+    """
+    # get the number of positions that the current user has
+    positions = Position.objects.filter(user=request.user)
+
+    if request.method == 'POST' and positions.count() < 3:
+        form = AddPositionForm(data=request.POST)
+        if form.is_valid:
+            position = form.save()
+        else:
+            form = AddPositionForm()
+        return render(request,
+                  'account_app/profile.html',
+                  {'form': form,}
+                      )
+    else:
+        form = AddPositionForm()
+        return render(request, '', {'form':form},)
+
+def edit_position(request):
+    """
+    Edit a past or present position to a user
+    """
+    position_id = request.POST.get('id')
+    current_position = Position.objects.get(id=position_id)
+
+    if request.method == 'POST':
+        form = EditPositionForm(request.POST, instance=current_position)
+
+        if form.is_valid:
+            form.save()
+        else:
+            form = EditPositionForm()
+        # return render(request, 'account_app/personal_profile.html', {'form': form},)
+        return HttpResponse(json.dumps({'message': 'lalalalalala'}))
+    else:
+        form = EditPositionForm()
+        return render(request, 'account_app/personal_profile.html', {'form': form}, )
+
+def delete_position(request):
+    position_id = request.POST.get('id')
+    current_position = Position.objects.get(id=position_id)
+
+    if request.method == 'POST':
+        current_position.delete()
+        return HttpResponse(json.dumps({'id' : position_id,}))
+    else:
+        return HttpResponse(json.dumps({'id': -1}))

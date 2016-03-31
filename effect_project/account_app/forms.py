@@ -1,5 +1,5 @@
 from django import forms
-from account_app.models import (EmailBasedUser, TypeGUser, TypeCUser)
+from account_app.models import (EmailBasedUser, TypeGUser, TypeCUser, Position)
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 
 
@@ -102,3 +102,27 @@ class EditTypeCUserForm(forms.ModelForm):
                   'phone_number',
                   'position',
                   )
+
+
+class AddPositionForm(forms.ModelForm):
+    class Meta:
+        model = Position
+        fields = ('user',
+                  'title',
+                  'summary',
+                  'start_date',
+                  'end_date',
+                  # 'is_current',
+                  'company',
+                  )
+
+class EditPositionForm(forms.ModelForm):
+    class Meta:
+        model = Position
+        fields = (
+            'title',
+            'summary',
+            'start_date',
+            'end_date',
+            'company',
+        )
