@@ -206,15 +206,14 @@ def add_position(request):
         form = AddPositionForm(data=request.POST)
         if form.is_valid:
             position = form.save()
+            positions = Position.objects.filter(user=request.user)
         else:
             form = AddPositionForm()
-        return render(request,
-                  'account_app/profile.html',
-                  {'form': form,}
-                      )
+        returnData = serializers.serialize('json', positions)
+        return JsonResponse({'returnedJson': returnData})
     else:
         form = AddPositionForm()
-        return render(request, '', {'form':form},)
+        return render(request, 'account_app/personal_profile.html', {'form': form}, )
 
 def edit_position(request):
     """
@@ -228,10 +227,11 @@ def edit_position(request):
 
         if form.is_valid:
             form.save()
+            positions = Position.objects.filter(user=request.user)
         else:
             form = EditPositionForm()
-        # return render(request, 'account_app/personal_profile.html', {'form': form},)
-        return HttpResponse(json.dumps({'message': 'lalalalalala'}))
+        returnData = serializers.serialize('json', positions)
+        return JsonResponse({'returnedJson': returnData})
     else:
         form = EditPositionForm()
         return render(request, 'account_app/personal_profile.html', {'form': form}, )

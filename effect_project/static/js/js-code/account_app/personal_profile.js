@@ -3,6 +3,15 @@ $( document ).ready(function() {
     var edit_experience = false;
     var $skillTopValSelector = '#skillTopVal';
     var $skillSecondarySelector = '#skillSecondaryVal';
+    var $addPositionBtn = '#pastPositions .add-button';
+    var $newPositionForm = 'form.new-position';
+    var $experienceContainer = '#experienceContainer';
+
+    /* * * * * * * * * * * * * * *
+    * TEMPLATES HTML
+    * * * * * * * * * * * * * * * */
+//    var TMPL_experience_entity = "<h1>the title is</h1>: {{title}}";
+    var $TMPL_experience_entity = '#TMPLexperienceEntity';
 
     /* * * * * * * * * * * * * * *
     * click event - toggle between edit and not edit mode
@@ -46,7 +55,6 @@ $( document ).ready(function() {
             // find the skills that the user has and handle the HTML dom
             $.get('/account/get_skills_id/', {skills_owned: query}, function(data){
                 var serializedData = JSON.parse(data.skill);
-                console.log(serializedData);
                 $.each(serializedData, function(index, value){
                     var skill_id = value.pk;
                     var skill_name = value.fields.name;
@@ -201,19 +209,19 @@ $( document ).ready(function() {
     });// on click
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-*   CLICK EVENTS FOR THE EXPERIENCE SECTION
+*   EXPERIENCE SECTION
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
     function cancelEditExperience(){
        edit_experience = false;
        $("#pastPositions .edit-state").hide();
        $("#pastPositions .no-edit-state").show();
-       $('form.new-position').hide();
-       $('#pastPositions .add-button').show();
+       $($newPositionForm).hide();
+       $($addPositionBtn).show();
     };// cancelEditExperience()
 
     // click event
-    // go to edit mode of the experience
+    // go to edit mode of the position
     $(document).on('click', '#pastPositions .edit-btn',function(){
         var $this = $(this);
 
@@ -224,40 +232,74 @@ $( document ).ready(function() {
             $noEditSelector.hide();
             $noEditSelector.siblings('.edit-state').show();
 
-            $('#pastPositions .add-button').hide();
+            $($addPositionBtn).hide();
         }
     });
 
     // click event
-    // cancel the edit mode of the experience
+    // cancel the edit mode of the position
     $(document).on('click', '#pastPositions .cancel-btn', function(){
        cancelEditExperience();
     });
 
-    // click event
-    // add new experience
+    // click event - add position
     $(document).on('click', '#pastPositions .add-button', function(){
         $(this).hide();
-        $('form.new-position').show();
+        $($newPositionForm).show();
     }); // on click event
 
-    $('form#editPosition').submit(function(event){
+    // submit form - add position
+    $('form#addPosition').submit(function(event){
+        event.preventDefault();
+
+        $.post('/account/add_position', $(this).serialize(), function(data){
+            cancelEditExperience();
+            var serializedData = jQuery.parseJSON(data.returnedJson);
+            $.each(serializedData, function(index, value){
+
+                var templateData = {
+                    id: value.pk,
+                    title: value.fields.title,
+                    company: value.fields.company,
+                    summary: value.fields.summary,
+                    is_current: value.fields.is_current,
+                    start_date: value.fields.start_date,
+                    end_date: value.fields.end_date,
+                };
+
+                $($experienceContainer).prepend(generateExperienceHTML(templateData));
+            });// each
+        });// post add_position
+    });// submit form - add position
+
+    // submit form - edit position
+    $('form.edit-position').submit(function(event){
         event.preventDefault();
         $.post('/account/edit_position', $(this).serialize(), function(data){
-            console.log(data);
             cancelEditExperience();
         });
-    });
+    });// submit form - edit position
 
-    $('form#deletePosition').submit(function(event){
+    // submit form - delete position
+    $('form.delete-position').submit(function(event){
         event.preventDefault();
         $.post('/account/delete_position', $(this).serialize(), function(data){
             var id = jQuery.parseJSON(data).id;
 
             if(id > 0){
                 $(event.target).closest('.experience-entity').remove();
+                cancelEditExperience();
             }
         });
-    });
+    });// submit form - delete position
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+*   GENERATE HTML CODE FOR THE EXPERIENCE SECTION
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+    function generateExperienceHTML(templateData){
+        var template = $($TMPL_experience_entity).html();
+        return html = Mustache.to_html(template, templateData);
+    }// generateExperienceHTML()
 
 });

@@ -6,10 +6,14 @@
     <head>
         <title>Effect {% block title %}Default text{% endblock %}</title>
         <script src="{% static 'js/jquery-1.12.0.min.js' %}"></script>
+        <script src="{% static 'js/mustache.js-master/mustache.js' %}"></script>
+
         <script src="{% static 'js/js-code/main.js' %}"></script>
         <script src="{% static 'css/bootstrap/js/bootstrap.min.js' %}"></script>
 
-        <link rel="stylesheet" type="text/css" href="{% static "css/css-code/main.css" %}">
+
+
+        <link rel="stylesheet" type="text/css" href="{% static 'css/css-code/main.css' %}">
 
         {% block dependencies %}{% endblock %}
     </head>

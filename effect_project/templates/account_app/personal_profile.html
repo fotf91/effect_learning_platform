@@ -247,7 +247,7 @@
                     <div class="section-header">
                         Προϋπηρεσία
                     </div>
-                    <form class="form-horizontal new-position" method="post" action="/account/add_position">
+                    <form id="addPosition" class="form-horizontal new-position" method="post" action="">
                         {% csrf_token %}
                         <div class="profile-container">
                             <div class="row">
@@ -281,10 +281,10 @@
                         </div>
                     </form>
 
-                    <div class="profile-container">
+                    <div id="experienceContainer" class="profile-container">
                         {% for i in positions%}
                             <div class="experience-entity">
-                                <form id="editPosition" class="edit-state" method="post" action="">
+                                <form class="edit-state edit-position" method="post" action="">
                                     {% csrf_token %}
                                     <div class="row">
                                         <div class="col-sm-12">
@@ -315,7 +315,7 @@
                                         </div>
                                     </div>
                                 </form>
-                                <form id="deletePosition" class="edit-state" method="post" action="">
+                                <form class="edit-state delete-position" method="post" action="">
                                     {% csrf_token %}
                                     <input type="hidden" name="id" value="{{ i.id }}">
                                     <button type="submit">delete</button>
@@ -481,4 +481,81 @@
             </form>
         {% endif %}
     </div>
+
+    <!---------------------------------------------------------------->
+    <!-- TEMPLATES USED BY JQUERY AND MUSTACHE TO PRODUCE HTML CODE -->
+    <!---------------------------------------------------------------->
+    <script id="TMPLexperienceEntity" type="text/template">
+            <div class="experience-entity">
+                <form class="edit-state edit-position" method="post" action="">
+                    {% csrf_token %}
+                    {% verbatim %}
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="{{ title }}" value="{{ title }}" name="title">
+                            </div>
+                            <div class="form-group">
+                                <textarea  class="col-sm-12" placeholder="{{ summary }}" value="{{ summary }}" name="summary"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-5 no-padding">
+                                    <input type="" class="form-control jquery-datepicker" placeholder="{{ start_date }}" value="{{ start_date }}" name="start_date">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-5 no-padding">
+                                    <input type="" class="form-control jquery-datepicker" placeholder="{{ end_date }}" value="{{ end_date }}" name="end_date">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="{{ company }}" value="{{ company }}" name="company">
+                            </div>
+                            <input type="hidden" name="id" value="{{ id }}">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-default ok-btn" style="display: inline-block;"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
+                                <button type="button" class="btn btn-default cancel-btn" style="display: inline-block;"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                            </div>
+                        </div>
+                    </div>
+                    {% endverbatim %}
+                </form>
+                <form class="edit-state delete-position" method="post" action="">
+                    {% csrf_token %}
+                    {% verbatim %}
+                    <input type="hidden" name="id" value="{{ id }}">
+                    <button type="submit">delete</button>
+                    {% endverbatim %}
+                </form>
+                <div class="no-edit-state">
+                    {% verbatim %}
+                    <div class="row">
+                        <div class="col-sm-4"><label>Τίτλος Θέσης</label></div>
+                        <div class="col-sm-8">{{ title }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4"><label>Περιγραφή</label></div>
+                        <div class="col-sm-8">{{ summary }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4"><label>Εταιρεία</label></div>
+                        <div class="col-sm-8">{{ company }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4"><label>Από</label></div>
+                        <div class="col-sm-8">{{ start_date }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4"><label>Εώς</label></div>
+                        <div class="col-sm-8">{{ end_date }}</div>
+                    </div>
+                    <input type="hidden" name="position" value="{{ id }}">
+                    <div class="buttons-container">
+                        <button type="button" class="btn btn-default edit-btn"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>
+                    </div>
+                    {% endverbatim %}
+                </div>
+            </div>
+    </script>
+
 {% endblock %}
