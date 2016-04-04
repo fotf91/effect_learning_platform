@@ -69,11 +69,11 @@ class EditTypeGUserForm(forms.ModelForm):
         model = TypeGUser
         fields = ('first_name',
                   'last_name',
-                  # 'date_of_birth',
+                  'date_of_birth',
                   'status',
                   'passion',
                   'location',
-                  # 'phone_number',
+                  'phone_number',
                   'education_val1',
                   'education_val2',
                   'education_val3',

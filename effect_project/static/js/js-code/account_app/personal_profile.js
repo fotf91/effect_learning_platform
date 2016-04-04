@@ -7,6 +7,7 @@ $( document ).ready(function() {
     var $newPositionForm = 'form.new-position';
     var $experienceContainer = '#experienceContainer';
 
+
     /* * * * * * * * * * * * * * *
     * TEMPLATES HTML
     * * * * * * * * * * * * * * * */
