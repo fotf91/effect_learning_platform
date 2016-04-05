@@ -94,7 +94,6 @@ class Skills(models.Model):
     def __unicode__(self):
         return self.name
 
-
 class ExpertiseArea(models.Model):
     """
     Expertise Area
@@ -193,3 +192,15 @@ class Position(models.Model):
     def __unicode__(self):
         return self.title
 
+class Education(models.Model):
+    """
+    Edcucation
+    """
+    user = models.ForeignKey(EmailBasedUser, on_delete=models.CASCADE)
+    organization = models.CharField(max_length=255, blank=True)
+    title = models.CharField(max_length=255, blank=True)
+    start_date = models.DateField(null=True)
+    end_date = models.DateField(null=True)
+
+    def __unicode__(self):
+        return self.title

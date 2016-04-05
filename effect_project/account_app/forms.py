@@ -1,5 +1,5 @@
 from django import forms
-from account_app.models import (EmailBasedUser, TypeGUser, TypeCUser, Position)
+from account_app.models import (EmailBasedUser, TypeGUser, TypeCUser, Position, Education)
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 
 
@@ -67,6 +67,9 @@ class AuthenticationForm(forms.Form):
 class EditTypeGUserForm(forms.ModelForm):
     class Meta:
         model = TypeGUser
+        date_of_birth = forms.DateField(widget=forms.DateInput(format='%d/%m/%Y'),
+                                     # input_formats=('%d/%m/%Y',),
+                                        required = False)
         fields = ('first_name',
                   'last_name',
                   'date_of_birth',
@@ -125,4 +128,14 @@ class EditPositionForm(forms.ModelForm):
             'start_date',
             'end_date',
             'company',
+        )
+
+class EducationForm(forms.ModelForm):
+    class Meta:
+        model = Education
+        fields = (
+            'organization',
+            'title',
+            'start_date',
+            'end_date',
         )

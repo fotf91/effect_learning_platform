@@ -86,18 +86,28 @@ EXPERIENCE STYLE
     padding-left: 20px;
     line-height: 25px;
 }
+.section-header .icon{
+    margin-left: -8px;
+    padding-right: 4px;
+}
 form.new-position{
     display: none;
 }
-.experience-entity{
+.profile-container-entity{
     border-bottom: 2px #7f8c8d solid;
     padding-bottom: 10px;
 }
-.experience-entity .buttons-container{
+.profile-container-entity .buttons-container{
     display: none;
 }
-.experience-entity:hover .buttons-container{
+.profile-container-entity:hover .buttons-container{
     display: block;
+}
+.delete-position{
+    text-align: right;
+}
+.delete-position button{
+    margin-top: -85px;
 }
 
 /*--------------------------------------

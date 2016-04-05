@@ -274,7 +274,7 @@ $( document ).ready(function() {
     });// submit form - add position
 
     // submit form - edit position
-    $('form.edit-position').submit(function(event){
+    $(document).on('submit', 'form.edit-position', function(event){
         event.preventDefault();
         $.post('/account/edit_position', $(this).serialize(), function(data){
             cancelEditExperience();
@@ -282,13 +282,13 @@ $( document ).ready(function() {
     });// submit form - edit position
 
     // submit form - delete position
-    $('form.delete-position').submit(function(event){
+    $(document).on('submit', 'form.delete-position', function(event){
         event.preventDefault();
         $.post('/account/delete_position', $(this).serialize(), function(data){
             var id = jQuery.parseJSON(data).id;
 
             if(id > 0){
-                $(event.target).closest('.experience-entity').remove();
+                $(event.target).closest('.profile-container-entity').remove();
                 cancelEditExperience();
             }
         });
