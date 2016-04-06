@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}Questions{% endblock %}
+
+{% block body_block %}
+    <div class="app app-frame">
+        <div class="header">
+            <div class="text-left">
+                <img src="{% static "images/logos/effectlogo-full-white.png" %}" />
+            </div>
+            <div class="text-right">
+                Back to Home
+            </div>
+        </div>
+        <div class="body">
+            <div class="content-left">
+                <div class="text-light">
+                    ΕΡΩΤΗΣΗ 2 #
+                </div>
+                <div class="question">
+                    Ποιά θεωρείς ότι είναι 3 δυνατά σου στοιχεία;
+                </div>
+                <div class="text-light">
+                    <span>ΤΙ ΑΞΙΟΛΟΓΕΙΤΑΙ:</span>
+                    <span class="text-green">ΙΚΑΝΟΤΗΤΕΣ</span>
+                </div>
+            </div>
+            <div class="content-right">
+
+            </div>
+        </div>
+        <div class="footer">
+            <span class="text-bold">INTERVIEW PREPARATION</span>
+             | BASIC LEVEL
+        </div>
+    </div>
+{% endblock %}

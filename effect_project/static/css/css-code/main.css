@@ -5,6 +5,7 @@
 @import './footer.css'; /* --- footer style --- */
 @import './general_styles/buttons.css'; /* --- buttons style --- */
 @import './general_styles/text.css'; /* --- buttons style --- */
+@import './general_styles/app.css'; /* --- buttons style --- */
 
 
 /*--------------------------------------
@@ -31,7 +32,8 @@ header ~ .max-width-980{
 
 footer{
     font-weight: bold;
-    background-color: #47A2F8;
+    background-color: #CB4335;
+    padding: 12px;
 }
 
 #wrapper{

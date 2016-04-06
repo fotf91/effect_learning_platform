@@ -1,0 +1,93 @@
+/* ------------------
+  APPLICATION GENERAL
+ ------------------ */
+.app{
+    color: #5D5B5B;
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+.app-white{
+    background: #ecf0f1;
+}
+.app-green{
+    background: #1abc9c;
+    color: #ecf0f1;
+}
+.app-emerald{
+    background: #2ecc71;
+    color: #ecf0f1;
+}
+.app-blue{
+    background: #3498db;
+    color: #ecf0f1;
+}
+.app .title{
+    font-size: 38px;
+    font-weight: 700;
+    text-align: center;
+}
+.app .description{
+    text-align: justify;
+    font-size: 22px;
+    line-height: 34px;
+    margin-top: 32px;
+}
+
+/* ------------------
+  APPLICATION BODY
+ ------------------ */
+ .app-frame{
+    background: #CB4335;
+    color: #ecf0f1;
+ }
+ .app-frame .header,
+ .app-frame .footer{
+    padding: 10px 70px;
+ }
+ .app-frame .content-left{
+    padding-left: 70px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+ }
+ .app-frame .content-right{
+    padding-right: 70px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+ }
+ .app-frame .header img{
+    height: 50px;
+ }
+ .app-frame .footer{
+    letter-spacing: 1px;
+ }
+ .app-frame .footer .text-bold{
+    font-weight: 700;
+ }
+ .app-frame .row{
+    color: black;
+ }
+ .app-frame .body{
+    width: 100%;
+    position: relative;
+    height: 100px;
+    color: #333;
+ }
+ .app-frame .content-left{
+    background: #ecf0f1;
+    width: 60%;
+    left: 0;
+ }
+ .app-frame .content-right{
+    background: #bdc3c7;
+    width: 40%;
+    left: 60%;
+    top: 0;
+    bottom: 0;
+ }
+ .content-left,
+ .content-right{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+ }
