@@ -3,24 +3,29 @@
  ------------------ */
 .app{
     color: #5D5B5B;
-    padding-top: 60px;
-    padding-bottom: 60px;
+    padding: 60px 70px;
+    min-height: 100%;
+}
+.app:last-of-type{
+    padding-bottom: 140px;
 }
 
-.app-white{
+.app-color-base{
     background: #ecf0f1;
 }
-.app-green{
-    background: #1abc9c;
+.app-color-1,
+.app-color-2,
+.app-color-3{
     color: #ecf0f1;
 }
-.app-emerald{
-    background: #2ecc71;
-    color: #ecf0f1;
+.app-color-1{
+    background: #0FFDBA;
 }
-.app-blue{
-    background: #3498db;
-    color: #ecf0f1;
+.app-color-2{
+    background: #B1E650;
+}
+.app-color-3{
+    background: #FDB52B;
 }
 .app .title{
     font-size: 38px;
@@ -34,60 +39,12 @@
     margin-top: 32px;
 }
 
-/* ------------------
-  APPLICATION BODY
+  /* ------------------
+  RESPONSIVENESS
  ------------------ */
- .app-frame{
-    background: #CB4335;
-    color: #ecf0f1;
- }
- .app-frame .header,
- .app-frame .footer{
-    padding: 10px 70px;
- }
- .app-frame .content-left{
-    padding-left: 70px;
-    padding-top: 10px;
-    padding-bottom: 10px;
- }
- .app-frame .content-right{
-    padding-right: 70px;
-    padding-top: 10px;
-    padding-bottom: 10px;
- }
- .app-frame .header img{
-    height: 50px;
- }
- .app-frame .footer{
-    letter-spacing: 1px;
- }
- .app-frame .footer .text-bold{
-    font-weight: 700;
- }
- .app-frame .row{
-    color: black;
- }
- .app-frame .body{
-    width: 100%;
-    position: relative;
-    height: 100px;
-    color: #333;
- }
- .app-frame .content-left{
-    background: #ecf0f1;
-    width: 60%;
-    left: 0;
- }
- .app-frame .content-right{
-    background: #bdc3c7;
-    width: 40%;
-    left: 60%;
-    top: 0;
-    bottom: 0;
- }
- .content-left,
- .content-right{
-    position: absolute;
-    top: 0;
-    bottom: 0;
+ @media screen and (max-width: 680px) {
+    .app{
+        padding-left: 40px;
+        padding-right: 40px;
+    }
  }

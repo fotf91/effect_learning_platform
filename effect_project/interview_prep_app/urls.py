@@ -6,5 +6,5 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
                        url(r'^$', views.index, name='index'),
-                       url(r'^questions$', 'interview_prep_app.views.questions', name='questions'),
+                       url(r'^questions/(?P<interview_level>[\w\-]+)/$', 'interview_prep_app.views.questions', name='questions'),
                        )

@@ -2,7 +2,8 @@
 MAIN STYLE
 ---------------------------------------*/
 header{
-    /* box-shadow: 0 4px 4px 4px rgba(6,8,8,0.15); */
+    box-shadow: 0 4px 4px 4px rgba(6,8,8,0.15);
+    margin-bottom: 50px;
 }
 
 header,
@@ -12,9 +13,13 @@ header a{
 /*--------------------------------------
 MAIN HEADER
 ---------------------------------------*/
-#mainHeader,
-header img{
+#mainHeader{
     height: 70px;
+}
+
+header img {
+    height: 70px;
+    padding: 10px 0;
 }
 /*--------------------------------------
 SECONDARY HEADER
@@ -33,12 +38,12 @@ header li .glyphicon{
 /*--------------------------------------
 LIST LIKE STRUCTURE
 ---------------------------------------*/
-.list-like .list-element{
+.list-horizontal .list-element{
     display: inline-block;
-    line-height: 24px;
+    line-height: 70px;
 }
 .list-element:hover{
-    border-bottom: 3px #336E7B solid;
+    background: #e74c3c;
 }
 .list-element .dropdown{
     background-color: transparent;

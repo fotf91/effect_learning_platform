@@ -5,8 +5,7 @@
 @import './footer.css'; /* --- footer style --- */
 @import './general_styles/buttons.css'; /* --- buttons style --- */
 @import './general_styles/text.css'; /* --- buttons style --- */
-@import './general_styles/app.css'; /* --- buttons style --- */
-
+@import './general_styles/errors.css'; /* --- buttons style --- */
 
 /*--------------------------------------
 MAIN STYLE
@@ -17,37 +16,35 @@ body{
     padding: 0;
     margin: 0;
 }
-
 body{
     font-family: 'lato-medium';
-    background-color: #E9EAEA;
+    background-color: #ecf0f1;
+    color: #2b2b2b;
 }
 header ~ .max-width-980{
     margin-bottom: 100px;
 }
-
-#mainHeader{
-    background-color: #E9EAEAF;
-}
-
 footer{
     font-weight: bold;
-    background-color: #CB4335;
     padding: 12px;
 }
-
 #wrapper{
     min-height: 100%;
     position: relative;
     overflow: hidden;
 }
-
 .max-width-980{
     max-width: 980px;
     margin-left: auto;
     margin-right: auto;
 }
-
+/*--------------------------------------
+MAIN COLORS
+---------------------------------------*/
+#mainHeader,
+footer{
+    background: #cc0000;
+}
 /*--------------------------------------
 INPUT
 ---------------------------------------*/
@@ -57,12 +54,14 @@ input.form-control{
 textarea{
     border-color: #ccc;
     resize: none;
+    width: 100%;
 }
 input,
 textarea{
     background-color: #fff !important;
 }
-input.form-control:focus{
+input.form-control:focus,
+textarea:focus{
     outline: none !important;
     border:1px solid #cc0000;
     box-shadow: 0 0 2px #cc0000;
@@ -125,7 +124,6 @@ input[type="radio"]:checked ~ label{
     font-size: 20px;
     font-family: lato-light;
 }
-
 /*--------------------------------------
 GLYPHICONS
 ---------------------------------------*/

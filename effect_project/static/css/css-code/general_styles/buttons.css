@@ -2,7 +2,7 @@
 BUTTONS
 ---------------------------------------*/
 .btn{
-  border-radius: 6px;
+  border-radius: 10px;
   padding: 10px 20px;
   color: #fff;
   font-family: lato-heavy;
@@ -10,8 +10,7 @@ BUTTONS
   transition-duration: 0.5s;
   letter-spacing: 1px;
 }
-.btn:hover,{
-  color: #fff;
+.btn:hover{
   text-decoration: none;
 }
 .btn-default:focus,
@@ -49,5 +48,5 @@ BUTTONS
     border: none;
 }
 .app .buttons .btn:hover{
-    background: #95a5a6;
+    background: #d3dcde;
 }

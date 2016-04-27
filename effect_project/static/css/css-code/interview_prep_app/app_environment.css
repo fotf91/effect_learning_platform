@@ -1,0 +1,175 @@
+header,
+footer{
+    display: none;
+}
+body{/* white background of the left col */
+  background: #EEEEEE;
+}
+#wrapper{
+    overflow: auto;
+}
+
+/* ------------------
+  APPLICATION BODY - GENERAL STRUCTURE
+ ------------------ */
+ .app-environment{
+    color: #ecf0f1;
+    height: 100%;
+ }
+ .app-environment .header,
+.app-environment .footer{
+    padding: 0px 70px;
+    height: 70px;
+    background: #cc0000;
+    width: 100%;
+ }
+
+ .header-left,
+ .header-right{
+    display: inline;
+    float: left;
+ }
+ .header-right{
+    float: right;
+}
+
+ .app-environment .header img{
+    height: 50px;
+ }
+  .header-left,
+ .header-right,
+ .app-environment .footer{
+    line-height: 70px;
+ }
+ .app-environment .footer{
+    letter-spacing: 1px;
+    position: absolute;
+    bottom: 0;
+ }
+ .app-environment .footer .text-bold{
+    font-weight: 700;
+ }
+
+  /* ------------------
+  APPLICATION BODY - HEADER AND FOOTER BUTTONS
+ ------------------ */
+ .header-right:hover{
+    background: #e74c3c;
+ }
+ .header .btn:hover{
+    color: #fff;
+ }
+ .header .btn{
+    background: transparent;
+    border: none;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 0;
+ }
+ /* ------------------
+  APPLICATION BODY - MAIN BODY STRUCTURE
+ ------------------ */
+  .app-environment .body{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    color: #333;
+ }
+.content-left{
+    width: 60%;
+    float: left;
+    padding-left: 70px;
+    padding-right: 40px;
+}
+.content-right{
+    width: 40%;
+    float: left;
+    background: #BFBFBF;
+    padding-left: 40px;
+    padding-right: 70px;
+}
+.content-left,
+.content-right{
+    padding-top: 40px;
+    padding-bottom: 130px;
+}
+
+ /* ------------------
+  APPLICATION BODY - TEXT
+ ------------------ */
+ .app-environment .text-light{
+    font-family: lato-light;
+ }
+ .app-environment .text-bold{
+    font-family: lato-heavy;
+ }
+ .app-environment .text-frame{
+    background: #DADFE1;
+    display: inline-block;
+    padding: 3px 10px;
+    margin-left: -10px;
+    margin-top: 12px;
+    margin-bottom: 8px;
+ }
+ .app-environment .text-green{
+    color: #1BA39C;
+    font-family: lato-heavy;
+ }
+ form{
+    margin-top: 20px;
+ }
+  .app-environment form button{
+    color: #fff;
+    border: solid 2px #fff;
+    background: #cc0000;
+ }
+  .app-environment form button:hover{
+    background: #b30000;
+    color: #fff;
+ }
+   /* ------------------
+  APPLICATION BODY - DETAILS FOR THE RIGHT CONTENT
+ ------------------ */
+ .section{
+    margin-bottom: 40px;
+ }
+ .section:last-child{
+    margin-bottom: 0;
+ }
+ .section .title{
+    font-family: lato-heavy;
+    text-transform: uppercase;
+    display: inline;
+    border-bottom: 2px solid #333;
+    padding-bottom: 3px;
+    font-size: 18px;
+ }
+ .section .content{
+    margin-top: 10px;
+    font-size: 14px;
+    text-align: justify;
+ }
+ .section .row{
+    padding-top: 12px;
+ }
+ .section .name{
+    padding-bottom: 4px;
+
+ }
+  /* ------------------
+  RESPONSIVENESS
+ ------------------ */
+ @media screen and (max-width: 680px) {
+    .content-left,
+    .content-right{
+        width: 100%;
+    }
+    .app-environment .footer,
+    .app-environment .header,
+    .content-right,
+    .content-left{
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+ }

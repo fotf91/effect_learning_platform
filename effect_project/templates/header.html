@@ -4,34 +4,30 @@
     <header>
         <div id="mainHeader">
             <div class="max-width-980">
-                <div class="text-center">
-                    <a href="/account/">
-                        <img src="{% static "images/logos/effect-redlt220x220.png" %}" />
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div id="secondaryHeader">
-            <div class="max-width-980">
-                <div class="list-like">
+                <div class="list-horizontal">
                     <div class="list-element">
-                        <a href="/account/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a>
+                        <a href="/account">
+                            <!--<img src="{% static "images/logos/effect-redlt220x220.png" %}" />-->
+                            <img src="{% static "images/logos/effectlogo-full-white.png" %}" />
+                        </a>
                     </div>
                     <div class="list-element">
-                        {% if user.is_authenticated %}
-                            <div class="dropdown">
-                                <div class="dropdown-toggle" type="button" data-toggle="dropdown">
-                                    {{ user }}
-                                    <span class="caret"></span>
+                        <div class="list-element">
+                            {% if user.is_authenticated %}
+                                <div class="dropdown">
+                                    <div class="dropdown-toggle" type="button" data-toggle="dropdown">
+                                        {{ user }}
+                                        <span class="caret"></span>
+                                    </div>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="/account/profile">Προφίλ</a></li>
+                                        <li><a href="/account/logout">Αποσύνδεση</a></li>
+                                    </ul>
                                 </div>
-                                <ul class="dropdown-menu">
-                                    <li><a href="/account/profile">Προφίλ</a></li>
-                                    <li><a href="/account/logout">Αποσύνδεση</a></li>
-                                </ul>
-                            </div>
-                        {% else %}
-                            <a href="connect"><span>Λογαριασμός</span></a>
-                        {% endif %}
+                            {% else %}
+                                <a href="/account/connect"><span>ΛΟΓΑΡΙΑΣΜΟΣ</span></a>
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
             </div>

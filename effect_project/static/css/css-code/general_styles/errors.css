@@ -1,0 +1,14 @@
+.error-page{
+    background-image: url("../../../images/errors/chain-of-domino-stop-isolated.png");
+    display: block;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position:center bottom;
+    height: 100%;
+}
+.error-page .text{
+    font-family: lato-heavy;
+    color: #cc0000;
+    padding: 20px 40px;
+    font-size: 32px;
+}
