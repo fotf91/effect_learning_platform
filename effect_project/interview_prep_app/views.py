@@ -5,55 +5,80 @@ from django.core import serializers
 from django.http import HttpResponseRedirect, JsonResponse, HttpResponse
 from effect_project.generic_view_methods import page_not_found
 
-
 def index(request):
     context_dict = {'boldmessage': "I am bold font from the context"}
     return render(request, 'interview_prep_app/index.html', context_dict)
 
-def questions(request, interview_level):
-    question_num_int = None
-    context_dict = None
+def questions(request, interview_level, question_num):
+    """
+    render the requested question and data
+
+    :param request:
+    :param interview_level: the level of the interview
+    :param question_num: the question of the current level of the interview
+    :return:
+    """
+    question_num_int = int(question_num)
     interview_level = interview_level.upper()
+    context_dict = None
+    interviewQA = None
+    interviewAnswer = None
 
-    try:
-        if request.method == 'POST': # POST : add new answer to a question
-            question_id = request.POST.get('interviewQA') # the id of the current question
-            current_qa = InterviewQA.objects.get(id=question_id) # the object of the current question, the current object InterviewQA
-            form = InterviewAnswerForm(data=request.POST)
+    # POST: save answer for the question
+    if request.method == 'POST':
+        question_id = request.POST.get('interviewQA')  # the id of the current question
+        current_qa = InterviewQA.objects.get(id=question_id)  # the object of the current question, the current object InterviewQA
 
-            if form.is_valid():
-                answer = form.save()
+        # prepare the object to save, an old object or one that already exists
+        form = None
+        try:
+            interviewAnswer = InterviewAnswer.objects.get(user=request.user.id, interviewQA=current_qa.id)
+            form = InterviewAnswerForm(request.POST, instance=interviewAnswer)
+        except InterviewAnswer.DoesNotExist:
+            form = InterviewAnswerForm(request.POST)
 
-                # check the number of the last answered question
-                if current_qa.question_num < 10:
-                    # get the number of the next question
-                    new_question_num = current_qa.question_num+1
-                elif current_qa.question_num == 10:
-                    # TODO return final page - the page that sums everything else
-                    print '>>>>>>>>>>>>> 10'
-                else:
-                    return page_not_found(request)
-
-                query_result = InterviewQA.objects.filter(level=current_qa.level, question_num=new_question_num)
-                returnedData = serializers.serialize('json', query_result)
-
-                return JsonResponse({'returnedJson': returnedData,})
-            else:
-                answer = InterviewAnswer()
-                return JsonResponse({'returnedJson': 'Invalid Form'})
+        if form.is_valid():
+            # create or update the InterviewAnswer object for the given InterviewQA object
+            answer = form.save()
         else:
-            if interview_level == 'PRO' or interview_level == 'SAV' or interview_level == 'EXP':
-                if question_num_int is None:
-                    question_num_int = 1
+            print form.errors
+    # get the page according to the URL
+    elif interview_level == 'PRO' or interview_level == 'SAV' or interview_level == 'EXP':
+        if question_num_int == 1:
+            try:
                 interviewQA = InterviewQA.objects.get(level=interview_level, question_num=question_num_int)
-
+                interviewAnswer = InterviewAnswer.objects.get(user=request.user.id, interviewQA=interviewQA.id)
+            except InterviewQA.DoesNotExist:
+                interviewQA = None
+            except InterviewAnswer.DoesNotExist:
+                interviewAnswer = None
+            context_dict = {'interviewQA': interviewQA, 'interviewAnswer': interviewAnswer}
+        elif question_num_int > 1 and question_num_int < 11:
+            try:
+                # if the user has answered the previous question
+                previous_question_num_int = question_num_int-1
+                previousQA = InterviewQA.objects.get(level=interview_level, question_num=previous_question_num_int)
                 try:
-                    interviewAnswer = InterviewAnswer.objects.filter(user=request.user.id, interviewQA=interviewQA.id)
-                except interviewAnswer.DoesNotExist:
-                    interviewAnswer = None
-                context_dict = {'interviewQA': interviewQA, 'interviewAnswer': interviewAnswer}
-            else:
-                raise ValueError('Message here....')
-        return render(request, 'interview_prep_app/questions.html', context_dict)
-    except:
-        return page_not_found(request)
+                    InterviewAnswer.objects.get(user=request.user.id, interviewQA=previousQA.id)
+                except InterviewAnswer.DoesNotExist:
+                    return redirect('questions', interview_level=interview_level.lower(), question_num=question_num_int)
+                # # redirect to the page with the requested question
+                interviewQA = InterviewQA.objects.get(level=interview_level, question_num=question_num_int)
+                interviewAnswer = InterviewAnswer.objects.get(user=request.user.id, interviewQA=interviewQA.id)
+            except InterviewAnswer.DoesNotExist:
+                interviewAnswer = None
+            context_dict = {'interviewQA': interviewQA, 'interviewAnswer': interviewAnswer}
+        else:
+            return page_not_found(request)
+    return render(request, 'interview_prep_app/questions.html', context_dict)
+
+def summary(request, interview_level):
+    interview_level = interview_level.upper()
+    user = request.user.id
+
+    if interview_level == 'PRO' or interview_level == 'SAV' or interview_level == 'EXP':
+        summary_data = InterviewAnswer.objects.filter(user = request.user.id, interviewQA__level = interview_level)\
+            .values('interviewQA__question_text', 'interviewQA__question_num', 'answer')
+
+    context_dict = {'summary_data': summary_data}
+    return render(request, 'interview_prep_app/summary.html', context_dict)

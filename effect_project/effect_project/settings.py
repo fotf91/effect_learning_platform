@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'mathfilters',
     'account_app',
     'interview_prep_app',
     'social.apps.django_app.default', # include the OAuth - python social authentication app

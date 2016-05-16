@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}Questions{% endblock %}
+
+{% block dependencies %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/css-code/interview_prep_app/app_environment.css' %}">
+    <!--<link rel="stylesheet" type="text/css" href="{% static 'css/css-code/interview_prep_app/app_summary.css' %}">-->
+    <script src="{% static 'js/js-code/interview_prep_app/summary.js' %}"></script>
+{% endblock %}
+
+{% block body_block %}
+
+    <div class="interview-summary">
+        <div class="header">
+            <div class="header-left">
+                <img src="{% static 'images/logos/effectlogo-full-white.png' %}" />
+            </div>
+            <div class="header-right">
+                <a class="btn" href="/interview/">Back to Home</a>
+            </div>
+        </div>
+        <div class="body">
+            <div class="row print-row">
+                <a class="print-btn btn">
+                    <span>Εκτύπωση</span>
+                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                </a>
+            </div>
+            {% for i in summary_data %}
+            <div class="row">
+                <div class="col-sm-5">
+                    <div class="text-light">
+                        ΕΡΩΤΗΣΗ {{ i.interviewQA__question_num }} #
+                    </div>
+                    <div class="text-bold text-frame">
+                        {{ i.interviewQA__question_text }}
+                    </div>
+                </div>
+                <div class="col-sm-7">
+                    <div class="text-answer">
+                        {{ i.answer }}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+{% endblock %}

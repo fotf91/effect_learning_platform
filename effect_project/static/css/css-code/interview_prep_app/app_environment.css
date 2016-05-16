@@ -16,8 +16,8 @@ body{/* white background of the left col */
     color: #ecf0f1;
     height: 100%;
  }
- .app-environment .header,
-.app-environment .footer{
+ .header,
+.footer{
     padding: 0px 70px;
     height: 70px;
     background: #cc0000;
@@ -33,7 +33,7 @@ body{/* white background of the left col */
     float: right;
 }
 
- .app-environment .header img{
+ .header img{
     height: 50px;
  }
   .header-left,
@@ -98,13 +98,24 @@ body{/* white background of the left col */
  /* ------------------
   APPLICATION BODY - TEXT
  ------------------ */
- .app-environment .text-light{
+ .text-light{
     font-family: lato-light;
  }
- .app-environment .text-bold{
+ .text-light a{
+    padding: 0;
+    color: #333;
+ }
+ .text-light a:hover{
+    color: #cc0000;
+ }
+ .text-light a.disabled,
+ .text-light a.disabled:hover{
+    color: #DADFE1;
+ }
+ .text-bold{
     font-family: lato-heavy;
  }
- .app-environment .text-frame{
+ .text-frame{
     background: #DADFE1;
     display: inline-block;
     padding: 3px 10px;
@@ -112,7 +123,7 @@ body{/* white background of the left col */
     margin-top: 12px;
     margin-bottom: 8px;
  }
- .app-environment .text-green{
+ .text-green{
     color: #1BA39C;
     font-family: lato-heavy;
  }
@@ -173,3 +184,35 @@ body{/* white background of the left col */
         padding-right: 30px;
     }
  }
+
+ /* ---------------------------------------------------------------------------------------------------------
+ --------------------------------------------------------------------------------------------------------- */
+
+  /* ------------------
+      SUMMARY PAGE
+ ------------------ */
+.interview-summary .body{
+    padding: 40px 70px;
+}
+.interview-summary .body .row{
+    margin-bottom: 50px;
+}
+.text-answer{
+    background: #DADFE1;
+    display: inline-block;
+    padding: 3px 10px;
+    margin-right: -5px;
+    margin-top: 32px;
+    margin-bottom: 8px;
+    font-family: lato-medium;
+}
+.print-btn i{
+    font-size: 30px;
+}
+.print-btn{
+    color: #333;
+}
+.print-btn:hover{
+    color: #cc0000;
+    cursor: pointer;
+}

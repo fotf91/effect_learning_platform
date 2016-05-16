@@ -38,9 +38,12 @@ class InterviewAnswer(models.Model):
     """
     The answers that the user gives for the question
     """
-    user = models.OneToOneField(EmailBasedUser, null=True)
-    interviewQA = models.OneToOneField(InterviewQA, null=True)
+    user = models.ForeignKey(EmailBasedUser, null=True)
+    interviewQA = models.ForeignKey(InterviewQA, null=True)
     answer = models.TextField(max_length=1000, blank=True)
+
+    class Meta:
+        unique_together = ('user', 'interviewQA')
 
     def __unicode__(self):
         return self.answer

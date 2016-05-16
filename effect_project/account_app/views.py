@@ -56,7 +56,6 @@ def personal_profile(request):
                     }
     return render(request, 'account_app/personal_profile.html', context_dict)
 
-
 @login_required
 def update_profile_Ctype(request):
     """
@@ -82,7 +81,6 @@ def update_profile_Ctype(request):
                     )
     except TypeCUser.DoesNotExist:
         return HttpResponse('Failure during profile update')
-
 
 @login_required
 def update_profile_Gtype(request):
