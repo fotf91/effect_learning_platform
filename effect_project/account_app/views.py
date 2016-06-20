@@ -44,10 +44,9 @@ def personal_profile(request):
 
     if current_user.user_type == 1 or current_user.user_type == 2:
         try:
-            positions = Position.objects.filter(user=current_user)
+            positions = Position.objects.filter(user=current_user).order_by('-end_date')
         except Position.DoesNotExist:
             positions = []
-
 
     context_dict = {'current_user': current_user,
                     'current_user_detail': current_user_detail,
@@ -204,7 +203,7 @@ def add_position(request):
         form = AddPositionForm(data=request.POST)
         if form.is_valid:
             position = form.save()
-            positions = Position.objects.filter(user=request.user)
+            positions = Position.objects.filter(user=request.user).order_by('-end_date')
         else:
             form = AddPositionForm()
         returnData = serializers.serialize('json', positions)
@@ -225,7 +224,7 @@ def edit_position(request):
 
         if form.is_valid:
             form.save()
-            positions = Position.objects.filter(user=request.user)
+            positions = Position.objects.filter(user=request.user).order_by('end_date')
         else:
             form = EditPositionForm()
         returnData = serializers.serialize('json', positions)

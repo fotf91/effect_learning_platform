@@ -61,7 +61,8 @@ def questions(request, interview_level, question_num):
                 try:
                     InterviewAnswer.objects.get(user=request.user.id, interviewQA=previousQA.id)
                 except InterviewAnswer.DoesNotExist:
-                    return redirect('questions', interview_level=interview_level.lower(), question_num=question_num_int)
+                    return previous_question_error(request)
+                    # return redirect('questions', interview_level=interview_level.lower(), question_num=question_num_int)
                 # # redirect to the page with the requested question
                 interviewQA = InterviewQA.objects.get(level=interview_level, question_num=question_num_int)
                 interviewAnswer = InterviewAnswer.objects.get(user=request.user.id, interviewQA=interviewQA.id)
@@ -72,7 +73,16 @@ def questions(request, interview_level, question_num):
             return page_not_found(request)
     return render(request, 'interview_prep_app/questions.html', context_dict)
 
+def previous_question_error(request):
+    return render(request, 'interview_prep_app/previous_question_error.html', {})
+
 def summary(request, interview_level):
+    """
+    render the summary of the interview page
+
+    :param request:
+    :return context_dictionary: with the data of the questions and answers
+    """
     interview_level = interview_level.upper()
     user = request.user.id
 

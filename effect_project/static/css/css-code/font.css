@@ -1,6 +1,47 @@
-/*--------------------------------------
-lato-medium
----------------------------------------*/
+/*-----------------------------------------------------------------------------------
+                                   --- ROBOTO SLAB ---
+-----------------------------------------------------------------------------------*/
+
+/* --- Roboto Slab Bold --- */
+.robotoslab-bold{
+    font-family: "robotoslab-bold";
+}
+@font-face{
+    font-family: "robotoslab-bold";
+    src: url("../fonts/Roboto Slab/RobotoSlab-Bold.ttf");
+}
+
+/* --- Roboto Slab Light --- */
+.robotoslab-light{
+    font-family: "robotoslab-light";
+}
+@font-face{
+    font-family: "robotoslab-light";
+    src: url("../fonts/Roboto Slab/RobotoSlab-Light.ttf");
+}
+
+/* --- Roboto Slab Regular --- */
+.robotoslab-regular{
+    font-family: "robotoslab-regular";
+}
+@font-face{
+    font-family: "robotoslab-regular";
+    src: url("../fonts/Roboto Slab/RobotoSlab-Regular.ttf");
+}
+
+/* --- Roboto Slab Thin --- */
+.robotoslab-thin{
+    font-family: "robotoslab-thin";
+}
+@font-face{
+    font-family: "robotoslab-thin";
+    src: url("../fonts/Roboto Slab/RobotoSlab-Thin.ttf");
+}
+
+/*-----------------------------------------------------------------------------------
+                                   --- LATO ---
+-----------------------------------------------------------------------------------*/
+/* --- Lato Medium --- */
 .lato-medium{
   font-family: "lato-medium";
 }
@@ -8,9 +49,15 @@ lato-medium
   font-family: "lato-medium";
   src: url('../fonts/Lato/Lato-Medium.ttf');
 }
-/*--------------------------------------
-lato-heavy
----------------------------------------*/
+/* --- Lato Regular --- */
+.lato-regular{
+    font-family: "lato-regular";
+}
+@font-face{
+    font-family: "lato-regular";
+    src: url('../fonts/Lato/Lato-Regular.ttf');
+}
+/* --- Lato Heavy --- */
 .lato-heavy{
   font-family: "lato-heavy";
 }
@@ -18,9 +65,7 @@ lato-heavy
   font-family: "lato-heavy";
   src: url('../fonts/Lato/Lato-Heavy.ttf');
 }
-/*--------------------------------------
-lato-light
----------------------------------------*/
+/* --- Lato Light --- */
 .lato-light{
   font-family: "lato-light";
 }
@@ -28,9 +73,7 @@ lato-light
   font-family: "lato-light";
   src: url('../fonts/Lato/Lato-Light.ttf');
 }
-/*--------------------------------------
-lato-light-italic
----------------------------------------*/
+/* --- Lato Light Italic --- */
 .lato-light-italic{
   font-family: "lato-light-italic";
 }
@@ -38,3 +81,4 @@ lato-light-italic
   font-family: "lato-light-italic";
   src: url('../fonts/Lato/Lato-LightItalic.ttf');
 }
+

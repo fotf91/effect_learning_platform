@@ -127,10 +127,7 @@ input[type="radio"]:checked ~ label{
 /*--------------------------------------
 GLYPHICONS
 ---------------------------------------*/
-.glyphicon-ok,
-.glyphicon-pencil{
-    color: #47A2F8;
-}
+
 .glyphicon-remove{
-    color: #9c0000;
+    color: #333;
 }

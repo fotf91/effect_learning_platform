@@ -35,7 +35,7 @@
                     ΕΡΩΤΗΣΗ {{ interviewQA.question_num }} #
                     <a class="btn {% if interviewQA.question_num == 10 %} disabled {% endif %}" href="/interview/questions/{{ interviewQA.level|lower }}/{{ interviewQA.question_num|add:1|stringformat:'02d'  }}"><span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span></a>
                     {% if interviewQA.question_num == 10 %}
-                        <a href="/interview/summary">
+                        <a href="/interview/summary/{{ interviewQA.level|lower }}">
                             <span class="glyphicon glyphicon-stats" aria-hidden="true"></span>
                         </a>
                     {% endif %}

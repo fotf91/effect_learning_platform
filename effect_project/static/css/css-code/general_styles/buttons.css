@@ -13,6 +13,14 @@ BUTTONS
 .btn:hover{
   text-decoration: none;
 }
+.btn.btn-default{
+    background: #cc0000;
+    border-width: 0;
+    color: #fff;
+}
+.btn.btn-default:hover{
+    background: #e74c3c;
+}
 .btn-default:focus,
 .btn-default:active
 .btn:focus,
@@ -20,6 +28,7 @@ BUTTONS
     outline: none !important;
     border-style: solid;
 }
+
 /* ------------------
   BUTTONS RED
  ------------------ */

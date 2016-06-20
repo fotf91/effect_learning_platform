@@ -11,25 +11,30 @@ $( document ).ready(function() {
     /* * * * * * * * * * * * * * *
     * TEMPLATES HTML
     * * * * * * * * * * * * * * * */
-//    var TMPL_experience_entity = "<h1>the title is</h1>: {{title}}";
     var $TMPL_experience_entity = '#TMPLexperienceEntity';
 
     /* * * * * * * * * * * * * * *
-    * click event - toggle between edit and not edit mode
+    * edit the main info part
     * * * * * * * * * * * * * * * */
+    function editMainInfo(){
+        edit_profile = true;
+        $(".edit-state").toggle(true); // show .edit-state
+        $(".no-edit-state").toggle(false); // hide .no-edit-state
+        findAllSkillId($skillTopValSelector);
+        findAllSkillId($skillSecondarySelector);
+    }//editMainInfo()
+
+    function cancelEditMainInfo(){
+        edit_profile = false;
+        $(".edit-state").toggle(false); // hide .edit-state
+        $(".no-edit-state").toggle(true); // show .no-edit-state
+    }//cancelEditMainInfo()
+
     $(".form-group button").click(function() {
         if(edit_profile){
-            // go to NO edit mode
-            edit_profile = false;
-            $(".edit-state").toggle(false); // hide .edit-state
-            $(".no-edit-state").toggle(true); // show .no-edit-state
+            cancelEditMainInfo();
         }else{
-            // go to edit mode
-            edit_profile = true;
-            $(".edit-state").toggle(true); // show .edit-state
-            $(".no-edit-state").toggle(false); // hide .no-edit-state
-            findAllSkillId($skillTopValSelector);
-            findAllSkillId($skillSecondarySelector);
+            editMainInfo();
         }
     });// button click
 
@@ -42,7 +47,6 @@ $( document ).ready(function() {
     function findAllSkillId(selector){
         // selector: defines if it is about top or secondary skills
         $( selector+" .skills-owned .result-item" ).each(function( index ) {
-            console.log( index + ": " + $( this ).text() );
             var query;
             var all_skills = [];
 
@@ -112,7 +116,6 @@ $( document ).ready(function() {
             var serializedData = jQuery.parseJSON(data.skills);
             $(selector+' .skills-query-result').html("");
             $.each(serializedData, function( index, value ) {
-                console.log(value.pk);
 
                 if(selector === $skillTopValSelector &&
                 value.pk != $("input[name='skill_top_val1']").val() &&
@@ -138,7 +141,6 @@ $( document ).ready(function() {
     * * * * * * * * * * * * * * * */
     $(document).on('click', '#skillTopVal .skills-query-result .result-item', function(){
         var value_pk = $(this).find('.hidden').text();
-        console.log('value_pk='+value_pk);
 
         // check if all skills are filled
         if(!$("input[name='skill_top_val1']").val()){
@@ -160,7 +162,6 @@ $( document ).ready(function() {
     * * * * * * * * * * * * * * * */
     $(document).on('click', '#skillSecondaryVal .skills-query-result .result-item', function(){
         var value_pk = $(this).find('.hidden').text();
-        console.log('value_pk='+value_pk);
 
         // check if all skills are filled
         if(!$("input[name='skill_secondary_val1']").val()){
@@ -213,8 +214,10 @@ $( document ).ready(function() {
 *   EXPERIENCE SECTION
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
+    // TODO FIX THIS PART
     function cancelEditExperience(){
        edit_experience = false;
+       console.log('break point');
        $("#pastPositions .edit-state").hide();
        $("#pastPositions .no-edit-state").show();
        $($newPositionForm).hide();
@@ -278,7 +281,24 @@ $( document ).ready(function() {
         event.preventDefault();
         $.post('/account/edit_position', $(this).serialize(), function(data){
             cancelEditExperience();
-        });
+            $($experienceContainer).html('');
+
+            var serializedData = jQuery.parseJSON(data.returnedJson);
+
+            $.each(serializedData, function(index, value){
+                var templateData = {
+                    id: value.pk,
+                    title: value.fields.title,
+                    company: value.fields.company,
+                    summary: value.fields.summary,
+                    is_current: value.fields.is_current,
+                    start_date: value.fields.start_date,
+                    end_date: value.fields.end_date,
+                };
+
+                $($experienceContainer).prepend(generateExperienceHTML(templateData));
+            });// each
+        });// post edit_position
     });// submit form - edit position
 
     // submit form - delete position

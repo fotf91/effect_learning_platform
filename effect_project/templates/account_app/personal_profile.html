@@ -5,551 +5,465 @@
 {% block title %}Profile{% endblock %}
 
 {% block dependencies %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/css-code/account_app/personal_profile.css' %}">
-    <script src="{% static 'js/js-code/account_app/personal_profile.js' %}"></script>
-    <!-- import jquery ui for the datepicker -->
-    <script src="{% static 'js/jquery-ui-1.11.4.custom/jquery-ui.min.js' %}"></script>
-    <link rel="stylesheet" type="text/css" href="{% static 'js/jquery-ui-1.11.4.custom/jquery-ui.min.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/css-code/account_app/personal_profile.css' %}">
+<script src="{% static 'js/js-code/account_app/personal_profile.js' %}"></script>
+<!-- import jquery ui for the datepicker -->
+<script src="{% static 'js/jquery-ui-1.11.4.custom/jquery-ui.min.js' %}"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'js/jquery-ui-1.11.4.custom/jquery-ui.min.css' %}">
 {% endblock %}
 
 {% block body_block %}
-    <div class="max-width-980">
-        {% if current_user.user_type == 1 %}
-            <!-- form for user type G -->
-            <section>
-                <form class="form-horizontal" method="post" action="/account/update_profile_Gtype" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <div class="profile-container">
-                        <!-- row -->
-                        <div class="row">
-                            <div class="form-group">
-                                <div class="col-sm-3">
-                                    {% if not current_user_detail.alumn %}
-                                        <div class="alumni">
-                                            <span class="glyphicon glyphicon-asterisk"></span>
-                                        </div>
-                                    {% endif %}
-                                </div>
-                                <div class="col-sm-6">
-                                    {% if current_user_detail.passion %}
-                                        <div class="no-edit-state passion">
-                                            <i class="fa fa-quote-left"></i>
-                                                {{ current_user_detail.passion }}
-                                            <i class="fa fa-quote-right"></i>
-                                        </div>
-                                    {% else %}
-                                        <div class="no-edit-state empty-field"><label class="control-label">Πάθος</label></div>
-                                    {% endif %}
-                                        <input type="text" class="form-control edit-state" placeholder="Στόχος" value="{{ current_user_detail.passion }}" name="passion">
-                                </div>
-                            </div>
-                        </div>
-                        <!-- row -->
-                        <div class="row">
-                            <div class="col-sm-5">
-                                <div class="row">
-                                    <div class="form-group">
-                                        <div class="col-sm-12 no-edit-state">
-                                            {% if current_user_detail.last_name %}
-                                                <span class="name-placeholder">{{ current_user_detail.last_name }}</span>
-                                            {% else %}
-                                                <span class="empty-field"><label class="control-label">Επώνυμο</label></span>
-                                            {% endif %}
-                                            {% if current_user_detail.first_name %}
-                                                <span class="name-placeholder">{{ current_user_detail.first_name }}</span>
-                                            {% else %}
-                                                <span class="empty-field"><label class="control-label">Όνομα</label></span>
-                                            {% endif %}
-                                        </div>
-                                        <div class="edit-state">
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control" placeholder="Επώνυμο" value="{{ current_user_detail.last_name }}" name="last_name">
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control" placeholder="Όνομα" value="{{ current_user_detail.first_name }}" name="first_name">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="row form-group">
-                                        <div class="col-sm-12">
-                                            <div class="no-edit-state">
-                                                {% if current_user_detail.status %}
-                                                    <div class="status row">
-                                                        <div class="col-sm-1">
-                                                            <i class="fa fa-briefcase"></i>
-                                                        </div>
-                                                        <div class="col-sm-11 text-justify">
-                                                            {{ current_user_detail.status }}
-                                                        </div>
-                                                    </div>
-                                                {% else %}
-                                                    <div class="empty-field col-sm-9 no-padding"><label class="control-label">Τρέχουσα Κατάσταση</label></div>
-                                                {% endif %}
-                                            </div>
-                                            <input type="text" class="form-control edit-state" placeholder="Τρέχουσα Κατάσταση" value="{{ current_user_detail.status }}" name="status">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <div class="no-edit-state">
-                                                {% if current_user_detail.location %}
-                                                    <div class="location">
-                                                        {{ current_user_detail.location }}
-                                                        <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
-                                                    </div>
-                                                {% else %}
-                                                    <div class="empty-field">
-                                                        <label class="control-label">Πόλη διαμονής</label>
-                                                    </div>
-                                                {% endif %}
-                                            </div>
-                                            <input type="text" class="form-control edit-state" placeholder="Πόλη διαμονής" value="{{ current_user_detail.location }}" name="location">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    {% if avatar_path %}
-                                        <img src="{{ avatar_path }}" class="col-sm-12">
-                                    {% else %}
-                                        <div class="empty-avatar"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></div>
-                                    {% endif %}
-                                    <input type="file" name="avatar edit-state">
-                                </div>
-                            </div>
-                            <div class="col-sm-7">
-                                <div class="row">
-                                    <div class="col-sm-6 col-sm-offset-3 no-padding">
-                                        <label class="col-sm-12 grey-label">Κύριες Δεξιότητες</label>
-                                        <div class="col-sm-12" id="skillTopVal">
-                                            <div class="skills-owned">
-                                                <!-- skills that the user already has - contains the ajax results -->
-                                                {% if current_user_detail.skill_top_val1 %}
-                                                    <span class="result-item">{{ current_user_detail.skill_top_val1 }}</span>
-                                                {% endif %}
-                                                {% if current_user_detail.skill_top_val2 %}
-                                                    <span class="result-item">{{ current_user_detail.skill_top_val2 }}</span>
-                                                {% endif %}
-                                                {% if current_user_detail.skill_top_val3 %}
-                                                    <span class="result-item">{{ current_user_detail.skill_top_val3 }}</span>
-                                                {% endif %}
-                                            </div>
-                                            <input type="text" class="form-control edit-state">
-                                            <input type="hidden" class="form-control edit-state" name="skill_top_val1">
-                                            <input type="hidden" class="form-control edit-state" name="skill_top_val2">
-                                            <input type="hidden" class="form-control edit-state" name="skill_top_val3">
-                                            <div class="skills-query-result edit-state">
-                                                <!-- skills that the user has added - contains the ajax results -->
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6 col-sm-offset-3 no-padding m-t-30">
-                                        <label class="col-sm-12 grey-label">Δευτερεύουσες Δεξιότητες</label>
-                                        <div class="col-sm-12" id="skillSecondaryVal">
-                                            <div class="skills-owned">
-                                                <!-- skills that the user already has - contains the ajax results -->
-                                                {% if current_user_detail.skill_secondary_val1 %}
-                                                    <span class="result-item">{{ current_user_detail.skill_secondary_val1 }}</span>
-                                                {% endif %}
-                                                {% if current_user_detail.skill_secondary_val2 %}
-                                                    <span class="result-item">{{ current_user_detail.skill_secondary_val2 }}</span>
-                                                {% endif %}
-                                                {% if current_user_detail.skill_secondary_val3 %}
-                                                    <span class="result-item">{{ current_user_detail.skill_secondary_val3 }}</span>
-                                                {% endif %}
-                                            </div>
-                                            <input type="text" class="form-control edit-state">
-                                            <input type="hidden" class="form-control edit-state" name="skill_secondary_val1">
-                                            <input type="hidden" class="form-control edit-state" name="skill_secondary_val2">
-                                            <input type="hidden" class="form-control edit-state" name="skill_secondary_val3">
-                                            <div class="skills-query-result edit-state">
-                                                <!-- skills that the user has added - contains the ajax results -->
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6 col-sm-offset-3 no-padding m-t-30">
-                                        <label class="col-sm-12 grey-label">Περιοχές Εξειδίκευσης</label>
-                                        <div class="col-sm-12" id="expertiseAreas">
-                                            <div class="skills-owned">
-                                                <!-- skills that the user already has - contains the ajax results -->
-                                                {% if current_user_detail.expertise_area_val1 %}
-                                                    <span class="result-item">{{ current_user_detail.expertise_area_val1 }}</span>
-                                                {% endif %}
-                                                {% if current_user_detail.expertise_area_val2 %}
-                                                    <span class="result-item">{{ current_user_detail.expertise_area_val2 }}</span>
-                                                {% endif %}
-                                                {% if current_user_detail.expertise_area_val3 %}
-                                                    <span class="result-item">{{ current_user_detail.expertise_area_val3 }}</span>
-                                                {% endif %}
-                                            </div>
-                                            <input type="text" class="form-control edit-state">
-                                            <input type="hidden" class="form-control edit-state" name="expertise_area_val1">
-                                            <input type="hidden" class="form-control edit-state" name="expertise_area_val2">
-                                            <input type="hidden" class="form-control edit-state" name="expertise_area_val3">
-                                            <div class="skills-query-result edit-state">
-                                                <!-- skills that the user has added - contains the ajax results -->
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- row -->
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <div class="no-edit-state">
-                                        {% if current_user_detail.date_of_birth %}
-                                            <div>{{ current_user_detail.date_of_birth }}</div>
-                                        {% else %}
-                                            <div class="empty-field"><label class="control-label">Ημερομηνία Γέννησης</label></div>
-                                        {% endif %}
-                                    </div>
-                                    <input class="form-control edit-state jquery-datepicker" placeholder="Ημερομηνία Γέννησης" value='{{ current_user_detail.date_of_birth|date:"m/d/Y" }}' name="date_of_birth">
-                                </div>
-                            </div>
-                        </div>
-                        <!-- row -->
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <div class="no-edit-state">
-                                        {% if current_user_detail.phone_number %}
-                                            <div>{{ current_user_detail.phone_number }}</div>
-                                        {% else %}
-                                            <div class="empty-field"><label class="control-label">Τηλέφωνο</label></div>
-                                        {% endif %}
-                                    </div>
-                                    <input type="text" class="form-control edit-state" placeholder="Τηλέφωνο" value="{{ current_user_detail.phone_number }}" name="phone_number">
-                                </div>
-                            </div>
-                        </div>
-                        <!-- row - buttons -->
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-default edit-state"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
-                            <button type="button" class="btn btn-default no-edit-state"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>
-                            <button type="button" class="btn btn-default edit-state"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-                        </div>
-                    </div>
-
-                </form>
-            </section>
-            <!-- row -->
+<div class="">
+    {% if current_user.user_type == 1 %}
+    <!-- form for user type G -->
+    <section>
+        <form class="form-horizontal" method="post" action="/account/update_profile_Gtype"
+              enctype="multipart/form-data">
+            {% csrf_token %}
             <div class="row">
-                <section class="col-sm-6" id="pastPositions">
-                    <div class="section-header">
-                        <i class="fa fa-briefcase icon"></i>
-                        Προϋπηρεσία
+                <div class="no-edit-state passion">
+                    <div class="max-width-980">
+                        <i class="fa fa-quote-left"></i>
+                        {% if current_user_detail.passion %}
+                        {{ current_user_detail.passion }}
+                        {% else %}
+                        Πάθος
+                        {% endif %}
+                        <i class="fa fa-quote-right"></i>
                     </div>
-                    <form id="addPosition" class="form-horizontal new-position" method="post" action="">
-                        {% csrf_token %}
-                        <div class="profile-container">
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Τίτλος" name="title">
-                            </div>
-                            <div class="form-group">
-                                <textarea  class="col-sm-12" placeholder="Περιγραφή" name="summary"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-5 no-padding">
-                                    <input type="" class="form-control jquery-datepicker" placeholder="Ημερομηνία Έναρξης" name="start_date">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-5 no-padding">
-                                    <input type="" class="form-control jquery-datepicker" placeholder="Ημερομηνία Λήξης" name="end_date">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Εταιρεία" name="company">
-                            </div>
-                            <input type="hidden" name="user" value="{{ request.user.id }}">
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-default ok-btn" style="display: inline-block;"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
-                                <button type="button" class="btn btn-default cancel-btn" style="display: inline-block;"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-                            </div>
-                        </div>
-                    </form>
-
-                    <div id="experienceContainer" class="profile-container">
-                        {% for i in positions%}
-                            <div class="profile-container-entity">
-                                <form class="edit-state edit-position" method="post" action="">
-                                    {% csrf_token %}
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="{{ i.title }}" value="{{ i.title }}" name="title">
-                                        </div>
-                                        <div class="form-group">
-                                            <textarea  class="col-sm-12" placeholder="{{ i.summary }}" value="{{ i.summary }}" name="summary"></textarea>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="col-sm-5 no-padding">
-                                                <input type="" class="form-control jquery-datepicker" placeholder="{{ i.start_date }}" value='{{ i.start_date|date:"m/d/Y"  }}' name="start_date">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="col-sm-5 no-padding">
-                                                <input type="" class="form-control jquery-datepicker" placeholder="{{ i.end_date }}" value='{{ i.end_date|date:"m/d/Y"  }}' name="end_date">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="{{ i.company }}" value="{{ i.company }}" name="company">
-                                        </div>
-                                        <input type="hidden" name="id" value="{{ i.id }}">
-                                        <div class="form-group">
-                                            <button type="submit" class="btn btn-default ok-btn" style="display: inline-block;"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
-                                            <button type="button" class="btn btn-default cancel-btn" style="display: inline-block;"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-                                        </div>
-                                </form>
-                                <form class="edit-state delete-position" method="post" action="">
-                                    {% csrf_token %}
-                                    <input type="hidden" name="id" value="{{ i.id }}">
-                                    <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-trash" aria-hidden="true"></button>
-                                </form>
-                                <div class="no-edit-state">
-                                    <div class="row">
-                                        <div class="col-sm-4"><label>Τίτλος Θέσης</label></div>
-                                        <div class="col-sm-8">{{ i.title }}</div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-4"><label>Περιγραφή</label></div>
-                                        <div class="col-sm-8">{{ i.summary }}</div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-4"><label>Εταιρεία</label></div>
-                                        <div class="col-sm-8">{{ i.company }}</div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-4"><label>Από</label></div>
-                                        <div class="col-sm-8">{{ i.start_date }}</div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-4"><label>Εώς</label></div>
-                                        <div class="col-sm-8">{{ i.end_date }}</div>
-                                    </div>
-                                    <input type="hidden" name="position" value="{{ i.id }}">
-                                    <div class="buttons-container">
-                                        <button type="button" class="btn btn-default edit-btn"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>
-                                    </div>
-                                </div>
-                            </div>
-                        {% endfor %}
-                        <div class="buttons-container">
-                            <button type="button" class="btn btn-default add-button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
-                        </div>
-                    </div>
-                </section>
-                <section class="col-sm-6">
-                    <div class="section-header">
-                        <span class="glyphicon glyphicon-education icon" aria-hidden="true"></span>
-                        Εκπαίδευση
-                    </div>
-                </section>
+                </div>
+                <input type="text" class="form-control edit-state" placeholder="Στόχος"
+                       value="{{ current_user_detail.passion }}" name="passion">
             </div>
-        {% elif current_user.user_type == 2 %}
-            <!-- form for user type C -->
-            <form class="form-horizontal" method="post" action="/account/update_profile_Ctype" enctype="multipart/form-data">
-                {% csrf_token %}
-                <div class="col-sm-9 col-sm-offset-1">
-                    <!-- row -->
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                <label class="control-label col-sm-3">Επωνυμία Εταιρείας</label>
-                                <div class="col-sm-9">
-                                    {% if current_user_detail.official_name %}
-                                        <div class="no-edit-state">{{ current_user_detail.official_name }}</div>
-                                    {% else %}
-                                        <div class="no-edit-state empty-field"></div>
-                                    {% endif %}
-                                        <input type="text" class="form-control edit-state" placeholder="{{ current_user_detail.official_name }}" value="{{ current_user_detail.official_name }}" name="official_name">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- row -->
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                <label class="control-label col-sm-3">Στόχοι - Προφίλ Εταιρείας</label>
-                                <div class="col-sm-9">
-                                    {% if current_user_detail.tagline %}
-                                        <div class="no-edit-state">{{ current_user_detail.tagline }}</div>
-                                    {% else %}
-                                        <div class="no-edit-state empty-field"></div>
-                                    {% endif %}
-                                        <input type="text" class="form-control edit-state" placeholder="{{ current_user_detail.tagline }}" value="{{ current_user_detail.tagline }}" name="tagline">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- row -->
-                    <div class="row">
-                        <div class="col-sm-12 text-center">
-                            <label>Στοιχεία Υπευθύνου</label>
-                        </div>
-                    </div>
-                    <!-- row -->
-                    <div class="row">
-                        <div class="col-sm-5">
+            <div class="max-width-980">
+                <div class="row">
+                    <!-- LEFT SIDE -->
+                    <div class="col-sm-3">
+                        <div class="row">
+                            {% if avatar_path %}
                             <img src="{{ avatar_path }}" class="col-sm-12">
+                            {% else %}
+                            <div class="empty-avatar"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                            </div>
+                            {% endif %}
                             <input type="file" name="avatar edit-state">
                         </div>
-                        <div class="col-sm-7">
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">Όνομα</label>
-                                <div class="col-sm-9">
-                                    {% if current_user_detail.first_name %}
-                                        <div class="no-edit-state">{{ current_user_detail.first_name }}</div>
-                                    {% else %}
-                                        <div class="no-edit-state empty-field"></div>
-                                    {% endif %}
-                                    <input type="text" class="form-control edit-state" placeholder="{{ current_user_detail.first_name }}" value="{{ current_user_detail.first_name }}" name="first_name">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">Επώνυμο</label>
-                                <div class="col-sm-9">
-                                    {% if current_user_detail.last_name %}
-                                        <div class="no-edit-state">{{ current_user_detail.last_name }}</div>
-                                    {% else %}
-                                        <div class="no-edit-state empty-field"></div>
-                                    {% endif %}
-                                    <input type="text" class="form-control edit-state" placeholder="{{ current_user_detail.last_name }}" value="{{ current_user_detail.last_name }}" name="last_name">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">Ημερομηνία Γέννησης</label>
-                                <div class="col-sm-9">
+                        <div class="row profile-container">
+                            <div class="row">
+                                <div class="no-edit-state">
+                                    <i class="fa fa-calendar" aria-hidden="true"></i>
                                     {% if current_user_detail.date_of_birth %}
-                                        <div class="no-edit-state">{{ current_user_detail.date_of_birth }}</div>
+                                    {{ current_user_detail.date_of_birth }}
                                     {% else %}
-                                        <div class="no-edit-state empty-field"></div>
+                                    Ημερομηνία Γέννησης
                                     {% endif %}
-                                    <input type="" class="form-control edit-state jquery-datepicker" placeholder="{{ current_user_detail.date_of_birth }}" value="{{ current_user_detail.date_of_birth }}" name="date_of_birth">
+                                </div>
+                                <input class="form-control edit-state jquery-datepicker" placeholder="Ημερομηνία Γέννησης"
+                                       value='{{ current_user_detail.date_of_birth|date:"m/d/Y" }}' name="date_of_birth">
+                            </div>
+                            <div class="row">
+                                <div class="no-edit-state">
+                                    <i class="fa fa-phone" aria-hidden="true"></i>
+                                    {% if current_user_detail.phone_number %}
+                                        {{ current_user_detail.phone_number }}
+                                    {% else %}
+                                        Τηλέφωνο
+                                    {% endif %}
+                                </div>
+                                <input type="text" class="form-control edit-state" placeholder="Τηλέφωνο"
+                                       value="{{ current_user_detail.phone_number }}" name="phone_number">
+                            </div>
+
+                        </div>
+                        <div class="row social">
+                            <!-- H ΣΕΛΙΔΑ ΜΟΥ -->
+                            <div class="no-edit-state">
+                                    <a href="{% if current_user_detail.siteUrl %}{{ current_user_detail.siteUrl}}{% else %}#{% endif %}"><i class="fa fa-external-link" aria-hidden="true"></i>Η σελίδα μου</a>
+                            </div>
+                            <input type="url" class="form-control edit-state" placeholder="Η σελίδα μου"
+                                value="{% if current_user_detail.siteUrl %}{{ current_user_detail.siteUrl}}{% endif %}" name="siteUrl">
+                            <!-- LINKED IN -->
+                            <div class="no-edit-state">
+                                    <a href="{% if current_user_detail.linkedInUrl %}{{ current_user_detail.siteUrl}}{% else %}#{% endif %}"><i class="fa fa-linkedin-square" aria-hidden="true"></i>LinkedIn</a>
+                            </div>
+                            <input type="url" class="form-control edit-state" placeholder="LinkedIn"
+                                value="{% if current_user_detail.linkedInUrl %}{{ current_user_detail.linkedInUrl}}{% endif %}" name="linkedInUrl">
+                            <!-- MEDIUM -->
+                            <div class="no-edit-state">
+                                    <a href="{% if current_user_detail.mediumUrl %}{{ current_user_detail.siteUrl}}{% else %}#{% endif %}"><i class="fa fa-medium" aria-hidden="true"></i>Medium</a>
+                            </div>
+                            <input type="url" class="form-control edit-state" placeholder="Medium"
+                                value="{% if current_user_detail.mediumUrl %}{{ current_user_detail.mediumUrl}}{% endif %}" name="mediumUrl">
+                            <!-- FACEBOOK -->
+                            <div class="no-edit-state">
+                                    <a href="{% if current_user_detail.facebookUrl %}{{ current_user_detail.siteUrl}}{% else %}#{% endif %}"><i class="fa fa-facebook-official" aria-hidden="true"></i>Facebook</a>
+                            </div>
+                            <input type="url" class="form-control edit-state" placeholder="Facebook"
+                                value="{% if current_user_detail.facebookUrl %}{{ current_user_detail.facebookUrl}}{% endif %}" name="facebookUrl">
+                        </div>
+                    </div>
+                    <!-- RIGHT SIDE -->
+                    <div class="col-sm-7 col-sm-offset-2 profile-container">
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-sm-12 no-edit-state">
+                                    {% if current_user_detail.last_name %}
+                                    <span class="name-placeholder">{{ current_user_detail.last_name }}</span>
+                                    {% else %}
+                                    <span class="empty-field"><label class="control-label">Επώνυμο</label></span>
+                                    {% endif %}
+                                    {% if current_user_detail.first_name %}
+                                    <span class="name-placeholder">{{ current_user_detail.first_name }}</span>
+                                    {% else %}
+                                    <span class="empty-field"><label class="control-label">Όνομα</label></span>
+                                    {% endif %}
+                                </div>
+                                <div class="edit-state">
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" placeholder="Επώνυμο"
+                                               value="{{ current_user_detail.last_name }}" name="last_name">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" placeholder="Όνομα"
+                                               value="{{ current_user_detail.first_name }}" name="first_name">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row border-bottom">
+                            <div class="no-edit-state">
+                                {% if current_user_detail.status %}
+                                <div class="status row">
+                                    <div class="col-sm-1">
+                                        <i class="fa fa-briefcase"></i>
+                                    </div>
+                                    <div class="col-sm-11 text-justify">
+                                        {{ current_user_detail.status }}
+                                    </div>
+                                </div>
+                                {% else %}
+                                <div class="empty-field col-sm-9 no-padding"><label class="control-label">Τρέχουσα
+                                    Κατάσταση</label></div>
+                                {% endif %}
+                            </div>
+                            <input type="text" class="form-control edit-state" placeholder="Τρέχουσα Κατάσταση"
+                                   value="{{ current_user_detail.status }}" name="status">
+                        </div>
+                        <div class="row">
+                            {% if not current_user_detail.alumn %}
+                            <div class="alumni">
+                                <img src="{% static 'images/logos/SA Stamp 100x100-01.png' %}"/>
+                                <div>Success Academy Alumnus</div>
+                            </div>
+                            {% endif %}
+                        </div>
+                        <div class="row border-bottom">
+                            <div class="no-edit-state">
+                                {% if current_user_detail.location %}
+                                <div class="location">
+                                    <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+                                    {{ current_user_detail.location }}
+                                </div>
+                                {% else %}
+                                <div class="empty-field">
+                                    <label class="control-label">Πόλη διαμονής</label>
+                                </div>
+                                {% endif %}
+                            </div>
+                            <input type="text" class="form-control edit-state" placeholder="Πόλη διαμονής"
+                                   value="{{ current_user_detail.location }}" name="location">
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-7">
+                                <div class="row">
+                                    <div class="section-title">
+                                        ΔΕΞΙΟΤΗΤΕΣ
+                                    </div>
+                                    <div class="section-subtitle">Κύριες Δεξιότητες</div>
+                                    <div id="skillTopVal">
+                                        <div class="skills-owned">
+                                            <!-- skills that the user already has - contains the ajax results -->
+                                            {% if current_user_detail.skill_top_val1 %}
+                                            <span class="result-item">{{ current_user_detail.skill_top_val1 }}</span>
+                                            {% endif %}
+                                            {% if current_user_detail.skill_top_val2 %}
+                                            <span class="result-item">{{ current_user_detail.skill_top_val2 }}</span>
+                                            {% endif %}
+                                            {% if current_user_detail.skill_top_val3 %}
+                                            <span class="result-item">{{ current_user_detail.skill_top_val3 }}</span>
+                                            {% endif %}
+                                        </div>
+                                        <input type="text" class="form-control edit-state">
+                                        <input type="hidden" class="form-control edit-state" name="skill_top_val1">
+                                        <input type="hidden" class="form-control edit-state" name="skill_top_val2">
+                                        <input type="hidden" class="form-control edit-state" name="skill_top_val3">
+                                        <div class="skills-query-result edit-state">
+                                            <!-- skills that the user has added - contains the ajax results -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="section-subtitle">Δευτερεύουσες Δεξιότητες</div>
+                                    <div id="skillSecondaryVal">
+                                        <div class="skills-owned">
+                                            <!-- skills that the user already has - contains the ajax results -->
+                                            {% if current_user_detail.skill_secondary_val1 %}
+                                            <span class="result-item">{{ current_user_detail.skill_secondary_val1 }}</span>
+                                            {% endif %}
+                                            {% if current_user_detail.skill_secondary_val2 %}
+                                            <span class="result-item">{{ current_user_detail.skill_secondary_val2 }}</span>
+                                            {% endif %}
+                                            {% if current_user_detail.skill_secondary_val3 %}
+                                            <span class="result-item">{{ current_user_detail.skill_secondary_val3 }}</span>
+                                            {% endif %}
+                                        </div>
+                                        <input type="text" class="form-control edit-state">
+                                        <input type="hidden" class="form-control edit-state" name="skill_secondary_val1">
+                                        <input type="hidden" class="form-control edit-state" name="skill_secondary_val2">
+                                        <input type="hidden" class="form-control edit-state" name="skill_secondary_val3">
+                                        <div class="skills-query-result edit-state">
+                                            <!-- skills that the user has added - contains the ajax results -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="section-subtitle">Περιοχές Εξειδίκευσης</div>
+                                    <div id="expertiseAreas">
+                                        <div class="skills-owned">
+                                            <!-- skills that the user already has - contains the ajax results -->
+                                            {% if current_user_detail.expertise_area_val1 %}
+                                            <span class="result-item">{{ current_user_detail.expertise_area_val1 }}</span>
+                                            {% endif %}
+                                            {% if current_user_detail.expertise_area_val2 %}
+                                            <span class="result-item">{{ current_user_detail.expertise_area_val2 }}</span>
+                                            {% endif %}
+                                            {% if current_user_detail.expertise_area_val3 %}
+                                            <span class="result-item">{{ current_user_detail.expertise_area_val3 }}</span>
+                                            {% endif %}
+                                        </div>
+                                        <input type="text" class="form-control edit-state">
+                                        <input type="hidden" class="form-control edit-state" name="expertise_area_val1">
+                                        <input type="hidden" class="form-control edit-state" name="expertise_area_val2">
+                                        <input type="hidden" class="form-control edit-state" name="expertise_area_val3">
+                                        <div class="skills-query-result edit-state">
+                                            <!-- skills that the user has added - contains the ajax results -->
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- row -->
-                    <div class="row form-group">
-                        <div class="col-sm-6">
-                            <label class="col-sm-3 control-label">Θέση</label>
-                            <div class="col-sm-9">
-                                {% if current_user_detail.position %}
-                                    <div class="no-edit-state">{{ current_user_detail.position }}</div>
-                                {% else %}
-                                    <div class="no-edit-state empty-field"></div>
-                                {% endif %}
-                                    <input type="text" class="form-control edit-state" placeholder="{{ current_user_detail.position }}" value="{{ current_user_detail.position }}" name="position">
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <label class="col-sm-3 control-label">Τηλέφωνο</label>
-                            <div class="col-sm-9">
-                                {% if current_user_detail.phone_number %}
-                                    <div class="no-edit-state">{{ current_user_detail.phone_number }}</div>
-                                {% else %}
-                                    <div class="no-edit-state empty-field"></div>
-                                {% endif %}
-                                    <input type="text" class="form-control edit-state" placeholder="{{ current_user_detail.phone_number }}" value="{{ current_user_detail.phone_number }}" name="phone_number">
-                            </div>
+                </div>
+                <div class="row m-t-30">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-default edit-state"><span class="glyphicon glyphicon-ok"
+                                                                                       aria-hidden="true"></span></button>
+                        <button type="button" class="btn btn-default no-edit-state"><span class="glyphicon glyphicon-pencil"
+                                                                                          aria-hidden="true"></span>
+                        </button>
+                        <button type="button" class="btn btn-default edit-state"><span class="glyphicon glyphicon-remove"
+                                                                                       aria-hidden="true"></span></button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+    <!-- row -->
+    <div class="row">
+        <section id="pastPositions">
+            <div class="section-header-frame">
+                Προϋπηρεσία
+            </div>
+            <form id="addPosition" class="form-horizontal new-position" method="post" action="">
+                {% csrf_token %}
+                <div class="profile-container">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Τίτλος" name="title">
+                    </div>
+                    <div class="form-group">
+                        <textarea class="col-sm-12" placeholder="Περιγραφή" name="summary"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-5 no-padding">
+                            <input type="" class="form-control jquery-datepicker" placeholder="Ημερομηνία Έναρξης"
+                                   name="start_date">
                         </div>
                     </div>
-                    <!-- row - buttons -->
-                    <div class="form-group row m-t-50">
-                        <div class="col-sm-12">
-                            <button type="submit" class="btn btn-default edit-state"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
-                            <button type="button" class="btn btn-default no-edit-state"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>
-                            <button type="button" class="btn btn-default edit-state"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                    <div class="form-group">
+                        <div class="col-sm-5 no-padding">
+                            <input type="" class="form-control jquery-datepicker" placeholder="Ημερομηνία Λήξης"
+                                   name="end_date">
                         </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Εταιρεία" name="company">
+                    </div>
+                    <input type="hidden" name="user" value="{{ request.user.id }}">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-default ok-btn" style="display: inline-block;"><span
+                                class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
+                        <button type="button" class="btn btn-default cancel-btn" style="display: inline-block;"><span
+                                class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
                     </div>
                 </div>
             </form>
-        {% endif %}
-    </div>
 
-    <!---------------------------------------------------------------->
-    <!-- TEMPLATES USED BY JQUERY AND MUSTACHE TO PRODUCE HTML CODE -->
-    <!---------------------------------------------------------------->
-    <script id="TMPLexperienceEntity" type="text/template">
-            <div class="profile-container-entity">
-                <form class="edit-state edit-position" method="post" action="">
-                    {% csrf_token %}
-                    {% verbatim %}
-                    <div class="row">
-                        <div class="col-sm-12">
+            <div id="experienceContainer" class="profile-container">
+                {% for i in positions %}
+                <div class="profile-container-entity">
+                    <form class="edit-state edit-position" method="post" action="">
+                        {% csrf_token %}
+                        <div class="col-sm-6 col-sm-offset-3">
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="{{ title }}" value="{{ title }}" name="title">
+                                <input type="text" class="form-control" placeholder="{{ i.title }}" value="{{ i.title }}"
+                                       name="title">
                             </div>
                             <div class="form-group">
-                                <textarea  class="col-sm-12" placeholder="{{ summary }}" value="{{ summary }}" name="summary"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-5 no-padding">
-                                    <input type="" class="form-control jquery-datepicker" placeholder="{{ start_date }}" value='{{ start_date|date:"m/d/Y"  }}' name="start_date">
-                                </div>
+                                <input type="text" class="form-control" placeholder="{{ i.company }}"
+                                       value="{{ i.company }}" name="company">
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-5 no-padding">
-                                    <input type="" class="form-control jquery-datepicker" placeholder="{{ end_date }}" value='{{ end_date|date:"m/d/Y"  }}' name="end_date">
+                                    <input type="" class="form-control jquery-datepicker" placeholder="{{ i.start_date }}"
+                                           value='{{ i.start_date|date:"m/d/Y"  }}' name="start_date">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="{{ company }}" value="{{ company }}" name="company">
+                                <div class="col-sm-5 col-sm-offset-2 no-padding">
+                                    <input type="" class="form-control jquery-datepicker" placeholder="{{ i.end_date }}"
+                                           value='{{ i.end_date|date:"m/d/Y"  }}' name="end_date">
+                                </div>
                             </div>
-                            <input type="hidden" name="id" value="{{ id }}">
                             <div class="form-group">
-                                <button type="submit" class="btn btn-default ok-btn" style="display: inline-block;"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
-                                <button type="button" class="btn btn-default cancel-btn" style="display: inline-block;"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                                <textarea class="col-sm-12" placeholder="{{ i.summary }}" value="{{ i.summary }}"
+                                          name="summary">{{ i.summary }}</textarea>
                             </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-default ok-btn" style="display: inline-block;"><span
+                                        class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
+                                <button type="button" class="btn btn-default cancel-btn" style="display: inline-block;">
+                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                            </div>
+                            <input type="hidden" name="id" value="{{ i.id }}">
+                        </div>
+
+                    </form>
+                    <form class="edit-state delete-position col-sm-9" method="post" action="">
+                        {% csrf_token %}
+                        <input type="hidden" name="id" value="{{ i.id }}">
+                        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-trash"
+                                                                            aria-hidden="true"></button>
+                    </form>
+                    <div class="no-edit-state row">
+                        <div class="col-sm-8 col-sm-offset-2 text-center">
+                            <div>
+                                <span class="position-title">{{ i.title }}</span>
+                                <span> @ </span>
+                                <span class="position-location">{{ i.company }}</span>
+                            </div>
+                            <div class="position-date">
+                                {{ i.start_date }} -  {{ i.end_date }}
+                            </div>
+                            <div class="position-summary">
+                                {{ i.summary }}
+                            </div>
+                            <input type="hidden" name="position" value="{{ i.id }}">
+
+                        </div>
+                        <div class="col-sm-2 buttons-container">
+                            <button type="button" class="btn btn-default edit-btn"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>
                         </div>
                     </div>
-                    {% endverbatim %}
-                </form>
-                <form class="edit-state delete-position" method="post" action="">
-                    {% csrf_token %}
-                    {% verbatim %}
-                    <input type="hidden" name="id" value="{{ id }}">
-                    <button type="submit">delete</button>
-                    {% endverbatim %}
-                </form>
-                <div class="no-edit-state">
-                    {% verbatim %}
-                    <div class="row">
-                        <div class="col-sm-4"><label>Τίτλος Θέσης</label></div>
-                        <div class="col-sm-8">{{ title }}</div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4"><label>Περιγραφή</label></div>
-                        <div class="col-sm-8">{{ summary }}</div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4"><label>Εταιρεία</label></div>
-                        <div class="col-sm-8">{{ company }}</div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4"><label>Από</label></div>
-                        <div class="col-sm-8">{{ start_date }}</div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4"><label>Εώς</label></div>
-                        <div class="col-sm-8">{{ end_date }}</div>
-                    </div>
-                    <input type="hidden" name="position" value="{{ id }}">
-                    <div class="buttons-container">
-                        <button type="button" class="btn btn-default edit-btn"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>
-                    </div>
-                    {% endverbatim %}
+                </div>
+                {% endfor %}
+                <div class="buttons-container">
+                    <button type="button" class="btn btn-default add-button"><span class="glyphicon glyphicon-plus"
+                                                                                   aria-hidden="true"></span></button>
                 </div>
             </div>
-    </script>
+        </section>
+    </div>
+    {% elif current_user.user_type == 2 %}
+    <!-- form for user type C -->
+    <!-- TODO ADD CODE FOR THE COMPANY USER -->
+    {% endif %}
+</div>
+
+<!---------------------------------------------------------------->
+<!-- TEMPLATES USED BY JQUERY AND MUSTACHE TO PRODUCE HTML CODE -->
+<!---------------------------------------------------------------->
+<script id="TMPLexperienceEntity" type="text/template">
+    <div class="profile-container-entity">
+        <form class="edit-state edit-position" method="post" action="">
+            {% csrf_token %}
+            {% verbatim %}
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="{{ title }}" value="{{ title }}"
+                               name="title">
+                    </div>
+                    <div class="form-group">
+                        <textarea class="col-sm-12" placeholder="{{ summary }}" value="{{ summary }}"
+                                  name="summary">{{ summary }}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-5 no-padding">
+                            <input type="" class="form-control jquery-datepicker" placeholder="{{ start_date }}"
+                                   value='{{ start_date|date:"m/d/Y"  }}' name="start_date">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-5 no-padding">
+                            <input type="" class="form-control jquery-datepicker" placeholder="{{ end_date }}"
+                                   value='{{ end_date|date:"m/d/Y"  }}' name="end_date">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="{{ company }}" value="{{ company }}"
+                               name="company">
+                    </div>
+                    <input type="hidden" name="id" value="{{ id }}">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-default ok-btn" style="display: inline-block;"><span
+                                class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
+                        <button type="button" class="btn btn-default cancel-btn" style="display: inline-block;"><span
+                                class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                    </div>
+                </div>
+            </div>
+            {% endverbatim %}
+        </form>
+        <form class="edit-state delete-position" method="post" action="">
+            {% csrf_token %}
+            {% verbatim %}
+            <input type="hidden" name="id" value="{{ id }}">
+            <button type="submit">delete</button>
+            {% endverbatim %}
+        </form>
+        <div class="no-edit-state row">
+            {% verbatim %}
+            <div class="col-sm-8 col-sm-offset-2 text-center">
+                <div>
+                    <span class="position-title">{{ title }}</span>
+                    <span> @ </span>
+                    <span class="position-location">{{ company }}</span>
+                </div>
+                <div class="position-date">
+                    {{ start_date }} -  {{ end_date }}
+                </div>
+                <div class="position-summary">
+                    {{ summary }}
+                </div>
+                <input type="hidden" name="position" value="{{ id }}">
+
+            </div>
+            <div class="col-sm-2 buttons-container">
+                <button type="button" class="btn btn-default edit-btn"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>
+            </div>
+            {% endverbatim %}
+        </div>
+    </div>
+</script>
 
 {% endblock %}

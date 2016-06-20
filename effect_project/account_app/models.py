@@ -146,6 +146,11 @@ class TypeGUser(models.Model):
     expertise_area_val3 = models.ForeignKey(ExpertiseArea, related_name='expertise_area_val3', null=True, blank=True)
     # avatar
     avatar = models.ImageField('avatar', upload_to='static/media/images/avatars/', null=True, blank=True)
+    # social media
+    siteUrl = models.URLField(max_length=200, null=True)
+    facebookUrl = models.URLField(max_length=200, null=True)
+    mediumUrl = models.URLField(max_length=200, null=True)
+    linkedInUrl = models.URLField(max_length=200, null=True)
 
     def __unicode__(self):
         return self.first_name+" "+self.last_name

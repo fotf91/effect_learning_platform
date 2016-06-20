@@ -207,12 +207,17 @@ body{/* white background of the left col */
     font-family: lato-medium;
 }
 .print-btn i{
-    font-size: 30px;
+    font-size: 20px;
+    margin-left: 10px;
 }
-.print-btn{
-    color: #333;
+.print-btn div{
+    display: inline-block;
 }
-.print-btn:hover{
-    color: #cc0000;
+.print-btn.btn{
+    color: #fff;
+    background: #cc0000;
+}
+.print-btn.btn:hover{
+    background: #e74c3c;
     cursor: pointer;
 }
