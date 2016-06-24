@@ -77,29 +77,37 @@
                         </div>
                         <div class="row social">
                             <!-- H ΣΕΛΙΔΑ ΜΟΥ -->
+                            {% if current_user_detail.siteUrl %}
                             <div class="no-edit-state">
-                                    <a href="{% if current_user_detail.siteUrl %}{{ current_user_detail.siteUrl}}{% else %}#{% endif %}"><i class="fa fa-external-link" aria-hidden="true"></i>Η σελίδα μου</a>
+                                    <a href="{{ current_user_detail.siteUrl}}"><i class="fa fa-external-link" aria-hidden="true"></i>Η σελίδα μου</a>
                             </div>
+                            {% endif %}
                             <input type="url" class="form-control edit-state" placeholder="Η σελίδα μου"
-                                value="{% if current_user_detail.siteUrl %}{{ current_user_detail.siteUrl}}{% endif %}" name="siteUrl">
+                                value="{% if current_user_detail.siteUrl %}{{ current_user_detail.siteUrl}}{% else %}http://{% endif %}" name="siteUrl">
                             <!-- LINKED IN -->
+                            {% if current_user_detail.linkedInUrl %}
                             <div class="no-edit-state">
-                                    <a href="{% if current_user_detail.linkedInUrl %}{{ current_user_detail.siteUrl}}{% else %}#{% endif %}"><i class="fa fa-linkedin-square" aria-hidden="true"></i>LinkedIn</a>
+                                    <a href="{{ current_user_detail.linkedInUrl }}"><i class="fa fa-linkedin-square" aria-hidden="true"></i>LinkedIn</a>
                             </div>
+                            {% endif %}
                             <input type="url" class="form-control edit-state" placeholder="LinkedIn"
-                                value="{% if current_user_detail.linkedInUrl %}{{ current_user_detail.linkedInUrl}}{% endif %}" name="linkedInUrl">
+                                value="{% if current_user_detail.linkedInUrl %}{{ current_user_detail.linkedInUrl}}{% else %}http://{% endif %}" name="linkedInUrl">
                             <!-- MEDIUM -->
+                            {% if current_user_detail.mediumUrl %}
                             <div class="no-edit-state">
-                                    <a href="{% if current_user_detail.mediumUrl %}{{ current_user_detail.siteUrl}}{% else %}#{% endif %}"><i class="fa fa-medium" aria-hidden="true"></i>Medium</a>
+                                    <a href="{{ current_user_detail.mediumUrl}}"><i class="fa fa-medium" aria-hidden="true"></i>Medium</a>
                             </div>
+                            {% endif %}
                             <input type="url" class="form-control edit-state" placeholder="Medium"
-                                value="{% if current_user_detail.mediumUrl %}{{ current_user_detail.mediumUrl}}{% endif %}" name="mediumUrl">
+                                value="{% if current_user_detail.mediumUrl %}{{ current_user_detail.mediumUrl}}{% else %}http://{% endif %}" name="mediumUrl">
                             <!-- FACEBOOK -->
+                            {% if current_user_detail.facebookUrl %}
                             <div class="no-edit-state">
-                                    <a href="{% if current_user_detail.facebookUrl %}{{ current_user_detail.siteUrl}}{% else %}#{% endif %}"><i class="fa fa-facebook-official" aria-hidden="true"></i>Facebook</a>
+                                    <a href="{{ current_user_detail.facebookUrl }}"><i class="fa fa-facebook-official" aria-hidden="true"></i>Facebook</a>
                             </div>
+                            {% endif %}
                             <input type="url" class="form-control edit-state" placeholder="Facebook"
-                                value="{% if current_user_detail.facebookUrl %}{{ current_user_detail.facebookUrl}}{% endif %}" name="facebookUrl">
+                                value="{% if current_user_detail.facebookUrl %}{{ current_user_detail.facebookUrl}}{% else %}http://{% endif %}" name="facebookUrl">
                         </div>
                     </div>
                     <!-- RIGHT SIDE -->
