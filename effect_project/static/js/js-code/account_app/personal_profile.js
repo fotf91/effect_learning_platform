@@ -116,12 +116,16 @@ $( document ).ready(function() {
             var serializedData = jQuery.parseJSON(data.skills);
             $(selector+' .skills-query-result').html("");
             $.each(serializedData, function( index, value ) {
+                // console.log(value);
+                // console.log(value.fields.name);
+                console.log('-----');
 
                 if(selector === $skillTopValSelector &&
                 value.pk != $("input[name='skill_top_val1']").val() &&
                 value.pk != $("input[name='skill_top_val2']").val() &&
                 value.pk != $("input[name='skill_top_val3']").val()){
                     // add the skills found under the search input
+                    console.log(value.fields.name);
                     $(selector+' .skills-query-result').append("<span class='result-item'>"+value.fields.name+
                     "<span class='hidden'>"+value.pk+"</span>"+"</span>");
                 }else if(selector === $skillSecondarySelector &&

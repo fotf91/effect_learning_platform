@@ -41,7 +41,7 @@ def questions(request, interview_level, question_num):
             # create or update the InterviewAnswer object for the given InterviewQA object
             answer = form.save()
         else:
-            print form.errors
+            print (form.errors)
     # get the page according to the URL
     elif interview_level == 'PRO' or interview_level == 'SAV' or interview_level == 'EXP':
         if question_num_int == 1:

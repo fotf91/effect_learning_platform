@@ -4,6 +4,7 @@
 @import './header.css'; /* --- header style --- */
 @import './footer.css'; /* --- footer style --- */
 @import './general_styles/buttons.css'; /* --- buttons style --- */
+@import './general_styles/social.css'; /* --- social style --- */
 @import './general_styles/text.css'; /* --- buttons style --- */
 @import './general_styles/errors.css'; /* --- buttons style --- */
 
@@ -43,7 +44,7 @@ MAIN COLORS
 ---------------------------------------*/
 #mainHeader,
 footer{
-    background: #cc0000;
+    background: #c0392b;
 }
 /*--------------------------------------
 INPUT
@@ -52,7 +53,7 @@ input.form-control{
     border-radius: 6px;
 }
 textarea{
-    border-color: #ccc;
+    border-color: #c0392b;
     resize: none;
     width: 100%;
 }
@@ -63,8 +64,8 @@ textarea{
 input.form-control:focus,
 textarea:focus{
     outline: none !important;
-    border:1px solid #cc0000;
-    box-shadow: 0 0 2px #cc0000;
+    border:1px solid #c0392b;
+    box-shadow: 0 0 2px #c0392b;
 }
 /*--------------------------------------
 LINKS

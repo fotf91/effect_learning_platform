@@ -2,7 +2,7 @@
 BUTTONS
 ---------------------------------------*/
 .btn{
-  border-radius: 10px;
+  border-radius: 3px;
   padding: 10px 20px;
   color: #fff;
   font-family: lato-heavy;
@@ -14,7 +14,7 @@ BUTTONS
   text-decoration: none;
 }
 .btn.btn-default{
-    background: #cc0000;
+    background: #c0392b;
     border-width: 0;
     color: #fff;
 }

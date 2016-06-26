@@ -61,7 +61,7 @@ MAIN PROFILE STYLE
     font-family: robotoslab-regular;
 }
 .name-placeholder:first-child{
-    border-bottom: 3px solid #cc0000;
+    border-bottom: 3px solid #c0392b;
 }
 /* --- GENERAL TEXT STYLE --- */
 .alumni,
@@ -95,7 +95,7 @@ MAIN PROFILE STYLE
 }
 /* --- PASSION --- */
 .passion{
-    background: #b70000;
+    background: #34495e;
     padding: 10px;
     color: #fff;
     text-align: center;
@@ -138,28 +138,44 @@ MAIN PROFILE STYLE
 SOCIAL STYLE
 ---------------------------------------*/
 .social{
-    padding-left: 20px;
-    padding-right: 20px;
+    /* padding-left: 20px; */
+    /* padding-right: 20px; */
     padding-top: 15px;
     padding-bottom: 15px;
     margin-top: 30px;
-    background: #5C97BF;
 }
 .social a{
     color: #333;
+    text-align: center;
 }
 .social a:hover{
-    color: #cc0000;
     cursor: pointer;
+}
+.social a:hover i{
+    border-bottom: 3px solid #c0392b;
 }
 .social input{
     margin-bottom: 15px;
+}
+.social .social-element{
+    font-size: 30px;
+    display: inline;
+    text-align: center;
+    margin: 0 2px;
+    padding: 3px;
+}
+.social .social-element i{
+    padding: 0;
 }
 
 
 /*--------------------------------------
 EXPERIENCE STYLE
 ---------------------------------------*/
+#experienceContainer{
+    margin-bottom: 50px;
+}
+
 #pastPositions .edit-state{
     display: none;
 }
@@ -223,5 +239,5 @@ RESULT ITEM - FOR AJAX QUERIES
 }
 #skillTopVal .result-item,
 #skillSecondaryVal .result-item{
-    background-color: #cc0000;
+    background-color: #c0392b;
 }
