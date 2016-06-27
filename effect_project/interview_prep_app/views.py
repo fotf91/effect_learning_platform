@@ -4,11 +4,14 @@ from interview_prep_app.forms import InterviewAnswerForm
 from django.core import serializers
 from django.http import HttpResponseRedirect, JsonResponse, HttpResponse
 from effect_project.generic_view_methods import page_not_found
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def index(request):
     context_dict = {'boldmessage': "I am bold font from the context"}
     return render(request, 'interview_prep_app/index.html', context_dict)
 
+@login_required
 def questions(request, interview_level, question_num):
     """
     render the requested question and data
@@ -73,9 +76,11 @@ def questions(request, interview_level, question_num):
             return page_not_found(request)
     return render(request, 'interview_prep_app/questions.html', context_dict)
 
+@login_required
 def previous_question_error(request):
     return render(request, 'interview_prep_app/previous_question_error.html', {})
 
+@login_required
 def summary(request, interview_level):
     """
     render the summary of the interview page

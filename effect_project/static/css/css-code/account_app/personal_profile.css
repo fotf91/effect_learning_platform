@@ -204,10 +204,10 @@ form.new-position{
     padding: 30px 0 10px 0;
 }
 .profile-container-entity .buttons-container{
-    display: none;
+    visibility: hidden;
 }
 .profile-container-entity:hover .buttons-container{
-    display: block;
+    visibility: visible;
 }
 
 .delete-position{
