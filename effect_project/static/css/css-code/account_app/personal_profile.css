@@ -96,11 +96,10 @@ MAIN PROFILE STYLE
 /* --- PASSION --- */
 .passion{
     background: #34495e;
-    padding: 10px;
     color: #fff;
     text-align: center;
     margin-top: -50px;
-    padding: 10px 0;
+    padding: 20px 0;
     font-size: 22px;
 }
 .passion i{
@@ -179,7 +178,9 @@ EXPERIENCE STYLE
 #pastPositions .edit-state{
     display: none;
 }
-
+.edit-position{
+    height: 260px;
+}
 .section-header-frame{
     font-family: "robotoslab-bold";
     padding: 10px 0;
@@ -195,8 +196,12 @@ EXPERIENCE STYLE
 form.new-position{
     display: none;
 }
+.profile-container-entity:not(:first-child) {
+    border-top: 1px solid #DADFE1;
+    /* padding-bottom: 10px; */
+}
 .profile-container-entity{
-    padding-bottom: 10px;
+    padding: 30px 0 10px 0;
 }
 .profile-container-entity .buttons-container{
     display: none;
@@ -209,7 +214,7 @@ form.new-position{
     text-align: right;
 }
 .delete-position button{
-    margin-top: -85px;
+    margin-top: -146px;
 }
 .position-title{
     font-family: "robotoslab-bold";
