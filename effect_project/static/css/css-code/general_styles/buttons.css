@@ -2,22 +2,21 @@
 BUTTONS
 ---------------------------------------*/
 .btn{
-  border-radius: 3px;
   padding: 10px 20px;
   color: #fff;
   font-family: lato-heavy;
   font-size: 14px;
-  transition-duration: 0.5s;
   letter-spacing: 1px;
+  border-width: 0;
 }
 .btn:hover{
   text-decoration: none;
 }
 .btn.btn-default{
     background: #c0392b;
-    border-width: 0;
     color: #fff;
 }
+
 .btn.btn-default:hover{
     background: #e74c3c;
 }
@@ -47,15 +46,11 @@ BUTTONS
 /* ------------------
   APPLICATION BUTTONS
  ------------------ */
- .app .buttons{
-    text-align: center;
-    margin-top: 20px;
-}
-.app .buttons .btn{
+.btn.btn-default.btn-grey{
     color: #284850;
     background: #ecf0f1;
     border: none;
 }
-.app .buttons .btn:hover{
+.btn.btn-default.btn-grey:hover{
     background: #d3dcde;
 }

@@ -7,27 +7,29 @@
                 <div class="list-horizontal">
                     <div class="list-element">
                         <a href="/account">
+                            <img src="{% static "images/logos/effectlogo-full-grey.png" %}" />
                             <!--<img src="{% static "images/logos/effect-redlt220x220.png" %}" />-->
-                            <img src="{% static "images/logos/effectlogo-full-white.png" %}" />
+                            <!--<img src="{% static "images/logos/effectlogo-full-white.png" %}" />-->
                         </a>
                     </div>
                     <div class="list-element">
-                        <div class="list-element">
-                            {% if user.is_authenticated %}
-                                <div class="dropdown">
-                                    <div class="dropdown-toggle" type="button" data-toggle="dropdown">
-                                        {{ user }}
-                                        <span class="caret"></span>
-                                    </div>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="/account/profile">Προφίλ</a></li>
-                                        <li><a href="/account/logout">Αποσύνδεση</a></li>
-                                    </ul>
+                        {% if user.is_authenticated %}
+                            <div class="dropdown">
+                                <div class="dropdown-toggle" type="button" data-toggle="dropdown">
+                                    {{ user }}
+                                    <span class="caret"></span>
                                 </div>
-                            {% else %}
-                                <a href="/account/connect"><span>ΛΟΓΑΡΙΑΣΜΟΣ</span></a>
-                            {% endif %}
-                        </div>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/account/profile">Προφίλ</a></li>
+                                    <li><a href="/account/logout">Αποσύνδεση</a></li>
+                                </ul>
+                            </div>
+                        {% else %}
+                            <a href="/account/connect"><span>ΛΟΓΑΡΙΑΣΜΟΣ</span></a>
+                        {% endif %}
+                    </div>
+                    <div class="list-element">
+                        <a href="#">ΣΥΝΔΕΣΜΟΣ</a>
                     </div>
                 </div>
             </div>

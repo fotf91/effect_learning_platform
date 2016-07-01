@@ -1,0 +1,26 @@
+/*--------------------------------------
+MAIN STYLE
+---------------------------------------*/
+.tab-container{
+    width: 100%;
+}
+.nav-tabs li{
+    margin-right: 3px;
+}
+.nav-tabs li a{
+    color: #333;
+    background: #DDDDDD;
+    font-family: "robotoslab-bold";
+}
+.nav-tabs li.active a{
+    color: #333;
+}
+.nav-tabs li.color-1 a{
+    border-top: 3px solid #0FFDBA;
+}
+.nav-tabs li.color-2 a{
+    border-top: 3px solid #B1E650;
+}
+.nav-tabs li.color-3 a{
+    border-top: 3px solid #FDB52B;
+}

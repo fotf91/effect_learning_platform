@@ -7,8 +7,10 @@ header{
 }
 
 header,
-header a{
-    color: #fff;
+header a,
+header a:hover{
+    color: #333;
+    font-family: "robotoslab-bold";
 }
 /*--------------------------------------
 MAIN HEADER
@@ -43,7 +45,7 @@ LIST LIKE STRUCTURE
     line-height: 70px;
 }
 .list-element:hover{
-    background: #e74c3c;
+    border-bottom: 1px solid #c0392b;
 }
 .list-element .dropdown{
     background-color: transparent;

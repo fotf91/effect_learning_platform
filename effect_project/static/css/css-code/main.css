@@ -6,6 +6,7 @@
 @import './general_styles/buttons.css'; /* --- buttons style --- */
 @import './general_styles/social.css'; /* --- social style --- */
 @import './general_styles/text.css'; /* --- buttons style --- */
+@import './general_styles/tabs.css'; /* --- buttons style --- */
 @import './general_styles/errors.css'; /* --- buttons style --- */
 
 /*--------------------------------------
@@ -19,7 +20,8 @@ body{
 }
 body{
     font-family: 'lato-medium';
-    background-color: #ecf0f1;
+    /*background: #ecf0f1;*/
+    background: #eeeeee;
     color: #2b2b2b;
 }
 header ~ .max-width-980{
@@ -44,7 +46,7 @@ MAIN COLORS
 ---------------------------------------*/
 #mainHeader,
 footer{
-    background: #c0392b;
+    background: #f7f7f7;
 }
 /*--------------------------------------
 INPUT
@@ -77,6 +79,9 @@ a:hover{
 /*--------------------------------------
 SPACING
 ---------------------------------------*/
+.m-t-20{
+    margin-top: 20px;
+}
 .m-b-30{
     margin-bottom: 30px;
 }

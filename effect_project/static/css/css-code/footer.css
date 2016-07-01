@@ -3,5 +3,6 @@ footer{
     bottom: 0px;
     width: 100%;
     position: absolute;
-    color: #fff;
+    color: #333;
+    font-family: "lato-light";
 }

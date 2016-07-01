@@ -6,7 +6,13 @@
 
 {% block body_block %}
     <div class="max-width-980">
-        main page
-
+        {% if user.is_authenticated %}
+            <div>
+                Αυτό εδώ εμφανίζεται μόνο όταν ο χρήστης είναι συνδεδεμένος
+            </div>
+            <div>
+                <a class="btn btn-default" href="/interview">Interview</a>
+            </div>
+        {% endif %}
     </div>
 {% endblock %}
