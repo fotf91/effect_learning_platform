@@ -17,7 +17,7 @@
         </div>
     {% else %}
         <div class="max-width-980">
-            <div class="radio">
+            <div class="radio-container">
                 <input type="radio" name="account-connect" id="existingAccount" class="radio"/>
                 <label for="existingAccount">Σύνδεση με υπάρχον λογαριασμό!</label>
 
@@ -46,7 +46,7 @@
 
                 </form>
             </div>
-            <div class="radio">
+            <div class="radio-container">
                 <input type="radio" name="account-connect" id="newAccount" class="radio"/>
                 <label for="newAccount">Δημιουργία νέου λογαριασμού</label>
 
@@ -73,21 +73,21 @@
                                 <input type="password" class="form-control" placeholder="Password" name="password2">
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group hidden">
                             <div class="radio row">
                                 <div class="col-sm-3">
                                     <label class="control-label">Κατηγορία Χρήστη</label>
                                 </div>
                                 <div class="col-sm-9 radio-row">
                                     <div class="col-sm-2">
-                                        <input type="radio" id="graduateRadio" class="radio" name="user_type" value="1"/>
+                                        <input type="radio" id="graduateRadio" class="radio" name="user_type" value="1" checked/>
                                         <label for="graduateRadio">
                                             Απόφοιτος
                                         </label>
                                         <label for="graduateRadio" class="checked"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></label>
                                     </div>
                                     <div class="col-sm-2">
-                                        <input type="radio" id="companyRadio" class="radio" name="user_type" value="2" checked/>
+                                        <input type="radio" id="companyRadio" class="radio" name="user_type" value="2"/>
                                         <label for="companyRadio">
                                             Εταιρεία
                                         </label>

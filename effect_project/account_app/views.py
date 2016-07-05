@@ -140,14 +140,24 @@ def register(request):
         if form.is_valid():
             user = form.save()
             registered_user_type = form.cleaned_data['user_type']
+
+            # temporary solution
             if registered_user_type == '1':
                 newGUser = TypeGUser(user=user)
+                newGUser.user_type = 1
                 newGUser.save()
-            elif registered_user_type == '2':
-                newCUser = TypeCUser(user=user)
-                newCUser.save()
             else:
                 user.delete()
+
+            # later solution
+            # if registered_user_type == '1':
+            #     newGUser = TypeGUser(user=user)
+            #     newGUser.save()
+            # elif registered_user_type == '2':
+            #     newCUser = TypeCUser(user=user)
+            #     newCUser.save()
+            # else:
+            #     user.delete()
             registered = True
     else:
         form = GeneralUserCreationForm()
