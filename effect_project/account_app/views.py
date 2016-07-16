@@ -86,19 +86,28 @@ def update_profile_Gtype(request):
     """
     Update the profile of a user type G
     """
+    print('>>>>>>>')
     current_user = request.user
     try:
+        print('>>>>>>>>>>> try')
         current_user_detail = TypeGUser.objects.get(user=current_user)
         # if this is a POST request we need to process the form data
         if request.method == 'POST':
             # create a form instance and populate it with data from the request:
+            print('>>>>>>>>> if post')
             form = EditTypeGUserForm(request.POST, instance=current_user_detail)
             if form.is_valid():
+                print ('>>>>>>>>>> if valid')
                 form.save()
                 return HttpResponseRedirect('/account/profile')
             # if a GET (or any other method) we'll create a blank form
             else:
+                print('>>>>>>>>>> else not valid')
+                print (form.errors)
                 form = EditTypeGUserForm()
+                # TODO
+                # STAY ON THE SAME PAGE, DO NOT GO TO THE FOLLOWING RETURN
+                # AND SHOW THE ERROR MESSAGES
         return render(request,
                     'account_app/personal_profile.html',
                     {'form':form} # context dictionary
@@ -144,7 +153,7 @@ def register(request):
             # temporary solution
             if registered_user_type == '1':
                 newGUser = TypeGUser(user=user)
-                newGUser.user_type = 1
+                newGUser.user_type = '1'
                 newGUser.save()
             else:
                 user.delete()
