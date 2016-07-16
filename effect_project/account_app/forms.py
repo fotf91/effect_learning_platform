@@ -1,7 +1,7 @@
 from django import forms
 from account_app.models import (EmailBasedUser, TypeGUser, TypeCUser, Position, Education)
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
-
+from django.forms.widgets import TextInput
 
 class GeneralUserCreationForm(forms.ModelForm):
     """
@@ -70,6 +70,11 @@ class EditTypeGUserForm(forms.ModelForm):
         date_of_birth = forms.DateField(widget=forms.DateInput(format='%d/%m/%Y'),
                                      # input_formats=('%d/%m/%Y',),
                                         required = False)
+        siteUrl = forms.URLField(max_length=200,
+                                 help_text="Please enter the URL of the page.",
+                                 initial="http://",
+                                 widget=TextInput)
+
         fields = ('first_name',
                   'last_name',
                   'date_of_birth',
@@ -87,9 +92,9 @@ class EditTypeGUserForm(forms.ModelForm):
                   'skill_secondary_val2',
                   'skill_secondary_val3',
                   'siteUrl',
-                  'facebookUrl',
-                  'mediumUrl',
-                  'linkedInUrl',
+                  # 'facebookUrl',
+                  # 'mediumUrl',
+                  # 'linkedInUrl',
                   # 'expertise_area_val1',
                   # 'expertise_area_val2',
                   # 'expertise_area_val3',
