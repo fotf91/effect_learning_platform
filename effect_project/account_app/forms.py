@@ -74,6 +74,18 @@ class EditTypeGUserForm(forms.ModelForm):
                                  help_text="Please enter the URL of the page.",
                                  initial="http://",
                                  widget=TextInput)
+        facebookUrl = forms.URLField(max_length=200,
+                                 help_text="Please enter the URL of the page.",
+                                 initial="http://",
+                                 widget=TextInput)
+        mediumUrl =  forms.URLField(max_length=200,
+                                 help_text="Please enter the URL of the page.",
+                                 initial="http://",
+                                 widget=TextInput)
+        linkedInUrl =  forms.URLField(max_length=200,
+                                 help_text="Please enter the URL of the page.",
+                                 initial="http://",
+                                 widget=TextInput)
 
         fields = ('first_name',
                   'last_name',
@@ -92,9 +104,9 @@ class EditTypeGUserForm(forms.ModelForm):
                   'skill_secondary_val2',
                   'skill_secondary_val3',
                   'siteUrl',
-                  # 'facebookUrl',
-                  # 'mediumUrl',
-                  # 'linkedInUrl',
+                  'facebookUrl',
+                  'mediumUrl',
+                  'linkedInUrl',
                   # 'expertise_area_val1',
                   # 'expertise_area_val2',
                   # 'expertise_area_val3',
