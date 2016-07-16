@@ -147,13 +147,20 @@ class TypeGUser(models.Model):
     # avatar
     avatar = models.ImageField('avatar', upload_to='static/media/images/avatars/', null=True, blank=True)
     # social media
-    siteUrl = models.URLField(max_length=200, null=True, blank=True)
+    siteUrl = models.URLField(max_length=200, null=True, blank=True,
+                              validators=
+                                [RegexValidator(
+                                    regex= '/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/',
+                                    message='Not a valid URL',
+                                )])
     facebookUrl = models.URLField(max_length=200, null=True, blank=True)
     mediumUrl = models.URLField(max_length=200, null=True, blank=True)
     linkedInUrl = models.URLField(max_length=200, null=True, blank=True)
 
+    # / ^ (https?:\ / \ / )?([\da - z\.-]+)\.([a - z\.]{2, 6})([\ / \w \.-] * ) * \ / ?$ /
+
     def __unicode__(self):
-        return self.first_name+" "+self.last_name
+        return self.user.email+" - "+self.first_name+" "+self.last_name
 
 
 class TypeCUser(models.Model):
