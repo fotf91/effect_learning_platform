@@ -1,11 +1,15 @@
-{% extends 'base.html' %}
+{% extends 'account_app/account_app_base.html' %}
 
 {% load staticfiles %}
 
 {% block title %}Index page{% endblock %}
 
-{% block body_block %}
-    <div class="max-width-980">
+{% block dependencies %}
+    <script src="{% static 'js/js-code/account_app/app.js' %}"></script>
+{% endblock %}
+
+{% block body_content_block %}
+    <div class="max-width-980" ng-controller="IndexController">
         {% if user.is_authenticated %}
             <div>
                 Αυτό εδώ εμφανίζεται μόνο όταν ο χρήστης είναι συνδεδεμένος

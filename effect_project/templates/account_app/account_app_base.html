@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block app_dependencies %}
+        <script src="{% static 'js/js-code/account_app/app.js' %}"></script>
+{% endblock %}
+
+
+
+{% block body_block %}
+    <div ng-app="accountApp">
+        {% block body_content_block%}{% endblock %}
+    </div>
+{% endblock %}
