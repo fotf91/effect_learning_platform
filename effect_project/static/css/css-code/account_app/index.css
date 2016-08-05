@@ -1,0 +1,47 @@
+#mainHeader{
+    background-image: url("../../../images/header/header_picture_graduate_page.jpg");
+    height: 350px;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: 100% auto; /*height-width*/
+    background-color: #333;
+}
+#mainHeader,
+.list-element > a{
+    color: #fff;
+}
+
+.title-txt,
+.subtitle-txt{
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: "robotoslab-bold";
+}
+.title-txt{
+    font-size: 28px;
+}
+.subtitle-txt{
+    font-size: 20px;
+}
+.col-txt{
+    width: 80%;
+    margin: 10px auto;
+}
+.small-border{
+    width: 30%;
+    margin: 10px auto;
+    border-top: 3px solid #333;
+}
+
+/* ----------------------------------------------------- */
+/* RESPONSIVENESS                                        */
+/* ----------------------------------------------------- */
+@media screen and (max-width: 630px) {
+  #mainHeader{
+    background-image: url("../../../images/header/header_picture_graduate_page.jpg");
+    background-size: 100% auto; /*height-width*/
+    height: 200px;
+    background-position: 0 0;
+  }
+}

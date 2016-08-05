@@ -17,6 +17,7 @@ MAIN HEADER
 ---------------------------------------*/
 #mainHeader{
     height: 70px;
+    position: relative;
 }
 
 header img {
@@ -55,4 +56,17 @@ LIST LIKE STRUCTURE
 .list-element .dropdown-toggle{
     padding-right: 20px;
     padding-left: 20px;
+}
+/*--------------------------------------
+TEXT MESSAGE ON THE HEADER
+---------------------------------------*/
+.header-txt{
+    position: absolute;
+    bottom: 100px;
+}
+.header-txt .big{
+    font-size: 28px;
+}
+.header-txt .normal{
+    font-size: 20px;
 }

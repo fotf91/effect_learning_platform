@@ -35,6 +35,7 @@ footer{
     min-height: 100%;
     position: relative;
     overflow: hidden;
+    padding-bottom: 180px;
 }
 .max-width-980{
     max-width: 980px;

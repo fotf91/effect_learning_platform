@@ -5,17 +5,45 @@
 {% block title %}Index page{% endblock %}
 
 {% block dependencies %}
+    <link rel="stylesheet" type="text/css" href="{% static "css/css-code/account_app/index.css" %}">
     <script src="{% static 'js/js-code/account_app/controllers/index.js' %}"></script>
 {% endblock %}
 
 {% block body_content_block %}
     <div class="max-width-980" ng-controller="IndexController">
+        {% if request.resolver_match.url_name = 'index' %}something{% endif %}
         {% if user.is_authenticated %}
             <div>
                 Αυτό εδώ εμφανίζεται μόνο όταν ο χρήστης είναι συνδεδεμένος
             </div>
             <div>
                 <a class="btn btn-default" href="/interview">Interview</a>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 title-txt text-center">Διαλεξε επιπεδο προετοιμασιας</div>
+            </div>
+            <div class="row text-center m-t-50">
+                <div class="col-sm-4">
+                    <div class="subtitle-txt">ΣΥΝΕΙΔΗΤΟΠΟΙΗΜΕΝΟΣ</div>
+                    <div class="small-border"></div>
+                    <div class="col-txt">
+                        Σκοπός είναι η μελέτη για την συμβολή της σύγχρονης τέχνης στον προβληματισμό και τις αντιδράσεις επί καίριων ζητημάτων τοπικών και παγκόσμιων. Επιπλέον, με αυτό τον τρόπο θα εδραιωθεί η σύμπραξη σε επίπεδο καλλιτεχνικό, εκπαιδευτικό και ερευνητικό με άλλους οργανισμούς που έχουν τις ίδιες αρχές και τον ίδιο προσανατολισμό με το ΕΜΣΤ.
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="subtitle-txt">ΨΑΓΜΕΝΟΣ</div>
+                    <div class="small-border"></div>
+                    <div class="col-txt">
+                        Σκοπός είναι η μελέτη για την συμβολή της σύγχρονης τέχνης στον προβληματισμό και τις αντιδράσεις επί καίριων ζητημάτων τοπικών και παγκόσμιων. Επιπλέον, με αυτό τον τρόπο θα εδραιωθεί η σύμπραξη σε επίπεδο καλλιτεχνικό, εκπαιδευτικό και ερευνητικό με άλλους οργανισμούς που έχουν τις ίδιες αρχές και τον ίδιο προσανατολισμό με το ΕΜΣΤ.
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="subtitle-txt">ΠΑΝΕΤΟΙΜΟΣ</div>
+                    <div class="small-border"></div>
+                    <div class="col-txt">
+                        Σκοπός είναι η μελέτη για την συμβολή της σύγχρονης τέχνης στον προβληματισμό και τις αντιδράσεις επί καίριων ζητημάτων τοπικών και παγκόσμιων. Επιπλέον, με αυτό τον τρόπο θα εδραιωθεί η σύμπραξη σε επίπεδο καλλιτεχνικό, εκπαιδευτικό και ερευνητικό με άλλους οργανισμούς που έχουν τις ίδιες αρχές και τον ίδιο προσανατολισμό με το ΕΜΣΤ.
+                    </div>
+                </div>
             </div>
         {% endif %}
     </div>

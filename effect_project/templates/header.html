@@ -6,10 +6,12 @@
             <div class="max-width-980">
                 <div class="list-horizontal">
                     <div class="list-element">
-                        <a href="/account">
-                            <img src="{% static "images/logos/effectlogo-full-grey.png" %}" />
-                            <!--<img src="{% static "images/logos/effect-redlt220x220.png" %}" />-->
-                            <!--<img src="{% static "images/logos/effectlogo-full-white.png" %}" />-->
+                        <a href="{% url 'account_app.views.index' %}">
+                            {% if request.resolver_match.url_name = 'index' %}
+                                <img src="{% static "images/logos/effectlogo-full-white.png" %}" />
+                            {% else %}
+                                <img src="{% static "images/logos/effectlogo-full-grey.png" %}" />
+                            {% endif %}
                         </a>
                     </div>
                     <div class="list-element">
@@ -28,8 +30,27 @@
                             <a href="/account/connect"><span>ΛΟΓΑΡΙΑΣΜΟΣ</span></a>
                         {% endif %}
                     </div>
-                    <div class="list-element">
-                        <a href="#">ΣΥΝΔΕΣΜΟΣ</a>
+                    {% if request.resolver_match.url_name = 'index' %}
+                        <div class="list-element pull-right">
+                            <a href="#">Για Υποψήφιους</a>
+                        </div>
+                        <div class="list-element pull-right">
+                            <a href="#">Για Εταιρείες</a>
+                        </div>
+                        <div class="list-element pull-right">
+                            <a href="#">Για την Effect</a>
+                        </div>
+                    {% endif %}
+                    <!--<div class="list-element">-->
+                        <!--<a href="#">ΣΥΝΔΕΣΜΟΣ</a>-->
+                    <!--</div>-->
+                </div>
+                <div class="header-txt">
+                    <div class="big">
+                        Βελτίωσε
+                    </div>
+                    <div class="normal">
+                        τον τρόπο με τον οποίο παρουσιάζεις<br> τον εαυτό σου στις εταιρείες
                     </div>
                 </div>
             </div>
