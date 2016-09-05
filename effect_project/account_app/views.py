@@ -14,11 +14,66 @@ from account_app.forms import (EditTypeCUserForm,
                                EditTypeGUserForm,
                                )
 from django.core import serializers
-
+from django.http import HttpResponse
+from django.views.generic import View
 
 def index(request):
     context_dict = {'boldmessage': "I am bold font from the context"}
     return render(request, 'account_app/index.html', context_dict)
+
+
+class personal_profile_view(View):
+    template_name = 'account_app/personal_profile.html'
+
+    def get(self, request, *args, **kwargs):
+        current_user = request.user
+
+        if current_user.user_type == 1:
+            try:
+                current_user_detail = TypeGUser.objects.get(user=current_user)
+                if current_user_detail.avatar:
+                    avatar_path = '/' + current_user_detail.avatar.url
+            except TypeGUser.DoesNotExist:
+                current_user_detail = None
+        elif current_user.user_type == 2:
+            try:
+                current_user_detail = TypeCUser.objects.get(user=current_user)
+                if current_user_detail.avatar:
+                    avatar_path = '/'+current_user_detail.avatar.url
+            except TypeGUser.DoesNotExist:
+                current_user_detail = None
+        context_dict = {}
+        return render(request, self.template_name, {'context': context_dict})
+
+        if current_user.user_type == 1 or current_user.user_type == 2:
+            try:
+                positions = Position.objects.filter(user=current_user).order_by('-end_date')
+            except Position.DoesNotExist:
+                positions = []
+
+        context_dict = {'current_user': current_user,
+                        'current_user_detail': current_user_detail,
+                        'positions': positions,
+                        'avatar_path': avatar_path,
+                        }
+        return render(request, 'account_app/personal_profile.html', context_dict)
+
+    def post(self, request, *args, **kwargs):
+        current_user = request.user
+        current_user_detail = TypeGUser.objects.get(user=current_user)
+
+        print('>>>>>>>')
+        # current_user = request.user
+        if request.method == 'POST':
+            print(request.body)
+            form = EditTypeGUserForm(request.POST, instance=current_user_detail)
+            if form.is_valid():
+                print('valid form')
+                form.save()
+            else:
+                print('invalid form')
+                print(form.errors)
+        return render(request, 'account_app/personal_profile.html', {'form': form}, )
 
 @login_required
 def personal_profile(request):
@@ -115,20 +170,6 @@ def update_profile_Gtype(request):
                     )
     except TypeCUser.DoesNotExist:
         return HttpResponse('Failure during profile update')
-
-@login_required
-@csrf_protect
-def update_profile(request):
-    """
-    Update the profile of a user type G
-    """
-    print('>>>>>>>')
-    # current_user = request.user
-    if request.method == 'POST':
-        print(request.body)
-    form = EditTypeGUserForm()
-    return render(request, 'account_app/personal_profile.html', {'form': form}, )
-
 
 def login(request):
     """

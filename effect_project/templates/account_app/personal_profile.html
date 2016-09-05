@@ -22,8 +22,10 @@
           </div>
           <div ng-show="edit_flag">
             <div class="form-group">
-              <div class="col-md-6"><input type="text" class="form-control" value="{{ current_user_detail.last_name }}" placeholder="Last Name" ng-model="profile.last_name" name="profile[last_name]"></div>
-              <div class="col-md-6"><input type="text" class="form-control" value="{{ current_user_detail.first_name }}" placeholder="First Name" ng-model="profile.first_name" name="profile[first_name]" ng-initial></div>
+              <!--<div class="col-md-6"><input type="text" class="form-control" value="{{ current_user_detail.last_name }}" placeholder="Last Name" ng-model="profile.last_name" name="profile[last_name]"></div>-->
+              <!--<div class="col-md-6"><input type="text" class="form-control" value="{{ current_user_detail.first_name }}" placeholder="First Name" ng-model="profile.first_name" name="profile[first_name]" ng-initial></div>-->
+              <div class="col-md-6"><input type="text" class="form-control" value="{{ current_user_detail.last_name }}" placeholder="Last Name" ng-model="profile.last_name" name="last_name"></div>
+              <div class="col-md-6"><input type="text" class="form-control" value="{{ current_user_detail.first_name }}" placeholder="First Name" ng-model="profile.first_name" name="first_name" ng-initial></div>
             </div>
           </div>
         </div>

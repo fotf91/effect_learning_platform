@@ -67,25 +67,25 @@ class AuthenticationForm(forms.Form):
 class EditTypeGUserForm(forms.ModelForm):
     class Meta:
         model = TypeGUser
-        date_of_birth = forms.DateField(widget=forms.DateInput(format='%d/%m/%Y'),
-                                     # input_formats=('%d/%m/%Y',),
-                                        required = False)
-        siteUrl = forms.URLField(max_length=200,
-                                 help_text="Please enter the URL of the page.",
-                                 initial="http://",
-                                 widget=TextInput)
-        facebookUrl = forms.URLField(max_length=200,
-                                 help_text="Please enter the URL of the page.",
-                                 initial="http://",
-                                 widget=TextInput)
-        mediumUrl =  forms.URLField(max_length=200,
-                                 help_text="Please enter the URL of the page.",
-                                 initial="http://",
-                                 widget=TextInput)
-        linkedInUrl =  forms.URLField(max_length=200,
-                                 help_text="Please enter the URL of the page.",
-                                 initial="http://",
-                                 widget=TextInput)
+        # date_of_birth = forms.DateField(widget=forms.DateInput(format='%d/%m/%Y'),
+        #                              # input_formats=('%d/%m/%Y',),
+        #                                 required = False)
+        # siteUrl = forms.URLField(max_length=200,
+        #                          help_text="Please enter the URL of the page.",
+        #                          initial="http://",
+        #                          widget=TextInput)
+        # facebookUrl = forms.URLField(max_length=200,
+        #                          help_text="Please enter the URL of the page.",
+        #                          initial="http://",
+        #                          widget=TextInput)
+        # mediumUrl =  forms.URLField(max_length=200,
+        #                          help_text="Please enter the URL of the page.",
+        #                          initial="http://",
+        #                          widget=TextInput)
+        # linkedInUrl =  forms.URLField(max_length=200,
+        #                          help_text="Please enter the URL of the page.",
+        #                          initial="http://",
+        #                          widget=TextInput)
 
         fields = ('first_name',
                   'last_name',

@@ -1,6 +1,8 @@
 from django.conf.urls import patterns, url
 from account_app import views
+from account_app.views import personal_profile_view
 from django.contrib import admin
+from django.contrib.auth.decorators import login_required
 
 admin.autodiscover()
 
@@ -10,11 +12,11 @@ urlpatterns = patterns('',
         url(r'^login$','account_app.views.login', name='login'),
         url(r'^logout$','account_app.views.logout', name='logout'),
         # edit profile page - personal_profile.html
-        url(r'^profile$','account_app.views.personal_profile', name='personal_profile'),
-        url(r'^update_profile_Gtype$','account_app.views.update_profile_Gtype', name='update_profile_Gtype'),
-        url(r'^update_profile_Ctype$','account_app.views.update_profile_Ctype', name='update_profile_Ctype'),
-        url(r'^update_profile/$','account_app.views.update_profile', name='update_profile'),
+        # url(r'^profile$','account_app.views.personal_profile', name='personal_profile'),
+        # url(r'^update_profile_Gtype$','account_app.views.update_profile_Gtype', name='update_profile_Gtype'),
+        # url(r'^update_profile_Ctype$','account_app.views.update_profile_Ctype', name='update_profile_Ctype'),
 
+        url(r'^profile/$', login_required(personal_profile_view.as_view()), name='profile'),
 
         # old version methonds
         # url(r'^add_position$','account_app.views.add_position', name='add_position'),
