@@ -7,7 +7,7 @@
                 <div class="list-horizontal">
                     <div class="list-element">
                         <a href="{% url 'account_app.views.index' %}">
-                            {% if request.resolver_match.url_name = 'index' %}
+                            {% if request.resolver_match.url_name == 'index' %}
                                 <img src="{% static "images/logos/effectlogo-full-white.png" %}" />
                             {% else %}
                                 <img src="{% static "images/logos/effectlogo-full-grey.png" %}" />
@@ -30,7 +30,7 @@
                             <a href="/account/connect"><span>ΛΟΓΑΡΙΑΣΜΟΣ</span></a>
                         {% endif %}
                     </div>
-                    {% if request.resolver_match.url_name = 'index' %}
+                    {% if request.resolver_match.url_name = 'index' or request.resolver_match.url_name = 'personal_profile' %}
                         <div class="list-element pull-right">
                             <a href="#">Για Υποψήφιους</a>
                         </div>

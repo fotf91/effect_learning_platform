@@ -1,5 +1,6 @@
 import json
 
+from django.views.decorators.csrf import csrf_protect
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, redirect, render_to_response
 from django.contrib.auth import login as django_login, authenticate, logout as django_logout
@@ -10,14 +11,14 @@ from account_app.forms import (GeneralUserCreationForm,
 from django.contrib.auth.decorators import login_required
 from account_app.models import TypeGUser, TypeCUser, Skills, Position
 from account_app.forms import (EditTypeCUserForm,
-                               EditTypeGUserForm)
+                               EditTypeGUserForm,
+                               )
 from django.core import serializers
 
 
 def index(request):
     context_dict = {'boldmessage': "I am bold font from the context"}
     return render(request, 'account_app/index.html', context_dict)
-
 
 @login_required
 def personal_profile(request):
@@ -115,6 +116,19 @@ def update_profile_Gtype(request):
     except TypeCUser.DoesNotExist:
         return HttpResponse('Failure during profile update')
 
+@login_required
+@csrf_protect
+def update_profile(request):
+    """
+    Update the profile of a user type G
+    """
+    print('>>>>>>>')
+    # current_user = request.user
+    if request.method == 'POST':
+        print(request.body)
+    form = EditTypeGUserForm()
+    return render(request, 'account_app/personal_profile.html', {'form': form}, )
+
 
 def login(request):
     """
@@ -183,38 +197,39 @@ def logout(request):
     return redirect('/account')
 
 
-def get_skill_list(request):
-    """
-    Return a list of skills according to the string the user has entered
-    """
-    starts_with = ''
-    if request.method == 'GET':
-        starts_with = request.GET['skill_query']
+# def get_skill_list(request):
+#     """
+#     Return a list of skills according to the string the user has entered
+#     """
+#     starts_with = ''
+#     if request.method == 'GET':
+#         starts_with = request.GET['skill_query']
+#
+#     if starts_with != '':
+#         skill_list = Skills.objects.filter(name__istartswith=starts_with)
+#     else:
+#         skill_list = []
+#
+#     returnData = serializers.serialize("json", skill_list)
+#     return JsonResponse({'skills': returnData})
 
-    if starts_with != '':
-        skill_list = Skills.objects.filter(name__istartswith=starts_with)
-    else:
-        skill_list = []
-
-    returnData = serializers.serialize("json", skill_list)
-    return JsonResponse({'skills': returnData})
-
-def get_skills_id(request):
-    """
-    Return the id of all the skills that the user has already
-    """
-    if request.method == 'GET':
-        skill = request.GET['skills_owned']
-        query_result = Skills.objects.filter(name=skill)
-    else:
-        skill_data = {}
-    returnData = serializers.serialize('json', query_result)
-    return JsonResponse({'skill': returnData})
+# def get_skills_id(request):
+#     """
+#     Return the id of all the skills that the user has already
+#     """
+#     if request.method == 'GET':
+#         skill = request.GET['skills_owned']
+#         query_result = Skills.objects.filter(name=skill)
+#     else:
+#         skill_data = {}
+#     returnData = serializers.serialize('json', query_result)
+#     return JsonResponse({'skill': returnData})
 
 def add_position(request):
     """
     Add a past or present position to a user
     """
+    print('>>>>>>>>>>')
     # get the number of positions that the current user has
     positions = Position.objects.filter(user=request.user)
 
@@ -231,33 +246,33 @@ def add_position(request):
         form = AddPositionForm()
         return render(request, 'account_app/personal_profile.html', {'form': form}, )
 
-def edit_position(request):
-    """
-    Edit a past or present position to a user
-    """
-    position_id = request.POST.get('id')
-    current_position = Position.objects.get(id=position_id)
+# def edit_position(request):
+#     """
+#     Edit a past or present position to a user
+#     """
+#     position_id = request.POST.get('id')
+#     current_position = Position.objects.get(id=position_id)
+#
+#     if request.method == 'POST':
+#         form = EditPositionForm(request.POST, instance=current_position)
+#
+#         if form.is_valid:
+#             form.save()
+#             positions = Position.objects.filter(user=request.user).order_by('end_date')
+#         else:
+#             form = EditPositionForm()
+#         returnData = serializers.serialize('json', positions)
+#         return JsonResponse({'returnedJson': returnData})
+#     else:
+#         form = EditPositionForm()
+#         return render(request, 'account_app/personal_profile.html', {'form': form}, )
 
-    if request.method == 'POST':
-        form = EditPositionForm(request.POST, instance=current_position)
-
-        if form.is_valid:
-            form.save()
-            positions = Position.objects.filter(user=request.user).order_by('end_date')
-        else:
-            form = EditPositionForm()
-        returnData = serializers.serialize('json', positions)
-        return JsonResponse({'returnedJson': returnData})
-    else:
-        form = EditPositionForm()
-        return render(request, 'account_app/personal_profile.html', {'form': form}, )
-
-def delete_position(request):
-    position_id = request.POST.get('id')
-    current_position = Position.objects.get(id=position_id)
-
-    if request.method == 'POST':
-        current_position.delete()
-        return HttpResponse(json.dumps({'id' : position_id,}))
-    else:
-        return HttpResponse(json.dumps({'id': -1}))
+# def delete_position(request):
+#     position_id = request.POST.get('id')
+#     current_position = Position.objects.get(id=position_id)
+#
+#     if request.method == 'POST':
+#         current_position.delete()
+#         return HttpResponse(json.dumps({'id' : position_id,}))
+#     else:
+#         return HttpResponse(json.dumps({'id': -1}))
