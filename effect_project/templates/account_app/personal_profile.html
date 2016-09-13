@@ -16,16 +16,23 @@
         <div class="col-md-6"></div>
         <div class="col-md-6">
           <div ng-hide="edit_flag">
-            <div class="profile-name">{{ current_user_detail.last_name }} {{ current_user_detail.first_name }}</div>
-            <div class="current-title">front-end developer</div>
-            <div class="current-description">Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</div>
+            <div ng-show="django_data_flag">
+              <div class="profile-name">{{ current_user_detail.last_name }} {{ current_user_detail.first_name }}</div>
+              <div class="current-title">{{ current_user_detail.status }}</div>
+              <div class="current-description">{{ current_user_detail.passion }}</div>
+            </div>
+            <div ng-hide="django_data_flag">
+              <div class="profile-name">$profile.last_name$ $profile.first_name$</div>
+              <div class="current-title">$profile.status$</div>
+              <div class="current-description">$profile.passion$</div>
+            </div>
           </div>
           <div ng-show="edit_flag">
             <div class="form-group">
-              <!--<div class="col-md-6"><input type="text" class="form-control" value="{{ current_user_detail.last_name }}" placeholder="Last Name" ng-model="profile.last_name" name="profile[last_name]"></div>-->
-              <!--<div class="col-md-6"><input type="text" class="form-control" value="{{ current_user_detail.first_name }}" placeholder="First Name" ng-model="profile.first_name" name="profile[first_name]" ng-initial></div>-->
-              <div class="col-md-6"><input type="text" class="form-control" value="{{ current_user_detail.last_name }}" placeholder="Last Name" ng-model="profile.last_name" name="last_name"></div>
+              <div class="col-md-6"><input type="text" class="form-control" value="{{ current_user_detail.last_name }}" placeholder="Last Name" ng-model="profile.last_name" name="last_name" ng-initial></div>
               <div class="col-md-6"><input type="text" class="form-control" value="{{ current_user_detail.first_name }}" placeholder="First Name" ng-model="profile.first_name" name="first_name" ng-initial></div>
+              <div class="col-md-12"><input type="text" class="form-control" value="{{ current_user_detail.status }}" placeholder="Status" ng-model="profile.status" name="status" ng-initial></div>
+              <div class="col-md-12"><input type="text" class="form-control" value="{{ current_user_detail.passion }}" placeholder="Passion" ng-model="profile.passion" name="passion" ng-initial></div>
             </div>
           </div>
         </div>

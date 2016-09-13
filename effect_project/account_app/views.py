@@ -1,6 +1,4 @@
 import json
-
-from django.views.decorators.csrf import csrf_protect
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, redirect, render_to_response
 from django.contrib.auth import login as django_login, authenticate, logout as django_logout
@@ -17,6 +15,7 @@ from django.core import serializers
 from django.http import HttpResponse
 from django.views.generic import View
 
+
 def index(request):
     context_dict = {'boldmessage': "I am bold font from the context"}
     return render(request, 'account_app/index.html', context_dict)
@@ -27,6 +26,7 @@ class personal_profile_view(View):
 
     def get(self, request, *args, **kwargs):
         current_user = request.user
+        avatar_path = None
 
         if current_user.user_type == 1:
             try:
@@ -43,7 +43,6 @@ class personal_profile_view(View):
             except TypeGUser.DoesNotExist:
                 current_user_detail = None
         context_dict = {}
-        return render(request, self.template_name, {'context': context_dict})
 
         if current_user.user_type == 1 or current_user.user_type == 2:
             try:
@@ -62,11 +61,9 @@ class personal_profile_view(View):
         current_user = request.user
         current_user_detail = TypeGUser.objects.get(user=current_user)
 
-        print('>>>>>>>')
-        # current_user = request.user
         if request.method == 'POST':
-            print(request.body)
-            form = EditTypeGUserForm(request.POST, instance=current_user_detail)
+            input_data = json.loads(request.body)
+            form = EditTypeGUserForm(input_data, instance=current_user_detail)
             if form.is_valid():
                 print('valid form')
                 form.save()
@@ -211,6 +208,7 @@ def register(request):
                 newGUser.user_type = '1'
                 newGUser.save()
             else:
+                pass
                 user.delete()
 
             # later solution
