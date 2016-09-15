@@ -1,17 +1,56 @@
 .profile-name{
-  color: #c0392b;
   font-size: 21px;
-  font-weight: bold;
   letter-spacing: 1.4px;
 }
-.current-title{
+.alumnus{
+  margin-top: 40px;
+}
+.alumnus img{
+  width: 20px;
+  height: 20px;
+  margin-top: -10px;
+}
+.custom-col .title{
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
+.profile-name,
+.alumnus,
+.custom-col .title{
+    color: #c0392b;
+    font-weight: bold;
+    letter-spacing: 0.8px;
+}
+
+.current-title,
+.current-description{
   color: #333;
+}
+.current-title{
   font-size: 16px;
   letter-spacing: 0.2px;
   font-weight: bold;
 }
 .current-description{
-  color: #333;
   text-align: justify;
   margin-top: 10px;
+}
+.skills-bar{
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.side-side-box{
+  margin-top: 5px;
+  display: inline;
+  padding: 5px 7px;
+  background: #c0392b;
+  color: #fff;
+  border-radius: 2px;
+}
+.side-side-el{
+  display: inline;
+}
+.grey-box{
+  background: #eee;
 }

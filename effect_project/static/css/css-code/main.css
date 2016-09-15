@@ -49,6 +49,9 @@ MAIN COLORS
 footer{
     background: #f7f7f7;
 }
+.bkgd-white{
+  background: #fff;
+}
 /*--------------------------------------
 INPUT
 ---------------------------------------*/
@@ -76,6 +79,12 @@ LINKS
 a:hover{
     text-decoration: none;
     color: #fff;
+}
+/*--------------------------------------
+BORDERS
+---------------------------------------*/
+.border-r{
+  border-right: 2px solid #333;
 }
 /*--------------------------------------
 SPACING
