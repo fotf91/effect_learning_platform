@@ -5,7 +5,7 @@ from django.contrib.auth import login as django_login, authenticate, logout as d
 from account_app.forms import (GeneralUserCreationForm,
                                AuthenticationForm,
                                AddPositionForm,
-                               EditPositionForm,)
+                               EditPositionForm,AvatarGUserForm)
 from django.contrib.auth.decorators import login_required
 from account_app.models import TypeGUser, TypeCUser, Skills, Position
 from account_app.forms import (EditTypeCUserForm,
@@ -50,6 +50,8 @@ class personal_profile_view(View):
             except Position.DoesNotExist:
                 positions = []
 
+        print ('>>>>>>>>',avatar_path)
+
         context_dict = {'current_user': current_user,
                         'current_user_detail': current_user_detail,
                         'positions': positions,
@@ -71,6 +73,9 @@ class personal_profile_view(View):
                 print('invalid form')
                 print(form.errors)
         return render(request, 'account_app/personal_profile.html', {'form': form}, )
+
+
+
 
 @login_required
 def personal_profile(request):
@@ -107,6 +112,21 @@ def personal_profile(request):
                     'avatar_path':avatar_path,
                     }
     return render(request, 'account_app/personal_profile.html', context_dict)
+
+def update_avatar_GType(request):
+    current_user = request.user
+    try:
+        current_user_detail = TypeGUser.objects.get(user=current_user)
+        if request.method == 'POST':
+            form = AvatarGUserForm(request.POST, request.FILES, instance=current_user_detail)
+            if form.is_valid:
+                form.save()
+                return HttpResponseRedirect('/account/profile')
+            else:
+                form = EditTypeGUserForm()
+        return render(request, 'account_app/personal_profile.html',{'form':form})
+    except TypeGUser.DoesNotExist:
+        return HttpResponse('Failure during profile update')
 
 @login_required
 def update_profile_Ctype(request):

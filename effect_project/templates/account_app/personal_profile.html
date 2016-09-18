@@ -11,11 +11,29 @@
 
 {% block body_content_block %}
 <div ng-controller="PersonalProfileController">
-  <form class="max-width-980" name="updatePersonalProfile">
+  <div class="max-width-980 row" name="updatePersonalProfile">
     {% csrf_token %}
-    <div class="col-md-6"></div>
+    <div class="col-md-6 text-center">
+      <div ng-hide="edit_avatar_flag">
+        {% if not avatar_path %}
+        <i class="fa fa-user" aria-hidden="true"></i>
+        {% else %}
+        <img  ng-click="editAvatar()" class="avatar_img" src={{ avatar_path }}>
+        {% endif %}
+        <div class="overlay">
+          <i class="fa fa-pencil fa-fw" aria-hidden="true"></i>
+        </div>
+      </div>
+      <form id="avatarForm" ng-show="edit_avatar_flag" action="/account/update_avatar_GType" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <i class="fa fa-user" aria-hidden="true"></i>
+        <input type="file" name="avatar">
+        <button type="submit">&#10004;</button>
+        <button ng-click="editAvatar()">&#10006;</button>
+      </form>
+    </div>
     <div class="col-md-6">
-      <div ng-hide="edit_flag">
+      <div ng-hide="edit_main_flag">
         <div ng-show="django_data_flag">
           <div class="profile-name">{{ current_user_detail.last_name }} {{ current_user_detail.first_name }}</div>
           <div class="current-title">{{ current_user_detail.status }}</div>
@@ -27,7 +45,7 @@
           <div class="current-description">$profile.passion$</div>
         </div>
       </div>
-      <div ng-show="edit_flag">
+      <div ng-show="edit_main_flag">
         <div class="col-md-6 form-group"><input type="text" class="form-control" value="{{ current_user_detail.last_name }}" placeholder="Last Name" ng-model="profile.last_name" name="last_name" ng-initial></div>
         <div class="col-md-6 form-group"><input type="text" class="form-control" value="{{ current_user_detail.first_name }}" placeholder="First Name" ng-model="profile.first_name" name="first_name" ng-initial></div>
         <div class="col-md-12 form-group"><input type="text" class="form-control" value="{{ current_user_detail.status }}" placeholder="Status" ng-model="profile.status" name="status" ng-initial></div>
@@ -37,9 +55,9 @@
       <div class="alumnus"><img src="{% static 'images/logos/SA_Stamp_100x100-01.png' %}"> Success Academy Alumnus</div>
       {% endif %}
     </div>
-    <button type="button" ng-click="editForm()"><span ng-hide="edit_flag">Edit</span><span ng-show="edit_flag">Cancel</span></button>
-    <button ng-show="edit_flag" ng-click="updateProfile()">Submit</button>
-  </form>
+    <button type="button" ng-click="editForm()"><span ng-hide="edit_main_flag">Edit</span><span ng-show="edit_main_flag">Cancel</span></button>
+    <button ng-show="edit_main_flag" ng-click="updateProfile()">Submit</button>
+  </div>
   <div class="bkgd-white">
     <div class="max-width-980 row skills-bar">
       <div class="col-md-4 custom-col border-r text-center">

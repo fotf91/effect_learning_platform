@@ -17,7 +17,7 @@ urlpatterns = patterns('',
         # url(r'^update_profile_Ctype$','account_app.views.update_profile_Ctype', name='update_profile_Ctype'),
 
         url(r'^profile/$', login_required(personal_profile_view.as_view()), name='profile'),
-
+        url(r'^update_avatar_GType$','account_app.views.update_avatar_GType', name='update_avatar_GType'),
         # old version methonds
         # url(r'^add_position$','account_app.views.add_position', name='add_position'),
         # url(r'^edit_position$','account_app.views.edit_position', name='edit_position'),

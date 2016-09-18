@@ -2,6 +2,43 @@
   font-size: 21px;
   letter-spacing: 1.4px;
 }
+
+/******************
+      AVATAR
+******************/
+.avatar_img{
+  height: 300px;
+  width: auto;
+  max-width: 100%;
+  z-index: -1;
+}
+.avatar_img:hover{
+  opacity: 0.3;
+}
+.overlay{
+  /* height and margin must be equal */
+  height: 180px;
+  margin-top: -180px;
+  display: none;
+  font-size: 58px;
+  color: #c0392b;
+}
+.avatar_img:hover + .overlay{
+  display: block;
+}
+#avatarForm{
+  height: 300px;
+}
+#avatarForm .fa-user{
+  font-size: 50px;
+  padding-top: 50px;
+}
+#avatarForm input{
+  background: #dadada;
+  margin: 0 auto;
+  margin-top: 58px;
+}
+/**********************************/
 .alumnus{
   margin-top: 40px;
 }

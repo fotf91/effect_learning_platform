@@ -1,8 +1,9 @@
 // Define the `PersonalProfileController` controller on the `accountApp` module
 accountApp.controller('PersonalProfileController', function PersonalProfileController($scope, $http) {
-//    $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8';
+	//    $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8';
 
-	$scope.edit_flag = false; // true: data are being edited, false: data are not edited
+	$scope.edit_avatar_flag = false; // true: avatar is being edite, false: avatar is not being edited
+	$scope.edit_main_flag = false; // true: data are being edited, false: data are not edited
 	$scope.django_data_flag = true; // true: show django data, false: show ng-model variables
 	$scope.profile = {}; // empty form object
 
@@ -18,16 +19,27 @@ accountApp.controller('PersonalProfileController', function PersonalProfileContr
 		});
 	}// updateProfile()
 
-    function editForm(){
-        if($scope.edit_flag){
-            $scope.edit_flag = false;
-        }else{
-            $scope.edit_flag = true;
-        }
-    }// editForm()
+	function editForm(){
+		if($scope.edit_main_flag){
+			$scope.edit_main_flag = false;
+		}else{
+			$scope.edit_main_flag = true;
+		}
+	}// editForm()
 
-    $scope.editForm = function(){
+	$scope.editForm = function(){
+		editForm();
+	}// editForm()
 
-        editForm();
-    }// editForm()
+	function editAvatar(){
+		if($scope.edit_avatar_flag){
+			$scope.edit_avatar_flag = false;
+		}else{
+			$scope.edit_avatar_flag = true;
+		}
+	}// editAvatar()
+
+	$scope.editAvatar = function(){
+		editAvatar();
+	}// editAvatar()
 });

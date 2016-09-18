@@ -63,6 +63,11 @@ class AuthenticationForm(forms.Form):
     class Meta:
         fields=['email', 'password']
 
+class AvatarGUserForm(forms.ModelForm):
+    class Meta:
+        model = TypeGUser
+
+        fields = ('avatar',)
 
 class EditTypeGUserForm(forms.ModelForm):
     class Meta:
@@ -110,7 +115,7 @@ class EditTypeGUserForm(forms.ModelForm):
                   # 'expertise_area_val1',
                   # 'expertise_area_val2',
                   # 'expertise_area_val3',
-                  # 'avatar',
+                #   'avatar',
                   )
 
 
