@@ -6,14 +6,24 @@
 /******************
       AVATAR
 ******************/
-.avatar_img{
+.avatar-img{
   height: 300px;
   width: auto;
   max-width: 100%;
   z-index: -1;
+  font-size: 50px;
 }
-.avatar_img:hover{
+img.avatar-img:hover{
   opacity: 0.3;
+}
+div.avatar-img:hover{
+  opacity: 0;
+}
+div.avatar-img{
+  padding-top: 100px;
+}
+.avatar-img:hover + .overlay{
+  display: block;
 }
 .overlay{
   /* height and margin must be equal */
@@ -22,9 +32,6 @@
   display: none;
   font-size: 58px;
   color: #c0392b;
-}
-.avatar_img:hover + .overlay{
-  display: block;
 }
 #avatarForm{
   height: 300px;

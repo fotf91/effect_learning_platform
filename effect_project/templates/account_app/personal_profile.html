@@ -15,10 +15,10 @@
     {% csrf_token %}
     <div class="col-md-6 text-center">
       <div ng-hide="edit_avatar_flag">
-        {% if not avatar_path %}
-        <i class="fa fa-user" aria-hidden="true"></i>
+        {% if  avatar_path %}
+        <div class="avatar-img" ng-click="editAvatar()"><i class="fa fa-user" aria-hidden="true"></i></div>
         {% else %}
-        <img  ng-click="editAvatar()" class="avatar_img" src={{ avatar_path }}>
+        <img  ng-click="editAvatar()" class="avatar-img" src={{ avatar_path }}>
         {% endif %}
         <div class="overlay">
           <i class="fa fa-pencil fa-fw" aria-hidden="true"></i>
