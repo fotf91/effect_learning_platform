@@ -15,7 +15,7 @@
     {% csrf_token %}
     <div class="col-md-6 text-center">
       <div ng-hide="edit_avatar_flag">
-        {% if  avatar_path %}
+        {% if not avatar_path %}
         <div class="avatar-img" ng-click="editAvatar()"><i class="fa fa-user" aria-hidden="true"></i></div>
         {% else %}
         <img  ng-click="editAvatar()" class="avatar-img" src={{ avatar_path }}>
