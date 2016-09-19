@@ -74,7 +74,20 @@ class personal_profile_view(View):
                 print(form.errors)
         return render(request, 'account_app/personal_profile.html', {'form': form}, )
 
-
+def update_avatar_GType(request):
+    current_user = request.user
+    try:
+        current_user_detail = TypeGUser.objects.get(user=current_user)
+        if request.method == 'POST':
+            form = AvatarGUserForm(request.POST, request.FILES, instance=current_user_detail)
+            if form.is_valid:
+                form.save()
+                return HttpResponseRedirect('/account/profile')
+            else:
+                form = EditTypeGUserForm()
+        return render(request, 'account_app/personal_profile.html',{'form':form})
+    except TypeGUser.DoesNotExist:
+        return HttpResponse('Failure during profile update')
 
 
 @login_required
@@ -113,20 +126,7 @@ def personal_profile(request):
                     }
     return render(request, 'account_app/personal_profile.html', context_dict)
 
-def update_avatar_GType(request):
-    current_user = request.user
-    try:
-        current_user_detail = TypeGUser.objects.get(user=current_user)
-        if request.method == 'POST':
-            form = AvatarGUserForm(request.POST, request.FILES, instance=current_user_detail)
-            if form.is_valid:
-                form.save()
-                return HttpResponseRedirect('/account/profile')
-            else:
-                form = EditTypeGUserForm()
-        return render(request, 'account_app/personal_profile.html',{'form':form})
-    except TypeGUser.DoesNotExist:
-        return HttpResponse('Failure during profile update')
+
 
 @login_required
 def update_profile_Ctype(request):

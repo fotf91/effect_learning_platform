@@ -28,8 +28,10 @@
         {% csrf_token %}
         <i class="fa fa-user" aria-hidden="true"></i>
         <input type="file" name="avatar">
-        <button type="submit">&#10004;</button>
-        <button ng-click="editAvatar()">&#10006;</button>
+        <div class="text-left">
+          <button class="btn btn-default" type="submit">&#10004;</button>
+          <button class="btn btn-default btn-grey" ng-click="editAvatar()">&#10006;</button>
+        </div>
       </form>
     </div>
     <div class="col-md-6">
@@ -55,7 +57,7 @@
       <div class="alumnus"><img src="{% static 'images/logos/SA_Stamp_100x100-01.png' %}"> Success Academy Alumnus</div>
       {% endif %}
     </div>
-    <button type="button" ng-click="editForm()"><span ng-hide="edit_main_flag">Edit</span><span ng-show="edit_main_flag">Cancel</span></button>
+    <button type="button" class="btn btn-default" ng-click="editForm()"><span ng-hide="edit_main_flag"><i class="fa fa-pencil fa-fw" aria-hidden="true"></i></span><span ng-show="edit_main_flag">Cancel</span></button>
     <button ng-show="edit_main_flag" ng-click="updateProfile()">Submit</button>
   </div>
   <div class="bkgd-white">
@@ -78,7 +80,20 @@
       </div>
     </div>
     <div class="max-width-980 row">
-      <div class="col-md-4 grey-box">sdf</div>
+      <div class="col-md-4 ">
+        <div class="grey-box">
+          <div class="title">Δεξιότητες</div>
+          <div>Creativity</div>
+          <div>Solution-oriented</div>
+          <div>Teamwork</div>
+        </div>
+        <div class="grey-box">
+          <div class="title">Δεξιότητες</div>
+          <div>Creativity</div>
+          <div>Solution-oriented</div>
+          <div>Teamwork</div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

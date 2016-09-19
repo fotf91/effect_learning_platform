@@ -36,6 +36,9 @@ div.avatar-img{
 #avatarForm{
   height: 300px;
 }
+#avatarForm button{
+  margin-top: 30px;
+}
 #avatarForm .fa-user{
   font-size: 50px;
   padding-top: 50px;
@@ -44,6 +47,20 @@ div.avatar-img{
   background: #dadada;
   margin: 0 auto;
   margin-top: 58px;
+}
+/******************
+      GREY BOX
+******************/
+.grey-box{
+  padding: 10px 25px;
+  margin-top: 30px;
+}
+.grey-box .title{
+  padding-bottom: 2px;
+  font-weight: bold;
+}
+.grey-box div:not(.title){
+  padding-top: 4px;
 }
 /**********************************/
 .alumnus{

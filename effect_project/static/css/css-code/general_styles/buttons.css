@@ -48,9 +48,12 @@ BUTTONS
  ------------------ */
 .btn.btn-default.btn-grey{
     color: #284850;
-    background: #ecf0f1;
+    background: #dadada;
     border: none;
 }
 .btn.btn-default.btn-grey:hover{
     background: #d3dcde;
+}
+.btn.btn-default{
+  margin-top: 20px;
 }
