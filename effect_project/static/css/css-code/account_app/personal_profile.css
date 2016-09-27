@@ -49,18 +49,82 @@ div.avatar-img{
   margin-top: 58px;
 }
 /******************
+      FILTERS BUTTONS
+******************/
+.filters-bar{
+    height: 60px;
+    margin-top: 80px;
+    padding-top: 23px;
+    background: #e7e6e6;
+    font-family: "robotoslab-light";
+}
+.filters-bar div{
+    display: inline-block;
+    margin-right: 20px;
+}
+.filters-bar div:hover{
+  cursor: pointer;
+  color: #333;
+}
+
+/******************
+  COMMON: GREY BOX & GREY BOX MAIN
+******************/
+.grey-box,
+.grey-box-main{
+  padding: 10px 25px;
+  margin-top: 40px;
+  background: #e7e6e6;
+}
+/******************
       GREY BOX
 ******************/
-.grey-box{
-  padding: 10px 25px;
-  margin-top: 30px;
-}
+
 .grey-box .title{
   padding-bottom: 2px;
   font-weight: bold;
 }
 .grey-box div:not(.title){
   padding-top: 4px;
+}
+
+.grey-box .fa{
+  float: right;
+  font-size: 20px;
+}
+/******************
+      GREY BOX MAIN
+******************/
+.grey-box-main{
+  padding-bottom: 30px;
+}
+.grey-box-main .text-center{
+  margin-top: -35px;
+}
+.grey-box-main .fa{
+  color: #fff;
+  font-size: 20px;
+  padding: 15px;
+  border-radius: 100%;
+}
+.grey-box-main .fa-suitcase{
+  background: #c0392b;
+}
+.grey-box-main .fa-graduation-cap{
+  background: #2BC071;
+}
+.grey-box-main .sec-info{
+  font-size: 12px;
+  font-family: "robotoslab-light";
+}
+.grey-box-main .title{
+  font-size: 18px;
+  font-family: "robotoslab-regular";
+
+}
+.grey-box-main .info{
+  margin-top: 20px;
+  text-align: justify;
 }
 /**********************************/
 .alumnus{
@@ -70,6 +134,11 @@ div.avatar-img{
   width: 20px;
   height: 20px;
   margin-top: -10px;
+}
+.custom-col .fa{
+  color: #333;
+  font-size: 30px;
+  margin-top: 20px;
 }
 .custom-col .title{
   text-align: center;
@@ -111,7 +180,4 @@ div.avatar-img{
 }
 .side-side-el{
   display: inline;
-}
-.grey-box{
-  background: #eee;
 }

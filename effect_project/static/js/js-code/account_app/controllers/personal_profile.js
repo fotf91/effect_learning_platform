@@ -6,6 +6,9 @@ accountApp.controller('PersonalProfileController', function PersonalProfileContr
 	$scope.edit_main_flag = false; // true: data are being edited, false: data are not edited
 	$scope.django_data_flag = true; // true: show django data, false: show ng-model variables
 	$scope.profile = {}; // empty form object
+	$scope.filter_edu = true; // true: show education elements
+	$scope.filter_exp = true; // true: show experience elements
+
 
 	$scope.updateProfile = function(){
 		$http.post("/account/profile/", JSON.stringify($scope.profile))
@@ -42,4 +45,19 @@ accountApp.controller('PersonalProfileController', function PersonalProfileContr
 	$scope.editAvatar = function(){
 		editAvatar();
 	}// editAvatar()
+
+	$scope.filterEdu = function(){
+	    $scope.filter_exp = true;
+	    $scope.filter_edu = false;
+	}// filterEdu()
+
+    $scope.filterExp = function(){
+        $scope.filter_edu = true;
+	    $scope.filter_exp = false;
+	}// filterExp()
+
+	$scope.filterAll = function(){
+	    $scope.filter_edu =
+	    $scope.filter_exp = true;
+	}
 });

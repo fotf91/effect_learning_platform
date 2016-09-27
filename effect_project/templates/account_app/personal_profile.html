@@ -57,42 +57,92 @@
       {% if not current_user_detail.alumn %}
       <div class="alumnus"><img src="{% static 'images/logos/SA_Stamp_100x100-01.png' %}"> Success Academy Alumnus</div>
       {% endif %}
+      <button class="btn btn-default btn-grey" ng-show="edit_main_flag" ng-click="updateProfile()">Submit</button>
+      <button type="button" class="btn btn-default" ng-click="editForm()"><span ng-hide="edit_main_flag"><i class="fa fa-pencil fa-fw" aria-hidden="true"></i></span><span ng-show="edit_main_flag">Cancel</span></button>
     </div>
-    <button type="button" class="btn btn-default" ng-click="editForm()"><span ng-hide="edit_main_flag"><i class="fa fa-pencil fa-fw" aria-hidden="true"></i></span><span ng-show="edit_main_flag">Cancel</span></button>
-    <button ng-show="edit_main_flag" ng-click="updateProfile()">Submit</button>
   </div>
   <div class="bkgd-white">
-    <div class="max-width-980 row skills-bar">
-      <div class="col-md-4 custom-col border-r text-center">
-        <div class="title">Εξειδικεύομαι σε</div>
-        <div>&#10004; Social Media</div>
-        <div>&#10004; Programming</div>
-        <div>&#10004; Marketing</div>
-      </div>
-      <div class="col-md-4 custom-col border-r">
-        <div class="title">Top 3 δεξιότητες</div>
-        <div class="side-side-box">Creative</div>
-        <div class="side-side-box">Solution Oriented</div>
-      </div>
-      <div class="col-md-4 custom-col">
-        <div class="title">Ψάχνω για</div>
-        <div class="side-side-el">&#10004; Internship</div>
-        <div class="side-side-el">&#10004; Full time</div>
+    <div class="max-width-980">
+      <div class="skills-bar row">
+        <div class="col-md-4 custom-col border-r text-center">
+          <div class="title">Εξειδικεύομαι σε</div>
+          <div>&#10004; Social Media</div>
+          <div>&#10004; Programming</div>
+          <div>&#10004; Marketing</div>
+        </div>
+        <div class="col-md-4 custom-col border-r">
+          <div class="col-md-2">
+            <i class="fa fa-wrench" aria-hidden="true"></i>
+          </div>
+          <div class="col-sm-10">
+            <div class="title">Top 3 δεξιότητες</div>
+            <div class="side-side-box">Creative</div>
+            <div class="side-side-box">Solution Oriented</div>
+          </div>
+        </div>
+        <div class="col-md-4 custom-col">
+          <div class="col-sm-2">
+            <i class="fa fa-search" aria-hidden="true"></i>
+          </div>
+          <div class="col-sm-10">
+            <div class="title">Ψάχνω για</div>
+            <div class="side-side-el">&#10004; Internship</div>
+            <div class="side-side-el">&#10004; Full time</div>
+          </div>
+        </div>
       </div>
     </div>
+    <div class="filters-bar text-center">
+      <div class="max-width-980">
+        <div class="row">
+          <div ng-click="filterEdu()">Εκπαίδευση</div>
+          <div ng-click="filterExp()">Εμπειρία</div>
+          <div ng-click="filterAll()">Όλα</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- resume -->
+
     <div class="max-width-980 row">
-      <div class="col-md-4 ">
+      <div class="col-md-3 ">
         <div class="grey-box">
-          <div class="title">Δεξιότητες</div>
+          <div class="title">Δεξιότητες <i class="fa fa-wrench" aria-hidden="true"></i></div>
           <div>Creativity</div>
           <div>Solution-oriented</div>
           <div>Teamwork</div>
         </div>
         <div class="grey-box">
-          <div class="title">Δεξιότητες</div>
+          <div class="title">Quotes <i class="fa fa-comment" aria-hidden="true"></i></div>
           <div>Creativity</div>
           <div>Solution-oriented</div>
           <div>Teamwork</div>
+        </div>
+        <div class="grey-box">
+          <div class="title">Βιβλία <i class="fa fa-book" aria-hidden="true"></i></div>
+          <div>Creativity</div>
+          <div>Solution-oriented</div>
+          <div>Teamwork</div>
+        </div>
+      </div>
+      <div class="col-sm-8 col-sm-offset-1">
+        <div class="grey-box-main" ng-show="filter_exp">
+          <div class="text-center">
+            <i class="fa fa-suitcase" aria-hidden="true"></i>
+            <div class="sec-info">July 2016 - Present</div>
+            <div class="title">Full stack developer</div>
+            <div class="sec-info">@ effect</div>
+            <div class="info">A job description is a list that a person might use for general tasks, or functions, and responsibilities of a position. It may often include to whom the position reports, specifications such as the qualifications or skills needed by the person in the job, and a salary range.</div>
+          </div>
+        </div>
+        <div class="grey-box-main" ng-show="filter_edu">
+          <div class="text-center">
+            <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+            <div class="sec-info">July 2016 - Present</div>
+            <div class="title">Full stack developer</div>
+            <div class="sec-info">@ effect</div>
+            <div class="info">A job description is a list that a person might use for general tasks, or functions, and responsibilities of a position. It may often include to whom the position reports, specifications such as the qualifications or skills needed by the person in the job, and a salary range.</div>
+          </div>
         </div>
       </div>
     </div>
