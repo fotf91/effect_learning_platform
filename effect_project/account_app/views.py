@@ -20,8 +20,10 @@ def index(request):
     context_dict = {'boldmessage': "I am bold font from the context"}
     return render(request, 'account_app/index.html', context_dict)
 
-
 class personal_profile_view(View):
+    # the user wants to see his own profile
+    # and edit it
+
     template_name = 'account_app/personal_profile.html'
 
     def get(self, request, *args, **kwargs):
@@ -59,6 +61,7 @@ class personal_profile_view(View):
                         }
         return render(request, 'account_app/personal_profile.html', context_dict)
 
+    @login_required
     def post(self, request, *args, **kwargs):
         current_user = request.user
         current_user_detail = TypeGUser.objects.get(user=current_user)

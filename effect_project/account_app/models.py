@@ -83,7 +83,7 @@ class Skills(models.Model):
     """
     Skills
     """
-    name = models.CharField(max_length=60)
+    name = models.CharField(primary_key=True,max_length=60)
 
     def as_json(self):
         return dict(

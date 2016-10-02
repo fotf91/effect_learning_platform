@@ -9,7 +9,6 @@ accountApp.controller('PersonalProfileController', function PersonalProfileContr
 	$scope.filter_edu = true; // true: show education elements
 	$scope.filter_exp = true; // true: show experience elements
 
-
 	$scope.updateProfile = function(){
 		$http.post("/account/profile/", JSON.stringify($scope.profile))
 		.success(function(data, status, headers, config) {
@@ -21,6 +20,19 @@ accountApp.controller('PersonalProfileController', function PersonalProfileContr
 			$scope.status = status;
 		});
 	}// updateProfile()
+
+	$scope.updateSpecialization = function(){
+	    $http.post("url", JSON.stringify($scope.specializations))
+	    .success(function(data, status, headers, config) {
+			//...
+		}).error(function(data, status, headers, config) {
+			//...
+		});
+	}// updateSpecialization()
+
+	$scope.searchSkill = function(){
+        console.log('search skill');
+	}// searchSkill()
 
 	function editForm(){
 		if($scope.edit_main_flag){
