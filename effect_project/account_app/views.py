@@ -61,8 +61,8 @@ class personal_profile_view(View):
                         }
         return render(request, 'account_app/personal_profile.html', context_dict)
 
-    @login_required
     def post(self, request, *args, **kwargs):
+        print(">>>>>>>>>>>>>>>>>>>>>>>>> checkpoint")
         current_user = request.user
         current_user_detail = TypeGUser.objects.get(user=current_user)
 

@@ -30,7 +30,6 @@ accountApp.controller('PersonalProfileController', function PersonalProfileContr
 		});
 	}// updateSpecialization()
 
-    //
 	$scope.searchSpecialization = function(){
 	    $http({
 	        url:'/account/get_expertise_area_list/',
@@ -51,6 +50,12 @@ accountApp.controller('PersonalProfileController', function PersonalProfileContr
 			$scope.edit_main_flag = true;
 		}
 	}// editForm()
+
+	$scope.addSpecialization = function($event, specialization){
+	    var selected = angular.element($event.currentTarget).text();
+        $scope.profile.expertise_area_val1 = selected;
+        console.log($scope.profile.expertise_area_val1);
+	}// addSpecialization()
 
 	$scope.editForm = function(){
 		editForm();

@@ -80,7 +80,7 @@
           </div>
           <div ng-show="edit_main_flag">
             <div class="col-md-12 form-group"><input type="text" class="form-control" placeholder="Εξειδίκευση" ng-model="specialization" ng-keyup="searchSpecialization()"></div>
-            <span class="result-element" ng-repeat="x in specialization_list">$x.pk$</span>
+            <span class="result-element" ng-click="addSpecialization($event, x)" ng-repeat="x in specialization_list">$x.pk$</span>
           </div>
         </div>
         <div class="col-md-4 custom-col border-r">

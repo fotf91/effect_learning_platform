@@ -112,7 +112,7 @@ class EditTypeGUserForm(forms.ModelForm):
                 #   'facebookUrl',
                 #   'mediumUrl',
                 #   'linkedInUrl',
-                  # 'expertise_area_val1',
+                'expertise_area_val1',
                   # 'expertise_area_val2',
                   # 'expertise_area_val3',
                 #   'avatar',
