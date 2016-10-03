@@ -16,6 +16,9 @@ urlpatterns = patterns('',
         # url(r'^update_profile_Gtype$','account_app.views.update_profile_Gtype', name='update_profile_Gtype'),
         # url(r'^update_profile_Ctype$','account_app.views.update_profile_Ctype', name='update_profile_Ctype'),
 
+        url(r'^get_skill_list/$', views.get_skill_list, name='get_skill_list'),
+        url(r'^get_expertise_area_list/$', views.get_expertise_area_list, name='get_expertise_area_list'),
+
         url(r'^profile/$', login_required(personal_profile_view.as_view()), name='profile'),
         url(r'^update_avatar_GType$','account_app.views.update_avatar_GType', name='update_avatar_GType'),
         # old version methonds

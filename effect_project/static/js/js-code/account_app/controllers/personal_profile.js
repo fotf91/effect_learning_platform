@@ -30,8 +30,18 @@ accountApp.controller('PersonalProfileController', function PersonalProfileContr
 		});
 	}// updateSpecialization()
 
-	$scope.searchSkill = function(){
-        console.log('search skill');
+    //
+	$scope.searchSpecialization = function(){
+	    $http({
+	        url:'/account/get_expertise_area_list/',
+	        method: 'GET',
+	        params: {exp_area_query: $scope.specialization}
+	    }).then(function successCallback(response) {
+            var serializedData = jQuery.parseJSON(response.data.areas); // array
+            $scope.specialization_list = serializedData;
+        }, function errorCallback(response) {
+            console.log(response);
+        });
 	}// searchSkill()
 
 	function editForm(){

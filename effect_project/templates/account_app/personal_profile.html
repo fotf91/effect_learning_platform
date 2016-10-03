@@ -73,13 +73,14 @@
                 {% if current_user_detail.expertise_area_val3 %}<div>&#10004; {{ current_user_detail.expertise_area_val3 }}</div>{% endif %}
               </div>
               <div ng-hide="django_data_flag">
-                <div>&#10004; %profile.expertise_area_val1%</div>
-                <div>&#10004; %profile.expertise_area_val2%</div>
-                <div>&#10004; %profile.expertise_area_val3%</div>
+                <div>&#10004; $profile.expertise_area_val1$</div>
+                <div>&#10004; $profile.expertise_area_val2$</div>
+                <div>&#10004; $profile.expertise_area_val3$</div>
               </div>
           </div>
           <div ng-show="edit_main_flag">
-            <div class="col-md-12 form-group"><input type="text" class="form-control" placeholder="Εξειδίκευση" ng-keyup="searchSkill()"></div>
+            <div class="col-md-12 form-group"><input type="text" class="form-control" placeholder="Εξειδίκευση" ng-model="specialization" ng-keyup="searchSpecialization()"></div>
+            <span class="result-element" ng-repeat="x in specialization_list">$x.pk$</span>
           </div>
         </div>
         <div class="col-md-4 custom-col border-r">

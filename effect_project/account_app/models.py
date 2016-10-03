@@ -78,7 +78,6 @@ class EmailBasedUser(AbstractBaseUser, PermissionsMixin):
         # Simplest possible answer: All admins are staff
         return self.is_admin
 
-
 class Skills(models.Model):
     """
     Skills
@@ -87,7 +86,7 @@ class Skills(models.Model):
 
     def as_json(self):
         return dict(
-            id = self.id,
+            id=self.id,
             name = self.name,
         )
 
@@ -98,7 +97,7 @@ class ExpertiseArea(models.Model):
     """
     Expertise Area
     """
-    name = models.CharField(max_length=60)
+    name = models.CharField(primary_key=True,max_length=60)
 
     def as_json(self):
         return dict(

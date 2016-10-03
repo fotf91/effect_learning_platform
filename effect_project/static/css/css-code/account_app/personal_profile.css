@@ -125,6 +125,13 @@ div.avatar-img{
   margin-top: 20px;
   text-align: justify;
 }
+/******************
+      GREY BOX MAIN
+******************/
+.result-element{
+    padding: 0px 8px;
+    font-family: "lato-light";
+}
 /**********************************/
 .alumnus{
   margin-top: 40px;

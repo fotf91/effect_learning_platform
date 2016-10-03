@@ -7,7 +7,7 @@ from account_app.forms import (GeneralUserCreationForm,
                                AddPositionForm,
                                EditPositionForm,AvatarGUserForm)
 from django.contrib.auth.decorators import login_required
-from account_app.models import TypeGUser, TypeCUser, Skills, Position
+from account_app.models import TypeGUser, TypeCUser, Skills, Position, ExpertiseArea
 from account_app.forms import (EditTypeCUserForm,
                                EditTypeGUserForm,
                                )
@@ -258,22 +258,37 @@ def logout(request):
     django_logout(request)
     return redirect('/account')
 
+def get_expertise_area_list(request):
+    """
+    Return a list of expertise area according to the string the user has entered
+    """
+    starts_with = ''
+    if request.method == 'GET':
+        starts_with = request.GET['exp_area_query']
 
-# def get_skill_list(request):
-#     """
-#     Return a list of skills according to the string the user has entered
-#     """
-#     starts_with = ''
-#     if request.method == 'GET':
-#         starts_with = request.GET['skill_query']
-#
-#     if starts_with != '':
-#         skill_list = Skills.objects.filter(name__istartswith=starts_with)
-#     else:
-#         skill_list = []
-#
-#     returnData = serializers.serialize("json", skill_list)
-#     return JsonResponse({'skills': returnData})
+    if starts_with != '':
+        exp_area_list = ExpertiseArea.objects.filter(name__istartswith=starts_with)
+    else:
+        exp_area_list = []
+
+    returnData = serializers.serialize('json',exp_area_list)
+    return JsonResponse({'areas': returnData})
+
+def get_skill_list(request):
+    """
+    Return a list of skills according to the string the user has entered
+    """
+    starts_with = ''
+    if request.method == 'GET':
+        starts_with = request.GET['skill_query']
+
+    if starts_with != '':
+        skill_list = Skills.objects.filter(name__istartswith=starts_with)
+    else:
+        skill_list = []
+
+    returnData = serializers.serialize("json", skill_list)
+    return JsonResponse({'skills': returnData})
 
 # def get_skills_id(request):
 #     """
